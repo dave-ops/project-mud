@@ -5,6 +5,7 @@ export interface IItem {
     id: number;
     name: string;
     description: string;
+    position: Position;
     weight: number;
     value: {
         base: number;

@@ -1,6 +1,6 @@
 import Character from './Character'; // Assuming you've created the Character model
 import Room from './Room'; // Assuming you've created the Room model
-import { AffectLocation, ItemType } from '../enums';
+import { AffectLocation, ItemType, Position } from '../enums';
 import { IAffect } from '../interfaces/IAffect';
 import ICharacter from '../interfaces/ICharacter';
 import { IItem } from '../interfaces/IItem';
@@ -9,6 +9,7 @@ class Item implements IItem {
     id: number;
     name: string;
     description: string;
+    position: Position = Position.UNKNOWN;
     weight: number;
     itemType: ItemType = ItemType.UNKNOWN;
     canBeEquipped: boolean;
@@ -22,7 +23,7 @@ class Item implements IItem {
         special: number;
     };
 
-    constructor(id: number, name: string, item_type: ItemType, level: number = 1) {
+    constructor(id: number, name: string, item_type: ItemType, level: number = 1, canBeEquipped: boolean) {
         this.id = id;
         this.name = name;
         this.short_descr = `a ${name}`;
@@ -46,6 +47,7 @@ class Item implements IItem {
         }; // Default values for item specifics
 
         this.hidden = false; // or whatever default state you want
+        this.canBeEquipped = canBeEquipped;
     }
 
     hidden: boolean = false; // Default to not hidden

@@ -38,6 +38,7 @@ export const enum WearFlag {
   
 // Define constants for positions, sex, etc. for clarity and type safety
 export const enum Position {
+    UNKNOWN = -1,
     DEAD = 0,
     MORTAL,
     INCAP,
