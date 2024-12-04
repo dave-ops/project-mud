@@ -9,6 +9,7 @@ export interface IItem {
     itemType: string; // e.g., 'weapon', 'armor', 'potion'
     canBeEquipped: boolean; // If true, this item can be equipped
     equipmentSlot?: string; // If canBeEquipped, what slot it occupies, e.g., 'head', 'hand'
+    obscures(other: IItem): boolean;
 
     // Methods
     use(character: ICharacter): void; // For items that can be 'used' like potions

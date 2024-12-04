@@ -177,6 +177,16 @@ class Item implements IItem {
     canWear(location: WearFlag): boolean {
         return !!(this.wear_flags & location);
     }
+
+    public obscures(other: IItem): boolean {
+        // Logic to determine if this item obscures another item
+        // This could be based on size, position, or any game-specific rules
+        // For example:
+        if (this.size > other.size && this.position === other.position) {
+            return true; // Example: larger items at the same position obscure smaller ones
+        }
+        return false;
+    }
 }
 
 export default Item;

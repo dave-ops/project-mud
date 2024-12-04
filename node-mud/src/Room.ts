@@ -1,6 +1,7 @@
 import ICharacter from './interfaces/ICharacter'; // Assuming you have this export
 import Item from './Item'; // Assuming you have this export
 import { IRoom } from './interfaces/IRoom'; // Assuming you have this interface
+import { IItem } from './interfaces/IItem'; // Assuming you have this interface
 
 
 /**
