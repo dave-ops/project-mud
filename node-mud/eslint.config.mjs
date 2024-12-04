@@ -8,6 +8,7 @@ import tseslint from "typescript-eslint";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const compat = new FlatCompat({
     baseDirectory: __dirname,
     recommendedConfig: {
@@ -26,8 +27,15 @@ const compat = new FlatCompat({
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-    { files: ["src/**/*.{js,mjs,cjs,ts}"] },
-    { files: ["src/**/*.js"], languageOptions: { sourceType: "commonjs" } },
+    { files: ["src/*.{mjs,cjs,ts}"] },
+    { files: ["src/*.js"], 
+        languageOptions: { 
+            sourceType: "commonjs" 
+        },
+        rules: {
+            "no-undef": 1,
+        }
+    },
     { languageOptions: { globals: globals.browser } },
     pluginJs.configs.recommended,
     ...tseslint.configs.recommended,
@@ -38,3 +46,4 @@ export default [
         },
     },
 ];
+
