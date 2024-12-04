@@ -1,67 +1,26 @@
 import Character from './Character'; // Assuming you've created the Character model
 import Room from './Room'; // Assuming you've created the Room model
-import { AffectLocation } from '../enums/AffectLocation';
+import { AffectLocation, ItemType } from '../enums';
 import { IAffect } from '../interfaces/IAffect';
 import ICharacter from '../interfaces/ICharacter';
 import { IItem } from '../interfaces/IItem';
-
-// Define constants for item types
-const enum ItemType {
-    LIGHT = 0,
-    SCROLL,
-    WAND,
-    STAFF,
-    WEAPON,
-    TREASURE,
-    ARMOR,
-    POTION,
-    FURNITURE,
-    TRASH,
-    CONTAINER,
-    DRINK_CON,
-    KEY,
-    FOOD,
-    MONEY,
-    PEN,
-    BOAT,
-    CORPSE_NPC,
-    CORPSE_PC,
-    FOUNTAIN,
-    PILL,
-    // Add more types as needed
-}
-
-// Define constants for item wear flags (bitwise)
-const enum WearFlag {
-    TAKE = 1 << 0,
-    FINGER = 1 << 1,
-    NECK = 1 << 2,
-    BODY = 1 << 3,
-    HEAD = 1 << 4,
-    LEGS = 1 << 5,
-    FEET = 1 << 6,
-    HANDS = 1 << 7,
-    ARMS = 1 << 8,
-    SHIELD = 1 << 9,
-    ABOUT = 1 << 10,
-    WAIST = 1 << 11,
-    WRIST = 1 << 12,
-    WIELD = 1 << 13,
-    HOLD = 1 << 14,
-    // Add more wear flags as needed
-}
 
 class Item implements IItem {
     id: number;
     name: string;
     description: string;
     weight: number;
-    itemType: string;
+    itemType: ItemType = ItemType.UNKNOWN;
     canBeEquipped: boolean;
     equipmentSlot?: string;
 
     // Values for different item types
-    value: [number, number, number, number];
+    value:  {
+        base: number;
+        sell: number;
+        buy: number;
+        special: number;
+    };
 
     constructor(id: number, name: string, item_type: ItemType, level: number = 1) {
         this.id = id;
@@ -206,6 +165,27 @@ class Item implements IItem {
         return false;
     }
 
+    use(character: ICharacter): void {
+        // For items that can be 'used' like potions
+        return;
+    } 
+
+    equip(character: ICharacter): boolean {
+        // Returns true if successfully equipped
+        return false;
+    } 
+    
+    unequip(character: ICharacter): boolean { 
+        return false; 
+    } // Returns true if successfully unequipped
+    
+    getDescription(): string { 
+        return 'unknown'; 
+    }
+
+    isWearable(): boolean{ 
+        return false; 
+    } // Checks if the item can be equipped based on itemType and canBeEquipped
 
 }
 

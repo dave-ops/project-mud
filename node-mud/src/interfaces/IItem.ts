@@ -1,4 +1,5 @@
 import ICharacter from './ICharacter'; // Assuming you have an Affect model
+import { Class, Position, Sex, ItemType } from '../enums'
 
 export interface IItem {
     id: number;
@@ -11,7 +12,7 @@ export interface IItem {
         buy: number;
         special: number;
     };
-    itemType: string; // e.g., 'weapon', 'armor', 'potion'
+    itemType: ItemType; // e.g., 'weapon', 'armor', 'potion'
     canBeEquipped: boolean; // If true, this item can be equipped
     equipmentSlot?: string; // If canBeEquipped, what slot it occupies, e.g., 'head', 'hand'
     hidden: boolean;

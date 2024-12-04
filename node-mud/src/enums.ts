@@ -60,3 +60,30 @@ export const enum Race {
     ELF,
     // etc.
   }
+
+// Define constants for item types
+export const enum ItemType {
+  UNKNOWN = -1,
+  LIGHT = 0,
+  SCROLL,
+  WAND,
+  STAFF,
+  WEAPON,
+  TREASURE,
+  ARMOR,
+  POTION,
+  FURNITURE,
+  TRASH,
+  CONTAINER,
+  DRINK_CON,
+  KEY,
+  FOOD,
+  MONEY,
+  PEN,
+  BOAT,
+  CORPSE_NPC,
+  CORPSE_PC,
+  FOUNTAIN,
+  PILL,
+  // Add more types as needed
+}
