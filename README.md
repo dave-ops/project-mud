@@ -5,7 +5,7 @@ Convert original diku Merc_21.tar.gz to Node.js / TypeScript.
 Add MongoDB instead of file based system
 
 ## Project Structure
-
+```
 project-mud/
 ├── src/
 │   ├── models/
@@ -23,7 +23,7 @@ project-mud/
 │   └── main.ts  # or whatever is your entry point
 ├── package.json
 └── tsconfig.json
-
+```
 
 ### Explanation of Structure:
 - **src/**: Contains all the source code for your project.
