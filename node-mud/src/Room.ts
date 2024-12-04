@@ -29,14 +29,6 @@ class Room implements IRoom {
     private _people: ICharacter[];
     private _contents: (Item | ICharacter)[];
 
-    constructor(id: number, name: string, description: string) {
-        this._id = id;
-        this._name = name;
-        this._description = description;
-        this._exits = {};
-        this._people = [];
-        this._contents = [];
-    }
 
     // Getters
     get id(): number {
