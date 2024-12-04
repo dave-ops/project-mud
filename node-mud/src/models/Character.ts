@@ -38,6 +38,12 @@ const enum Class {
   // etc.
 }
 
+// Constants for targets, etc., would be defined elsewhere or inlined here
+const TARGET_IGNORE = 0; // Example value, adjust according to your enum or constants
+const TARGET_CHAR = 1;
+const TARGET_OBJ = 2;
+const TAR_CHAR_OFFENSIVE = 3; 
+
 /**
  * Represents a character in the game, implementing the ICharacter interface.
  * This class includes both player characters and NPCs.
@@ -185,6 +191,74 @@ class Character implements ICharacter {
         } else {
             // Logic for item visibility
             return true; // or your specific logic for items
+        }
+    }
+
+    public castSpell(spellId: number, level: number, target: number, targetObject: ICharacter | IItem | null): void {
+        if (spellId < 0) return;
+
+        if (!this.isNpc && this.level < skillTable[spellId].skillLevel[this.class]) {
+            this.send("You can't do that.");
+            return;
+        }
+
+        if (this.position < 'standing') {
+            this.send("You can't concentrate enough.");
+            return;
+        }
+
+        const manaCost = manaTable[this.level][this.class] / 2;
+        if (!this.isNpc && this.mana < manaCost) {
+            this.send("You don't have enough mana.");
+            return;
+        }
+
+        this.addWaitState(skillTable[spellId].beats);
+
+        if (!skillTable[spellId].spellFunction) {
+            console.error(`Cast Spell: no spell function for spell ID ${spellId} '${skillTable[spellId].name}'`);
+            return;
+        }
+
+        if (target === TARGET_IGNORE) {
+            if (targetObject instanceof Character) {
+                skillTable[spellId].spellFunction(spellId, level, this, targetObject, TARGET_CHAR);
+            } else if (targetObject instanceof Item) {
+                skillTable[spellId].spellFunction(spellId, level, this, targetObject, TARGET_OBJ);
+            } else {
+                console.error(`Cast Spell: target is IGNORE but targetObject is NULL for '${skillTable[spellId].name}'`);
+                return;
+            }
+        } else {
+            skillTable[spellId].spellFunction(spellId, level, this, targetObject, target);
+        }
+
+        if (skillTable[spellId].target === TAR_CHAR_OFFENSIVE && targetObject instanceof Character && targetObject !== this) {
+            // Check if the spell is offensive and handle combat rules
+            for (const vch of this.room.characters) {
+                if (targetObject === vch && !this.isSafeSpell(this, vch)) {
+                    this.checkKiller(vch);
+                    break;
+                }
+            }
+        }
+
+        if (!this.isNpc && Math.random() * 100 > this.getSkill(spellId)) {
+            this.send("You lost your concentration.");
+            this.checkImprovement(spellId, false);
+            this.mana -= manaCost / 2;
+        } else {
+            this.mana -= manaCost;
+            this.checkImprovement(spellId, true);
+        }
+
+        if (skillTable[spellId].target === TAR_CHAR 
+            && targetObject instanceof Character
+            && targetObject !== this
+            && !this.isNpc
+            && targetObject.master !== this
+            && Math.random() < 0.125) { // 1 in 8 chance
+            this.room.broadcast(`${this.name}'s eyes briefly glow red.`, this);
         }
     }
 

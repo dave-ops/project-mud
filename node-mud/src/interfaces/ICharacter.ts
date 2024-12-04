@@ -7,6 +7,7 @@ export default interface ICharacter {
     id: number;
     name: string;
     description: string;
+
     affected_by: number; // Assuming it's a bit flag
     affected: IAffect[];    
     armor: number;
@@ -42,7 +43,7 @@ export default interface ICharacter {
     // Methods that might be abstract or implemented in derived classes:
     attack(target: ICharacter): void;
     canSee(other: IItem | ICharacter): boolean;
-    castSpell(spell: ISpell, target: ICharacter): void;
+    castSpell(spellId: number, level: number, target: number, targetObject: ICharacter | IItem | null): void;
     equip(item: IItem, slot?: string): boolean; // Returns true if equipped successfully
     gainExperience(amount: number): void;
     getInventory(): Array<IItem>;
