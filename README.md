@@ -1,2 +1,2 @@
 # project-mud
-converting merc-mud to node.js
+convert original diku Merc_21.tar.gz to node.js
