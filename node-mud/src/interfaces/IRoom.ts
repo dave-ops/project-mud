@@ -3,6 +3,8 @@ import { IItem } from './IItem'; // Assuming you have an Affect model
 import { INamed } from './INamed'
 
 export interface IRoom {
+    _lightLevel: number;
+    
     id: number;
     name: string;
     contents: INamed[];
