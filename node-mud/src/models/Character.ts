@@ -4,6 +4,7 @@ import { IAffect } from '../interfaces/IAffect';
 import { IItem } from '../interfaces/IItem';
 import { IPlayerCondition, COND_FULL, COND_THIRST, COND_DRUNK } from '../interfaces/IPlayerCondition';
 import { Socket } from 'net'; // If using Node.js for socket communication
+import { IRoom } from '../interfaces/IRoom';
 
 class Character implements ICharacter {
     private desc?: Socket; // Assuming 'desc' for descriptor or connection
