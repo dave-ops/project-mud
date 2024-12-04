@@ -1,6 +1,8 @@
 import Room from './Room';
 import Item from './Item'; // Assuming you have an Object model
-import IAffect from './interfaces/IAffect'; // Assuming you have an Affect model
+import { IAffect } from './interfaces/IAffect';
+import { ICharacter } from './interfaces/ICharacter'; 
+import { IPlayerCondition } from './interfaces/IPlayerCondition'
 
 // Define constants for positions, sex, etc. for clarity and type safety
 const enum Position {
@@ -34,17 +36,7 @@ const enum Class {
   // etc.
 }
 
-interface PlayerCondition {
-  [COND_FULL]: number;
-  [COND_THIRST]: number;
-  [COND_DRUNK]: number;
-}
-
-const COND_FULL = 0;
-const COND_THIRST = 1;
-const COND_DRUNK = 2;
-
-class Character {
+export class Character {
     // Basic attributes
     name: string;
     short_descr: string;
@@ -68,7 +60,7 @@ class Character {
 
     // Position and combat
     position: Position;
-    fighting?: Character; // Optional if in combat
+    fighting?: ICharacter; // Optional if in combat
 
     // Wealth and experience
     gold: number;
@@ -99,7 +91,7 @@ class Character {
     mod_wis: number;
     mod_dex: number;
     mod_con: number;
-    condition: PlayerCondition; // Player's condition
+    condition: IPlayerCondition; // Player's condition
     learned: { [key: string]: number }; // Skills learned by the player
   };
 
@@ -183,12 +175,10 @@ class Character {
 
     // TODO: IMPLEMENT
     // eslint-disable-next-line
-    attack(target: Character) {
+    attack(target: ICharacter) {
         // Implementation for attacking another character
         return;
     }
 
     // ... other methods like heal, castSpell, saveCharacter, etc.
 }
-
-export default { Character };
