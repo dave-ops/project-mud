@@ -1,3 +1,4 @@
+import { AffectLocation } from '../enums';
 import ICharacter from './ICharacter'; // Assuming you have an Affect model
 import { IItem } from './IItem'; // Assuming you have an Affect model
 
@@ -7,7 +8,8 @@ export interface IAffect {
     modifier: number; // Can be positive or negative, affects stats or attributes
     affectedStat?: string; // The stat or attribute being affected, e.g., 'hitpoints', 'strength'
     appliesTo: 'character' | 'item'; // What this affect can be applied to
-
+    location: AffectLocation;
+    
     // Methods
     apply(character: ICharacter | IItem): void; // Applies the affect to the target
     remove(character: ICharacter | IItem): void; // Removes the affect from the target
