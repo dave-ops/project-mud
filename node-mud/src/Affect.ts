@@ -1,3 +1,4 @@
+import ICharacter from './interfaces/ICharacter';
 import Character from './Character'; // Assuming you've created the Character model
 
 // Define constants for affect locations
@@ -35,7 +36,7 @@ class Affect {
     bitvector: number; // Bitfield for special affect flags like AFF_BLIND
 
     // Optional properties for more complex affects
-    caster?: Character; // Who or what cast this affect (optional for tracking)
+    caster?: ICharacter; // Who or what cast this affect (optional for tracking)
 
     constructor(type: number, duration: number, modifier: number, location: AffectLocation, bitvector: number = 0) {
         this.type = type;
@@ -46,7 +47,7 @@ class Affect {
     }
 
     // Apply the affect to a character
-    applyTo(char: Character): void {
+    applyTo(char: ICharacter): void {
     // Here you would implement logic to apply the affect based on location and modifier
         switch (this.location) {
         case AffectLocation.APPLY_STR:
@@ -98,7 +99,7 @@ class Affect {
     }
 
     // Remove the affect from a character
-    removeFrom(char: Character): void {
+    removeFrom(char: ICharacter): void {
     // Reverse the affect based on location and modifier
         switch (this.location) {
         case AffectLocation.APPLY_STR:

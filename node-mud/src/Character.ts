@@ -1,6 +1,6 @@
 import Room from './Room';
 import Item from './Item'; // Assuming you have an Object model
-import Affect from './Affect'; // Assuming you have an Affect model
+import IAffect from './interfaces/IAffect'; // Assuming you have an Affect model
 
 // Define constants for positions, sex, etc. for clarity and type safety
 const enum Position {
@@ -107,7 +107,7 @@ class Character {
     room?: Room; // Current room
     was_in_room?: Room; // Previous room before moving to limbo or similar
     carrying?: Item[]; // Items carried by the character
-    affected?: Affect[]; // Active affects on the character
+    affected?: IAffect[]; // Active affects on the character
     save_time: number; // Last save time
 
     // Constructor
