@@ -36,7 +36,7 @@ const enum Class {
   // etc.
 }
 
-export class Character {
+export default class Character {
     // Basic attributes
     name: string;
     short_descr: string;
