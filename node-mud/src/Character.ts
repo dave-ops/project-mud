@@ -1,8 +1,8 @@
 import Room from './Room';
 import Item from './Item'; // Assuming you have an Object model
 import { IAffect } from './interfaces/IAffect';
-import ICharacter from './interfaces/ICharacter'; 
-import IPlayerCondition from './interfaces/IPlayerCondition'
+import ICharacter from './interfaces/ICharacter';
+import { IPlayerCondition, COND_FULL, COND_THIRST, COND_DRUNK } from './interfaces/IPlayerCondition'
 import { Socket } from 'net';
 
 // Define constants for positions, sex, etc. for clarity and type safety
@@ -172,16 +172,28 @@ class Character implements ICharacter {
     // TODO: IMPLEMENT
     // Add methods for game mechanics like moving, combat, etc.
     // eslint-disable-next-line
-    moveToRoom(room: Room) {
-        // Implementation for moving character to another room
+  moveToRoom(room: Room) {
+    // Implementation for moving character to another room
         return;
     }
 
     // TODO: IMPLEMENT
     // eslint-disable-next-line
-    attack(target: ICharacter) {
-        // Implementation for attacking another character
+  attack(target: ICharacter) {
+    // Implementation for attacking another character
         return;
+    }
+
+    // TODO: IMPLEMENT
+    // eslint-disable-next-line
+  public canSee(other: ICharacter): boolean {
+    // Implementation of visibility logic
+    // For example:
+    // - Check if both characters are in the same room
+    // - Check if the other character is invisible or if this character is blind
+    // Here's a very basic implementation:
+        console.log(other)  // TODO:  REVERSE ENGINEER IMPLEMENTATION
+        return true; // Default to true if not implemented fully yet
     }
 
     public send(message: string): void {
