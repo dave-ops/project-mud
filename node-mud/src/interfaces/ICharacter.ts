@@ -26,6 +26,7 @@ export default interface ICharacter {
     move: number;
     name: string;
     position: string; // e.g., 'standing', 'sitting', 'sleeping'
+    removeItem(item: IItem): void;    
     saving_throw: number;
     sex: string; // 'male', 'female', 'neutral'
     pcdata: {
@@ -41,7 +42,7 @@ export default interface ICharacter {
 
     // Methods that might be abstract or implemented in derived classes:
     attack(target: ICharacter): void;
-    canSee(other: ICharacter | IItem): boolean;
+    canSee(other: IItem | ICharacter): boolean;
     castSpell(spell: ISpell, target: ICharacter): void;
     equip(item: IItem, slot?: string): boolean; // Returns true if equipped successfully
     gainExperience(amount: number): void;

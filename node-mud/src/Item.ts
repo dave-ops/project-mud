@@ -2,6 +2,7 @@ import Character from './Character'; // Assuming you've created the Character mo
 import Room from './Room'; // Assuming you've created the Room model
 import Affect from './Affect'; // Assuming you have an Affect model
 import { AffectLocation } from './enums/AffectLocation';
+import IItem from './interfaces/IItem'; 
 
 // Define constants for item types
 const enum ItemType {
@@ -49,7 +50,7 @@ const enum WearFlag {
   // Add more wear flags as needed
 }
 
-class Item {
+class Item implements IItem {
     // Basic properties
     id: number;
     name: string;

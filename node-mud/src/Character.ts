@@ -1,6 +1,7 @@
 import Room from './Room';
 import Item from './Item'; // Assuming you have an Object model
 import { IAffect } from './interfaces/IAffect';
+import IItem from './interfaces/IItem'; 
 import ICharacter from './interfaces/ICharacter';
 import { IPlayerCondition, COND_FULL, COND_THIRST, COND_DRUNK } from './interfaces/IPlayerCondition'
 import { Socket } from 'net';
@@ -39,7 +40,7 @@ const enum Class {
 
 class Character implements ICharacter {
     private socket: Socket | null = null; // Assuming you're using sockets for communication
-
+    private inventory: IItem[] = [];
 
     // Basic attributes
     name: string;
@@ -186,16 +187,25 @@ class Character implements ICharacter {
 
     // TODO: IMPLEMENT
     // eslint-disable-next-line
-  public canSee(other: ICharacter | Item): boolean {
-    if (other instanceof Item) {
-      // Logic for seeing items, e.g.,:
-      return true; // or some condition for item visibility
-  } else {
-      // Logic for seeing characters, e.g.,:
-      return true; // or your existing character visibility logic
+    public canSee(other: IItem | ICharacter): boolean {
+      if (other instanceof Character) {
+          // Logic for character visibility
+          return true; // or your specific logic
+      } else {
+          // Logic for item visibility
+          return true; // or your specific logic for items
+      }
   }
-    }
 
+    public removeItem(item: IItem): void {
+        const index = this.inventory.indexOf(item);
+        if (index > -1) {
+            this.inventory.splice(index, 1);
+            // @ts-expect-error
+            item.carried_by = null; 
+        }
+    }
+  
     public send(message: string): void {
         if (this.socket) {
             // Send the message over the socket if it exists
