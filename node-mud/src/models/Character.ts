@@ -166,12 +166,17 @@ class Character implements ICharacter {
         this.pcdata.perm_dex += 1;
         this.pcdata.perm_con += 1;
 
-        this.advanceLevel();
+        //this.advanceLevel();
         console.log(`${this.name} gained level ${this.level}`);
     }
 
-    private attack(): void {
+    private advanceLevel(): void {
+        // Logic for improving skills, spells, etc.
+    }
+
+    private attack(target: ICharacter): void {
         // Placeholder for level advancement logic. Should include updating skills, spells, etc.
+        console.log(target);
     }
 
     private canSee(): boolean {
