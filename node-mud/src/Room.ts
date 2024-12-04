@@ -29,6 +29,35 @@ class Room implements IRoom {
     private _people: ICharacter[];
     private _contents: (Item | ICharacter)[];
 
+    private _characters: ICharacter[] = [];
+    private _items: IItem[] = [];
+
+    // ... other existing methods
+
+    get characters(): ICharacter[] {
+        return this._characters;
+    }
+
+    get items(): IItem[] {
+        return this._items;
+    }
+
+    public addItem(item: IItem): void {
+        this._items.push(item);
+    }
+
+    public removeItem(item: IItem): void {
+        this._items = this._items.filter(i => i !== item);
+    }
+
+    public look(character?: ICharacter): string {
+        let description = this._description;
+        if (character) {
+            description += "\n" + this.describeContents(character);
+        }
+        return description;
+    }
+
 
     // Getters
     get id(): number {
@@ -65,14 +94,12 @@ class Room implements IRoom {
     }
 
     // Methods for managing people in the room
-    addCharacter(char: ICharacter): void {
-        if (!this._people.includes(char)) {
-            this._people.push(char);
-        }
+    public addCharacter(character: ICharacter): void {
+        this._characters.push(character);
     }
 
-    removeCharacter(char: ICharacter): void {
-        this._people = this._people.filter(c => c !== char);
+    public removeCharacter(character: ICharacter): void {
+        this._characters = this._characters.filter(c => c !== character);
     }
 
     // Methods for managing contents (items or characters)
@@ -106,7 +133,7 @@ class Room implements IRoom {
 
     private describeContents(char: ICharacter): void {
         const visibleChars = this._people.filter(c => c !== char && char.canSee(c));
-        const visibleItems = this._contents.filter(o => o instanceof Item && char.canSee(o as Item));
+        const visibleItems = this._contents.filter(o => o instanceof Item && char.canSee(o as IItem));
         
         if (visibleChars.length > 0) {
             char.send(`You see: ${visibleChars.map(c => c.name).join(', ')}.\n\r`);
