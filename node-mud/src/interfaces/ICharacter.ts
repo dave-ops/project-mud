@@ -1,4 +1,8 @@
-interface ICharacter {
+import { IRoom } from './IRoom'; // Assuming you have an Affect model
+import { IItem } from './IItem'; // Assuming you have an Affect model
+import { ISpell } from './ISpell'; // Assuming you have an Affect model
+
+export interface ICharacter {
     id: number;
     name: string;
     description: string;

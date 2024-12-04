@@ -1,4 +1,7 @@
-interface IAffect {
+import { ICharacter } from './ICharacter'; // Assuming you have an Affect model
+import { IItem } from './IItem'; // Assuming you have an Affect model
+
+export interface IAffect {
     type: string; // Type of affect, like 'poison', 'strength', 'invisibility'
     duration: number; // Duration in game ticks or turns
     modifier: number; // Can be positive or negative, affects stats or attributes

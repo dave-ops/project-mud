@@ -1,4 +1,7 @@
-interface ISpell {
+import { ICharacter } from './ICharacter'; // Assuming you have an Affect model
+import { IRoom } from './IRoom'; // Assuming you have an Affect model
+
+export interface ISpell {
     name: string;
     level: number; // Minimum level required to cast
     manaCost: number;

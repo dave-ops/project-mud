@@ -1,4 +1,6 @@
-interface IItem {
+import { ICharacter } from './ICharacter'; // Assuming you have an Affect model
+
+export interface IItem {
     id: number;
     name: string;
     description: string;

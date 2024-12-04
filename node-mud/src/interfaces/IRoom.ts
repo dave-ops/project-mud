@@ -1,4 +1,7 @@
-interface IRoom {
+import { ICharacter } from './ICharacter'; // Assuming you have an Affect model
+import { IItem } from './IItem'; // Assuming you have an Affect model
+
+export interface IRoom {
     id: number;
     name: string;
     description: string;
