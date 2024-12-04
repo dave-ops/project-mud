@@ -1,6 +1,6 @@
 import ICharacter from './interfaces/ICharacter';
 import { IAffect } from './interfaces/IAffect';
-import { IItem } from './interfaces/IItem'
+import { IItem } from './interfaces/IItem';
 
 // Define constants for affect locations
 const enum AffectLocation {
@@ -28,17 +28,20 @@ const enum AffectBitvector {
   // Add more as needed
 }
 
+/**
+ * Represents an affect in the game, which can modify character or item properties.
+ */
 class Affect implements IAffect {
     // Basic properties of an affect
-    appliesTo: 'character' | 'item'; // Implement this property
-    type: string; // The type of affect, could be mapped to a spell or skill
-    duration: number; // How long the affect lasts in game ticks or real time
-    modifier: number; // The numerical change to apply (e.g., +5 to strength)
-    location: AffectLocation; // Where the affect applies (e.g., APPLY_STR for strength)
-    bitvector: number; // Bitfield for special affect flags like AFF_BLIND
+    appliesTo: 'character' | 'item';
+    type: string;
+    duration: number;
+    modifier: number;
+    location: AffectLocation;
+    bitvector: number;
 
     // Optional properties for more complex affects
-    caster?: ICharacter; // Who or what cast this affect (optional for tracking)
+    caster?: ICharacter;
 
     constructor(type: string, duration: number, modifier: number, location: AffectLocation, bitvector: number = 0) {
         this.type = type;
@@ -46,25 +49,38 @@ class Affect implements IAffect {
         this.modifier = modifier;
         this.location = location;
         this.bitvector = bitvector;
+        this.appliesTo = 'character'; // Defaulting to character, adjust as needed
     }
 
+    // Implementation of IAffect methods
     apply(char: ICharacter | IItem): void {
-        // Implementation
+        if (char instanceof ICharacter) {
+            this.applyTo(char);
+        } else if (char instanceof IItem) {
+            // Placeholder for item affects
+            console.log("Applying affect to item not implemented yet.");
+        }
     }
 
     remove(char: ICharacter | IItem): void {
-        // Implementation
+        if (char instanceof ICharacter) {
+            this.removeFrom(char);
+        } else if (char instanceof IItem) {
+            // Placeholder for item affects
+            console.log("Removing affect from item not implemented yet.");
+        }
     }
+
     isActive(): boolean {
-        // Implementation
+        return this.duration > 0;
     }
+
     getDescription(): string {
-        // Implementation
+        return `Affect of type ${this.type} with modifier ${this.modifier} at location ${AffectLocation[this.location]} for ${this.duration} turns.`;
     }
 
     // Apply the affect to a character
-    applyTo(char: ICharacter): void {
-    // Here you would implement logic to apply the affect based on location and modifier
+    private applyTo(char: ICharacter): void {
         switch (this.location) {
         case AffectLocation.APPLY_STR:
             char.pcdata.mod_str += this.modifier;
@@ -115,8 +131,7 @@ class Affect implements IAffect {
     }
 
     // Remove the affect from a character
-    removeFrom(char: ICharacter): void {
-    // Reverse the affect based on location and modifier
+    private removeFrom(char: ICharacter): void {
         switch (this.location) {
         case AffectLocation.APPLY_STR:
             char.pcdata.mod_str -= this.modifier;
