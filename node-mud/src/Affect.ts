@@ -1,5 +1,6 @@
 import ICharacter from './interfaces/ICharacter';
 import { IAffect } from './interfaces/IAffect';
+import { IItem } from './interfaces/IItem'
 
 // Define constants for affect locations
 const enum AffectLocation {
@@ -29,7 +30,8 @@ const enum AffectBitvector {
 
 class Affect implements IAffect {
     // Basic properties of an affect
-    type: number; // The type of affect, could be mapped to a spell or skill
+    appliesTo: 'character' | 'item'; // Implement this property
+    type: string; // The type of affect, could be mapped to a spell or skill
     duration: number; // How long the affect lasts in game ticks or real time
     modifier: number; // The numerical change to apply (e.g., +5 to strength)
     location: AffectLocation; // Where the affect applies (e.g., APPLY_STR for strength)
@@ -38,12 +40,26 @@ class Affect implements IAffect {
     // Optional properties for more complex affects
     caster?: ICharacter; // Who or what cast this affect (optional for tracking)
 
-    constructor(type: number, duration: number, modifier: number, location: AffectLocation, bitvector: number = 0) {
+    constructor(type: string, duration: number, modifier: number, location: AffectLocation, bitvector: number = 0) {
         this.type = type;
         this.duration = duration;
         this.modifier = modifier;
         this.location = location;
         this.bitvector = bitvector;
+    }
+
+    apply(char: ICharacter | IItem): void {
+        // Implementation
+    }
+
+    remove(char: ICharacter | IItem): void {
+        // Implementation
+    }
+    isActive(): boolean {
+        // Implementation
+    }
+    getDescription(): string {
+        // Implementation
     }
 
     // Apply the affect to a character
