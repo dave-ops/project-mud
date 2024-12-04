@@ -186,22 +186,22 @@ class Character implements ICharacter {
     }
 
     // TODO: IMPLEMENT
-    // eslint-disable-next-line
+     
     public canSee(other: IItem | ICharacter): boolean {
-      if (other instanceof Character) {
-          // Logic for character visibility
-          return true; // or your specific logic
-      } else {
-          // Logic for item visibility
-          return true; // or your specific logic for items
-      }
-  }
+        if (other instanceof Character) {
+            // Logic for character visibility
+            return true; // or your specific logic
+        } else {
+            // Logic for item visibility
+            return true; // or your specific logic for items
+        }
+    }
 
     public removeItem(item: IItem): void {
         const index = this.inventory.indexOf(item);
         if (index > -1) {
             this.inventory.splice(index, 1);
-            // @ts-expect-error
+            // @ts-expect-error who knows
             item.carried_by = null; 
         }
     }

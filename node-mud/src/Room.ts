@@ -110,10 +110,34 @@ class Room implements IRoom {
         }
     }
 
-    private itemIsVisibleTo(char: ICharacter, item: Item): boolean {
-        // Logic to determine if character can see item
-        // This might be based on light level, item properties, etc.
-        return true; // or your specific visibility logic
+    // In Room.ts or wherever you decide to place this logic
+    private itemIsVisibleTo(char: ICharacter, item: IItem): boolean {
+    // Basic visibility check
+        if (item.hidden) return false; // If the item is explicitly marked as hidden
+
+        // Light level check (assuming rooms have a light level and characters can carry light sources)
+        if (this._lightLevel <= 0 && !char.hasLightSource()) {
+            return false; // If the room is dark and the character has no light source
+        }
+
+        // Check if the character's vision is obstructed or impaired
+        if (char.isBlind()) return false;
+
+        // Item-specific visibility conditions
+        // For example, if items can have visibility conditions based on character attributes:
+        if (item.visibilityCondition && !item.visibilityCondition(char)) {
+            return false;
+        }
+
+        // Check if the item is obscured by other items or environmental factors
+        // This could be more complex, depending on how detailed your game world is:
+        if (this._contents.filter(o => o instanceof Item).some(i => 
+            (i as IItem).obscures(item)
+        )) {
+            return false;
+        }
+
+        return true; // If none of the above conditions prevent visibility, the item is visible
     }
     
 }
