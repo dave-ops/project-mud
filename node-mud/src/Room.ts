@@ -1,5 +1,5 @@
-import { Character } from './Character'; // Assuming you've created the Character model
-import { Item } from './Item'; // Assuming you have an Object model
+import Character from './Character';
+import Item from './Item';
 
 class Room {
     // Basic room properties

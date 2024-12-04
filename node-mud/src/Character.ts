@@ -1,8 +1,9 @@
 import Room from './Room';
 import Item from './Item'; // Assuming you have an Object model
 import { IAffect } from './interfaces/IAffect';
-import { ICharacter } from './interfaces/ICharacter'; 
-import { IPlayerCondition } from './interfaces/IPlayerCondition'
+import ICharacter from './interfaces/ICharacter'; 
+import IPlayerCondition from './interfaces/IPlayerCondition'
+import { Socket } from 'net';
 
 // Define constants for positions, sex, etc. for clarity and type safety
 const enum Position {
@@ -36,7 +37,10 @@ const enum Class {
   // etc.
 }
 
-export default class Character {
+class Character implements ICharacter {
+    private socket: Socket | null = null; // Assuming you're using sockets for communication
+
+
     // Basic attributes
     name: string;
     short_descr: string;
@@ -180,5 +184,17 @@ export default class Character {
         return;
     }
 
+    public send(message: string): void {
+        if (this.socket) {
+            // Send the message over the socket if it exists
+            this.socket.write(message + '\n\r'); // '\n\r' for standard MUD line endings
+        } else {
+            // Logging or handling for characters without sockets (like NPCs)
+            console.log(`Character without socket attempted to send: ${message}`);
+        }
+    }
+
     // ... other methods like heal, castSpell, saveCharacter, etc.
 }
+
+export default Character;
