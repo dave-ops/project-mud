@@ -1,6 +1,6 @@
-import { Character } from './Character'; // Assuming you've created the Character model
-import { Room } from './Room'; // Assuming you've created the Room model
-import { Affect } from './Affect'; // Assuming you have an Affect model
+import Character from './Character'; // Assuming you've created the Character model
+import Room from './Room'; // Assuming you've created the Room model
+import Affect from './Affect'; // Assuming you have an Affect model
 
 // Define constants for item types
 const enum ItemType {

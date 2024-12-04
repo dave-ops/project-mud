@@ -1,6 +1,6 @@
-import { Room } from './Room'; // Assuming you have a Room model
-import { Item } from './Item'; // Assuming you have an Object model
-import { Affect } from './Affect'; // Assuming you have an Affect model
+import Room from './Room';
+import Item from './Item'; // Assuming you have an Object model
+import Affect from './Affect'; // Assuming you have an Affect model
 
 // Define constants for positions, sex, etc. for clarity and type safety
 const enum Position {

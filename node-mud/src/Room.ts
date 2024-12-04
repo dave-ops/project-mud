@@ -1,5 +1,5 @@
-import { Character } from './Character'; // Assuming you've created the Character model
-import { Object } from './Object'; // Assuming you have an Object model
+import Character from './Character'; // Assuming you've created the Character model
+import Item from './Item'; // Assuming you have an Object model
 
 class Room {
     // Basic room properties
@@ -23,7 +23,7 @@ class Room {
 
     // Characters and objects in the room
     people: Character[];
-    contents: Object[];
+    contents: object[];
 
     // Additional properties for game mechanics
     light: number; // How much light in the room, affects visibility
@@ -60,7 +60,7 @@ class Room {
     }
 
     // Add an object to the room
-    addObject(obj: Object): void {
+    addObject(obj: object): void {
         if (!this.contents.includes(obj)) {
             this.contents.push(obj);
             obj.in_room = this;
@@ -68,7 +68,7 @@ class Room {
     }
 
     // Remove an object from the room
-    removeObject(obj: Object): void {
+    removeObject(obj: object): void {
         const index = this.contents.indexOf(obj);
         if (index > -1) {
             this.contents.splice(index, 1);
@@ -115,4 +115,4 @@ class Room {
     }
 }
 
-export default { Room };
+export default Room;

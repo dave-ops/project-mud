@@ -1,4 +1,4 @@
-import { Character } from './Character'; // Assuming you've created the Character model
+import Character from './Character'; // Assuming you've created the Character model
 
 // Define constants for affect locations
 const enum AffectLocation {
