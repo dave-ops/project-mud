@@ -54,19 +54,16 @@ class Affect implements IAffect {
     }
 
     // Implementation of IAffect methods
-    apply(char: ICharacter | IItem): void {
-        if ('pcdata' in char && 'affected_by' in char && 'affected' in char) {
-            this.applyTo(char as Character);
-        } else if (char instanceof IItem) {
-            // Placeholder for item affects
-            console.log("Applying affect to item not implemented yet.");
+    apply(character: ICharacter): void {
+        if (character instanceof Character) { // Type guard for Character specific logic
+            character.affected.push(this); // This should now work without type errors
         }
     }
 
-    remove(char: ICharacter | IItem): void {
-        if ('pcdata' in char && 'affected_by' in char && 'affected' in char) {
-            this.removeFrom(char as Character);
-        } else if (char instanceof IItem) {
+    remove(character: ICharacter | IItem): void {
+        if ('pcdata' in character && 'affected_by' in character && 'affected' in character) {
+            this.removeFrom(character as Character);
+        } else if (character instanceof IItem) {
             // Placeholder for item affects
             console.log("Removing affect from item not implemented yet.");
         }

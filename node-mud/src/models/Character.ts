@@ -5,6 +5,9 @@ import { IItem } from '../interfaces/IItem';
 import ICharacter from '../interfaces/ICharacter';
 import { IPlayerCondition, COND_FULL, COND_THIRST, COND_DRUNK } from '../interfaces/IPlayerCondition';
 import { Socket } from 'net';
+import { Class } from '../enums/Class';
+
+const LEVEL_HERO = 50
 
 // Define constants for positions, sex, etc. for clarity and type safety
 const enum Position {
@@ -31,13 +34,6 @@ const enum Race {
   // etc.
 }
 
-const enum Class {
-  // Add classes from your game here
-  MAGE = 0,
-  WARRIOR,
-  // etc.
-}
-
 // Constants for targets, etc., would be defined elsewhere or inlined here
 const TARGET_IGNORE = 0; // Example value, adjust according to your enum or constants
 const TARGET_CHAR = 1;
@@ -54,7 +50,7 @@ class Character implements ICharacter {
     description: string;
 
     act: number; // Bitfield for various player flags
-    affected?: IAffect[]; // Active affects on the character
+    affected: IAffect[] = []; // Active affects on the character
     affected_by: number; // Bitfield for affects
     armor: number;
     carrying?: Item[]; // Items carried by the character
@@ -112,55 +108,52 @@ class Character implements ICharacter {
 
     // Constructor
     constructor(name: string, level: number = 1, sex: Sex = Sex.NEUTRAL, race: Race = Race.HUMAN, classType: Class = Class.MAGE) {
-        this.name = name;
-        this.level = level;
-        this.sex = sex;
-        this.race = race;
-        this.class = classType;
-        this.short_descr = `${name} the ${this.getClassName()}`;
-        this.long_descr = `${name} stands here.`;
-        this.description = `You see nothing special about ${name}.`;
-
-        this.hit = 100;
-        this.max_hit = 100;
-        this.mana = 100;
-        this.max_mana = 100;
-        this.move = 100;
-        this.max_move = 100;
-
-        this.position = Position.STANDING;
-        this.gold = 0;
-        this.exp = 0;
         this.act = 0; // Default to no flags set
+        this.affected = [];
         this.affected_by = 0;
-        this.timer = 0;
-        this.wimpy = 0;
+        this.class = classType;
         this.deaf = false;
-
+        this.description = `You see nothing special about ${name}.`;
+        this.exp = 0;
+        this.gold = 0;
+        this.hit = 100;
+        this.level = level;
+        this.long_descr = `${name} stands here.`;
+        this.mana = 100;
+        this.max_hit = 100;
+        this.max_mana = 100;
+        this.max_move = 100;
+        this.move = 100;
+        this.name = name;
         this.pcdata = {
-            pwd: "", // Should be hashed in real implementation
             bamfin: "",
             bamfout: "",
-            title: "",
-            perm_str: 13,
-            perm_int: 13,
-            perm_wis: 13,
-            perm_dex: 13,
-            perm_con: 13,
-            mod_str: 0,
-            mod_int: 0,
-            mod_wis: 0,
-            mod_dex: 0,
-            mod_con: 0,
             condition: {
+                [COND_DRUNK]: 0,
                 [COND_FULL]: 48,
                 [COND_THIRST]: 48,
-                [COND_DRUNK]: 0,
             },
             learned: {},
+            mod_con: 0,
+            mod_dex: 0,
+            mod_int: 0,
+            mod_str: 0,
+            mod_wis: 0,
+            perm_con: 13,
+            perm_dex: 13,
+            perm_int: 13,
+            perm_str: 13,
+            perm_wis: 13,
+            pwd: "", // Should be hashed in real implementation
+            title: "",
         };
-
+        this.position = Position.STANDING;
+        this.race = race;
         this.save_time = Date.now();
+        this.sex = sex;
+        this.short_descr = `${name} the ${this.getClassName()}`;
+        this.timer = 0;
+        this.wimpy = 0;
     }
 
     // Helper method to get class name
@@ -261,6 +254,53 @@ class Character implements ICharacter {
             this.room.broadcast(`${this.name}'s eyes briefly glow red.`, this);
         }
     }
+
+    public gainExperience(gain: number): void {
+        if (this.isNPC || this.level >= LEVEL_HERO) return;
+
+        this.exp = Math.min(this.exp + gain, this.expPerLevel[this.level] * 4);
+
+        if (this.exp < 0) {
+            this.exp = 0;
+        }
+
+        while (this.exp >= this.expPerLevel[this.level] * 4) {
+            this.level += 1;
+            this.exp -= this.expPerLevel[this.level - 1] * 4; // Adjusting for zero-based index in array
+            this.max_hit += this.getRandomNumber(10, 20);
+            this.max_mana += this.getRandomNumber(10, 20);
+            this.max_move += this.getRandomNumber(10, 20);
+            this.pcdata.perm_str += 1;
+            this.pcdata.perm_int += 1;
+            this.pcdata.perm_wis += 1;
+            this.pcdata.perm_dex += 1;
+            this.pcdata.perm_con += 1;
+
+            this.advanceLevel(false);
+            this.send("You raise a level!!  ");
+            console.log(`${this.name} gained level ${this.level}`);
+        }
+    }
+
+    // Helper methods and properties:
+
+    private getRandomNumber(min: number, max: number): number {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    private advanceLevel(isTraining: boolean): void {
+        // Implementation of how a character advances in level, 
+        // including any additional benefits or changes not covered here
+    }
+
+    private send(message: string): void {
+        // Method to send messages to the character, adjust based on your communication system
+    }
+
+    private expPerLevel: number[] = []; // Assuming this is defined elsewhere in your project
+
+    private isNPC: boolean;
+    private name: string;
 
     public hasLightSource(): boolean {
     // Logic to determine if the character has a light source

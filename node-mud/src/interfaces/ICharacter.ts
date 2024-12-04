@@ -1,7 +1,6 @@
+import { Class } from '../enums/Class';
 import { IAffect } from './IAffect'; // Assuming you have an Affect model
 import { IItem } from './IItem'; // Assuming you have an Affect model
-import { IRoom } from './IRoom'; // Assuming you have an Affect model
-import { ISpell } from './ISpell'; // Assuming you have an Affect model
 
 export default interface ICharacter {
     id: number;
@@ -11,7 +10,7 @@ export default interface ICharacter {
     affected_by: number; // Assuming it's a bit flag
     affected: IAffect[];    
     armor: number;
-    class: string; // based on class system in the game
+    class: Class; // based on class system in the game
     damroll: number;
     exp: number;
     gold: number;
@@ -44,19 +43,10 @@ export default interface ICharacter {
     attack(target: ICharacter): void;
     canSee(other: IItem | ICharacter): boolean;
     castSpell(spellId: number, level: number, target: number, targetObject: ICharacter | IItem | null): void;
-    equip(item: IItem, slot?: string): boolean; // Returns true if equipped successfully
-    gainExperience(amount: number): void;
-    getInventory(): Array<IItem>;
+    gainExperience(gain: number): void;
     hasLightSource(): boolean;
-    heal(amount: number): void;
     isBlind(): boolean;
-    look(): void;
-    moveTo(room: IRoom): void;
-    save(): void; // Save character data
-    say(message: string): void;
     send(message: string): void;
-    unequip(item: IItem): boolean; // Returns true if unequipped successfully
-    addItem(item: IItem): void;
     removeItem(item: IItem): void;
     send(message: string): void;
 }
