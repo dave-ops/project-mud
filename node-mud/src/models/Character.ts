@@ -1,5 +1,5 @@
 import ICharacter from '../interfaces/ICharacter';
-import { Class, Position, Sex, Race, exp_per_level } from '../enums' // Assuming you've created these enums
+import { Class, Position, Sex, Race, exp_per_level, MAX_LEVEL } from '../enums' // Assuming you've created these enums
 import { IAffect } from '../interfaces/IAffect';
 import { IItem } from '../interfaces/IItem';
 import { IPlayerCondition, COND_FULL, COND_THIRST, COND_DRUNK } from '../interfaces/IPlayerCondition';

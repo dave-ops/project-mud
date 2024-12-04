@@ -103,7 +103,7 @@ class Item implements IItem {
     // Placeholder methods for adding/removing from room or character
     addToRoom(room: Room): void {
         this.in_room = room;
-        if (!room.contents) room.contents([]);
+        if (!room.contents) room.contents = [];
         room.contents.push(this);
     }
 
