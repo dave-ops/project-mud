@@ -5,7 +5,7 @@ import { IItem } from '../interfaces/IItem';
 import { IPlayerCondition, COND_FULL, COND_THIRST, COND_DRUNK } from '../interfaces/IPlayerCondition';
 
 class Character implements ICharacter {
-    id: number;
+    id: number = -1;
     name: string;
     short_descr: string;
     long_descr: string;
@@ -13,8 +13,8 @@ class Character implements ICharacter {
     
     // Stats
     level: number;
-    trust: number;
-    sex: Sex;
+    trust: number = -1;
+    sex: Sex = Sex.UNKNOWN;
     race: Race;
     class: Class;
 

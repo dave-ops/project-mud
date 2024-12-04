@@ -50,7 +50,8 @@ export const enum Position {
   }
   
 export   const enum Sex {
-    NEUTRAL = 0,
+  UNKNOWN = -1,
+  NEUTRAL = 0,
     MALE,
     FEMALE,
   }

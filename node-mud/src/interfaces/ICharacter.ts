@@ -1,4 +1,4 @@
-import { Class, Position, Sex, Race } from '../enums'
+import { Class, Sex, } from '../enums'
 import { IAffect } from './IAffect'; // Assuming you have an Affect model
 import { IItem } from './IItem'; // Assuming you have an Affect model
 
@@ -27,7 +27,7 @@ export default interface ICharacter {
     move: number;
     position: string; // e.g., 'standing', 'sitting', 'sleeping'
     saving_throw: number;
-    sex: string; // 'male', 'female', 'neutral'
+    sex: Sex;
     pcdata: {
         mod_chr: number;
         mod_con: number;
