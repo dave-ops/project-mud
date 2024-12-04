@@ -1,4 +1,4 @@
-import { Class } from '../enums/Class';
+import { Class, Position, Sex, Race } from '../enums'
 import { IAffect } from './IAffect'; // Assuming you have an Affect model
 import { IItem } from './IItem'; // Assuming you have an Affect model
 
