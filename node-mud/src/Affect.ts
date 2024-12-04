@@ -1,5 +1,5 @@
 import ICharacter from './interfaces/ICharacter';
-import Character from './Character'; // Assuming you've created the Character model
+import { IAffect } from './interfaces/IAffect';
 
 // Define constants for affect locations
 const enum AffectLocation {
@@ -27,7 +27,7 @@ const enum AffectBitvector {
   // Add more as needed
 }
 
-class Affect {
+class Affect implements IAffect {
     // Basic properties of an affect
     type: number; // The type of affect, could be mapped to a spell or skill
     duration: number; // How long the affect lasts in game ticks or real time
