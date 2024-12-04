@@ -4,17 +4,18 @@ import { IRoom } from './IRoom'; // Assuming you have an Affect model
 import { ISpell } from './ISpell'; // Assuming you have an Affect model
 
 export default interface ICharacter {
+    id: number;
+    name: string;
+    description: string;
     affected_by: number; // Assuming it's a bit flag
     affected: IAffect[];    
     armor: number;
     class: string; // based on class system in the game
     damroll: number;
-    description: string;
     exp: number;
     gold: number;
     hitpoints: number;
     hitroll: number;
-    id: number;
     level: number;
     mana: number;
     maxHitpoints: number;
@@ -24,9 +25,7 @@ export default interface ICharacter {
     max_mana: number;
     max_move: number;
     move: number;
-    name: string;
     position: string; // e.g., 'standing', 'sitting', 'sleeping'
-    removeItem(item: IItem): void;    
     saving_throw: number;
     sex: string; // 'male', 'female', 'neutral'
     pcdata: {

@@ -1,9 +1,9 @@
 import Room from './Room';
 import Item from './Item'; // Assuming you have an Object model
 import { IAffect } from './interfaces/IAffect';
-import IItem from './interfaces/IItem'; 
+import { IItem } from './interfaces/IItem'; 
 import ICharacter from './interfaces/ICharacter';
-import { IPlayerCondition, COND_FULL, COND_THIRST, COND_DRUNK } from './interfaces/IPlayerCondition'
+import { IPlayerCondition, COND_FULL, COND_THIRST, COND_DRUNK } from './interfaces/IPlayerCondition';
 import { Socket } from 'net';
 
 // Define constants for positions, sex, etc. for clarity and type safety
@@ -38,10 +38,11 @@ const enum Class {
   // etc.
 }
 
+/**
+ * Represents a character in the game, implementing the ICharacter interface.
+ * This class includes both player characters and NPCs.
+ */
 class Character implements ICharacter {
-    private socket: Socket | null = null; // Assuming you're using sockets for communication
-    private inventory: IItem[] = [];
-
     // Basic attributes
     name: string;
     short_descr: string;
@@ -107,6 +108,10 @@ class Character implements ICharacter {
     affected?: IAffect[]; // Active affects on the character
     save_time: number; // Last save time
 
+    // Private properties
+    private socket: Socket | null = null; // Assuming you're using sockets for communication
+    private inventory: IItem[] = [];
+
     // Constructor
     constructor(name: string, level: number = 1, sex: Sex = Sex.NEUTRAL, race: Race = Race.HUMAN, classType: Class = Class.MAGE) {
         this.name = name;
@@ -165,28 +170,22 @@ class Character implements ICharacter {
         switch (this.class) {
         case Class.MAGE: return "Mage";
         case Class.WARRIOR: return "Warrior";
-            // Add more cases as needed
+        // Add more cases as needed
         default: return "Unknown";
         }
     }
 
-    // TODO: IMPLEMENT
-    // Add methods for game mechanics like moving, combat, etc.
-    // eslint-disable-next-line
-  moveToRoom(room: Room) {
+    // Game mechanics methods
+    public moveToRoom(room: Room): void {
     // Implementation for moving character to another room
-        return;
+        console.log(`${this.name} is moving to ${room.name}`);
     }
 
-    // TODO: IMPLEMENT
-    // eslint-disable-next-line
-  attack(target: ICharacter) {
+    public attack(target: ICharacter): void {
     // Implementation for attacking another character
-        return;
+        console.log(`${this.name} attacks ${target.name}`);
     }
 
-    // TODO: IMPLEMENT
-     
     public canSee(other: IItem | ICharacter): boolean {
         if (other instanceof Character) {
             // Logic for character visibility
@@ -198,9 +197,9 @@ class Character implements ICharacter {
     }
 
     public hasLightSource(): boolean {
-        // Logic to determine if the character has a light source
-        // This could check for equipped items, spells, or other conditions
-        // Example:
+    // Logic to determine if the character has a light source
+    // This could check for equipped items, spells, or other conditions
+    // Example:
         return this.inventory.some(item => item.isLightSource);
     }
 
@@ -208,8 +207,10 @@ class Character implements ICharacter {
     // Logic to determine if the character is blind
     // This could check for conditions, spells, or disabilities
     // Example:
+    // Assuming 'conditions' is an array of conditions on the character
         return this.conditions.some(condition => condition === 'blind');
     }
+
     public removeItem(item: IItem): void {
         const index = this.inventory.indexOf(item);
         if (index > -1) {
@@ -218,7 +219,7 @@ class Character implements ICharacter {
             item.carried_by = null; 
         }
     }
-  
+
     public send(message: string): void {
         if (this.socket) {
             // Send the message over the socket if it exists

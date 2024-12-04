@@ -1,4 +1,5 @@
 import ICharacter from './interfaces/ICharacter';
+import Character from './Character';
 import { IAffect } from './interfaces/IAffect';
 import { IItem } from './interfaces/IItem';
 
@@ -54,8 +55,8 @@ class Affect implements IAffect {
 
     // Implementation of IAffect methods
     apply(char: ICharacter | IItem): void {
-        if (char instanceof ICharacter) {
-            this.applyTo(char);
+        if ('pcdata' in char && 'affected_by' in char && 'affected' in char) {
+            this.applyTo(char as Character);
         } else if (char instanceof IItem) {
             // Placeholder for item affects
             console.log("Applying affect to item not implemented yet.");
@@ -63,8 +64,8 @@ class Affect implements IAffect {
     }
 
     remove(char: ICharacter | IItem): void {
-        if (char instanceof ICharacter) {
-            this.removeFrom(char);
+        if ('pcdata' in char && 'affected_by' in char && 'affected' in char) {
+            this.removeFrom(char as Character);
         } else if (char instanceof IItem) {
             // Placeholder for item affects
             console.log("Removing affect from item not implemented yet.");
