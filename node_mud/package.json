@@ -1,0 +1,19 @@
+{
+  "name": "node_mud",
+  "version": "1.0.0",
+  "description": "a node version of the original Diku Merc_21 MUD",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dave-ops",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dave-ops/project-mud.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dave-ops/project-mud/issues"
+  },
+  "homepage": "https://github.com/dave-ops/project-mud#readme"
+}
