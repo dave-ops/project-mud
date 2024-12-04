@@ -1,4 +1,14 @@
-// src/interfaces/AffectLocation.ts (or wherever you prefer to keep it)
+export const MAX_LEVEL: number = 50;
+
+export const exp_per_level: number[] = [
+    0,
+    1000,  // Example values, adjust according to your game's leveling system
+    2000,
+    4000,
+    8000,
+    16000,
+    // ... more levels
+];
 
 export enum AffectLocation {
     APPLY_STR = 0, // Assuming these are the correct numeric values you want to use
@@ -10,10 +20,10 @@ export enum AffectLocation {
 }
 export enum Class {
     // Your class definitions here
-    MAGE = 'Mage',
-    WARRIOR = 'Warrior',
-    CLERIC = 'Cleric',
-    THIEF = 'Thief',
+    MAGE = 'MAGE',
+    WARRIOR = 'WARRIOR',
+    CLERIC = 'CLERIC',
+    THIEF = 'THIEF',
 }
 
 // Define constants for item wear flags (bitwise)
@@ -49,7 +59,7 @@ export const enum Position {
     STANDING,
   }
   
-export   const enum Sex {
+export const enum Sex {
   UNKNOWN = -1,
   NEUTRAL = 0,
     MALE,
@@ -89,3 +99,4 @@ export const enum ItemType {
   PILL,
   // Add more types as needed
 }
+

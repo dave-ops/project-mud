@@ -28,6 +28,10 @@ export default interface ICharacter {
     position: string; // e.g., 'standing', 'sitting', 'sleeping'
     saving_throw: number;
     sex: Sex;
+    short_descr: string;
+    long_descr: string;
+    trust: number;
+    race: number;
     pcdata: {
         mod_chr: number;
         mod_con: number;

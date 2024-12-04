@@ -1,8 +1,10 @@
 import ICharacter from './ICharacter'; // Assuming you have an Affect model
-import { Class, Position, Sex, ItemType } from '../enums'
+import { Position, ItemType } from '../enums'
+import Character from '../models/Character';
 
 export interface IItem {
     id: number;
+    carried_by?: Character;
     name: string;
     description: string;
     position: Position;

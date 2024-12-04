@@ -1,11 +1,12 @@
 import ICharacter from '../interfaces/ICharacter';
-import { Class, Position, Sex, Race } from '../enums' // Assuming you've created these enums
+import { Class, Position, Sex, Race, exp_per_level } from '../enums' // Assuming you've created these enums
 import { IAffect } from '../interfaces/IAffect';
 import { IItem } from '../interfaces/IItem';
 import { IPlayerCondition, COND_FULL, COND_THIRST, COND_DRUNK } from '../interfaces/IPlayerCondition';
 import { Socket } from 'net'; // If using Node.js for socket communication
 
 class Character implements ICharacter {
+    [x: string]: boolean;
     private desc?: Socket; // Assuming 'desc' for descriptor or connection
 
     id: number = -1;
@@ -144,24 +145,7 @@ class Character implements ICharacter {
         this.desc.write(text + '\n\r'); // '\n\r' for MUD style line endings
     }
 
-    private getClassName(): string {
-        return Class[this.class];
-    }
 
-    public gainExperience(gain: number): void {
-        if (this.isNPC || this.level >= LEVEL_HERO) return;
-
-        const expNeeded = this.expPerLevel[this.level];
-        this.exp = Math.min(this.exp + gain, expNeeded * 4);
-
-        if (this.exp < 0) {
-            this.exp = 0;
-        }
-
-        while (this.exp >= expNeeded * 4) {
-            this.levelUp();
-        }
-    }
 
     private levelUp(): void {
         const expNeeded = this.expPerLevel[this.level];
@@ -197,16 +181,43 @@ class Character implements ICharacter {
         item.carried_by = this; // Assuming carried_by is part of IItem now
     }
 
-    public removeItem(item: IItem): IItem | undefined {
+    // Helper method to get class name
+    private getClassName(): string {
+        // Implementation based on enum Class
+        return Class[this.class];
+    }
+
+    // Add inventory methods
+    public addItem(item: IItem): void {
+        this.carrying.push(item);
+    }
+
+    public removeItem(item: IItem): boolean {
         const index = this.carrying.indexOf(item);
         if (index > -1) {
-            const removedItem = this.carrying.splice(index, 1)[0];
-            if (removedItem.carried_by === this) {
-                removedItem.carried_by = undefined;
-            }
-            return removedItem;
+            this.carrying.splice(index, 1);
+            return true;
         }
-        return undefined;
+        return false;
+    }
+
+    private expPerLevel: number[] = exp_per_level;
+    private readonly LEVEL_HERO = MAX_LEVEL; // Assuming LEVEL_HERO is the max level for XP gain
+
+    // Gain experience method updated to use expPerLevel
+    public gainExperience(gain: number): void {
+        if (this.isNPC || this.level >= this.LEVEL_HERO) return;
+
+        const expNeeded = this.expPerLevel[this.level];
+        this.exp = Math.min(this.exp + gain, expNeeded * 4);
+
+        if (this.exp < 0) {
+            this.exp = 0;
+        }
+
+        while (this.exp >= expNeeded * 4) {
+            this.levelUp();
+        }
     }
 
     // ... other methods like equip, unequip, etc.
