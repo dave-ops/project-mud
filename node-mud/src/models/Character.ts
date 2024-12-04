@@ -3,14 +3,17 @@ import { Class, Position, Sex, Race } from '../enums' // Assuming you've created
 import { IAffect } from '../interfaces/IAffect';
 import { IItem } from '../interfaces/IItem';
 import { IPlayerCondition, COND_FULL, COND_THIRST, COND_DRUNK } from '../interfaces/IPlayerCondition';
+import { Socket } from 'net'; // If using Node.js for socket communication
 
 class Character implements ICharacter {
+    private desc?: Socket; // Assuming 'desc' for descriptor or connection
+
     id: number = -1;
     name: string;
     short_descr: string;
     long_descr: string;
     description: string;
-    
+
     // Stats
     level: number;
     trust: number = -1;
@@ -120,6 +123,25 @@ class Character implements ICharacter {
         };
 
         this.save_time = Date.now();
+    }
+
+
+    // Method to send messages to the character
+    public send(text: string): void {
+        if (!text || !this) {
+            return; // Early return if text or character is null/undefined
+        }
+
+        if (!this.desc) {
+            return; // If there's no connection to send to, do nothing
+        }
+
+        this.writeToBuffer(text); // Assuming you have this method or similar
+    }
+
+    private writeToBuffer(text: string): void {
+        // In Node.js, you'd write directly to the socket
+        this.desc.write(text + '\n\r'); // '\n\r' for MUD style line endings
     }
 
     private getClassName(): string {
