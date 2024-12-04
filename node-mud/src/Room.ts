@@ -1,7 +1,9 @@
 import Character from './Character';
-import Item from './Item';
+import { IRoom } from './interfaces/IRoom';
+import ICharacter from './interfaces/ICharacter';
+import { INamed } from './interfaces/INamed';
 
-class Room {
+class Room implements IRoom {
     // Basic room properties
     id: number;
     name: string;
@@ -13,17 +15,17 @@ class Room {
 
     // Exits
     exits: {
-    [key: string]: {
-      direction: string; // 'north', 'south', etc.
-      to_room_id: number; // ID of the room this exit leads to
-      description?: string; // Optional description of the exit
-      exit_info: number; // Bitfield for exit properties like closed, locked, etc.
-    }
-  };
+        [key: string]: {
+            direction: string; // 'north', 'south', etc.
+            to_room_id: number; // ID of the room this exit leads to
+            description?: string; // Optional description of the exit
+            exit_info: number; // Bitfield for exit properties like closed, locked, etc.
+        }
+    };
 
     // Characters and objects in the room
     people: Character[];
-    contents: object[];
+    contents: INamed[];
 
     // Additional properties for game mechanics
     light: number; // How much light in the room, affects visibility
@@ -41,17 +43,21 @@ class Room {
     }
 
     // Add a character to the room
-    addCharacter(char: Character): void {
+    addCharacter(char: ICharacter): void {
         if (!this.people.includes(char)) {
             this.people.push(char);
             char.room = this;
         }
     }
 
+    describeContents(char: ICharacter) {
+        char.send(`You see: ${this.contents.map(o => o.name).join(', ')}.\n\r`);
+    }
+
     // Remove a character from the room
-    removeCharacter(char: Character): void {
+    removeCharacter(char: ICharacter): void {
         const index = this.people.indexOf(char);
-        if (index > -1) {
+        if(index > -1) {
             this.people.splice(index, 1);
             if (char.room === this) {
                 delete char.room;
@@ -61,7 +67,7 @@ class Room {
 
     // Add an object to the room
     addObject(obj: object): void {
-        if (!this.contents.includes(obj)) {
+        if(!this.contents.includes(obj)) {
             this.contents.push(obj);
             obj.in_room = this;
         }
@@ -70,7 +76,7 @@ class Room {
     // Remove an object from the room
     removeObject(obj: object): void {
         const index = this.contents.indexOf(obj);
-        if (index > -1) {
+        if(index > -1) {
             this.contents.splice(index, 1);
             if (obj.in_room === this) {
                 delete obj.in_room;
@@ -79,7 +85,7 @@ class Room {
     }
 
     // Add an exit to the room
-    addExit(direction: string, to_room_id: number, description?: string, exit_info: number = 0): void {
+    addExit(direction: string, to_room_id: number, description ?: string, exit_info: number = 0): void {
         this.exits[direction] = { direction, to_room_id, description, exit_info };
     }
 
@@ -97,7 +103,7 @@ class Room {
     describeTo(char: Character): void {
         char.send(`\n\r${this.name}\n\r${this.description}\n\r`);
 
-        if (this.people.length > 1) {
+        if(this.people.length > 1) {
             const visibleChars = this.people.filter(c => c !== char && char.canSee(c));
             if (visibleChars.length > 0) {
                 char.send(`Also here: ${visibleChars.map(c => c.name).join(', ')}.\n\r`);
@@ -108,7 +114,7 @@ class Room {
             char.send(`You see: ${this.contents.map(o => o.name).join(', ')}.\n\r`);
         }
 
-        const visibleExits = Object.keys(this.exits).filter(dir => 
+        const visibleExits = Object.keys(this.exits).filter(dir =>
             this.exits[dir].exit_info === 0 || !(this.exits[dir].exit_info & 1)
         ); // Assuming 1 represents EX_CLOSED
         if (visibleExits.length > 0) {
