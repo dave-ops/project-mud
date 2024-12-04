@@ -47,7 +47,9 @@ export default interface ICharacter {
     equip(item: IItem, slot?: string): boolean; // Returns true if equipped successfully
     gainExperience(amount: number): void;
     getInventory(): Array<IItem>;
+    hasLightSource(): boolean;
     heal(amount: number): void;
+    isBlind(): boolean;
     look(): void;
     moveTo(room: IRoom): void;
     save(): void; // Save character data

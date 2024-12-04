@@ -197,6 +197,19 @@ class Character implements ICharacter {
         }
     }
 
+    public hasLightSource(): boolean {
+        // Logic to determine if the character has a light source
+        // This could check for equipped items, spells, or other conditions
+        // Example:
+        return this.inventory.some(item => item.isLightSource);
+    }
+
+    public isBlind(): boolean {
+    // Logic to determine if the character is blind
+    // This could check for conditions, spells, or disabilities
+    // Example:
+        return this.conditions.some(condition => condition === 'blind');
+    }
     public removeItem(item: IItem): void {
         const index = this.inventory.indexOf(item);
         if (index > -1) {
