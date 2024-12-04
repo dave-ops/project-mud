@@ -1,8 +1,8 @@
 import Character from './Character'; // Assuming you've created the Character model
 import Room from './Room'; // Assuming you've created the Room model
-import Affect from './Affect'; // Assuming you have an Affect model
 import { AffectLocation } from './enums/AffectLocation';
-import IItem from './interfaces/IItem'; 
+import ICharacter from './interfaces/ICharacter'; 
+import { IItem } from './interfaces/IItem'; 
 
 // Define constants for item types
 const enum ItemType {
@@ -51,6 +51,35 @@ const enum WearFlag {
 }
 
 class Item implements IItem {
+    constructor(id: number, name: string, item_type: ItemType, level: number = 1) {
+        this.id = id;
+        this.name = name;
+        this.short_descr = `a ${name}`;
+        this.description = `You see nothing special about this ${name}.`;
+
+        this.item_type = item_type;
+        this.extra_flags = 0; // No extra flags by default
+        this.wear_flags = 0; // No wear flags by default
+        this.wear_loc = -1; // Not worn by default
+
+        this.level = level;
+        this.weight = 0;
+        this.cost = 0;
+        this.timer = 0; // No timer by default
+
+        this.value = [0, 0, 0, 0]; // Default values for item specifics
+        this.hidden = false; // or whatever default state you want
+
+    }
+
+    hidden: boolean = false; // Default to not hidden
+    visibilityCondition?: (char: ICharacter) => boolean;
+
+    // If you decide to use visibilityCondition, you might want to implement it like this:
+    setVisibilityCondition(condition: (char: ICharacter) => boolean): void {
+        this.visibilityCondition = condition;
+    }
+
     // Basic properties
     id: number;
     name: string;
@@ -78,26 +107,7 @@ class Item implements IItem {
     in_object?: Item; // If the item is inside another item (container)
 
     // Affects
-    affected?: Affect[];
-
-    constructor(id: number, name: string, item_type: ItemType, level: number = 1) {
-        this.id = id;
-        this.name = name;
-        this.short_descr = `a ${name}`;
-        this.description = `You see nothing special about this ${name}.`;
-
-        this.item_type = item_type;
-        this.extra_flags = 0; // No extra flags by default
-        this.wear_flags = 0; // No wear flags by default
-        this.wear_loc = -1; // Not worn by default
-
-        this.level = level;
-        this.weight = 0;
-        this.cost = 0;
-        this.timer = 0; // No timer by default
-
-        this.value = [0, 0, 0, 0]; // Default values for item specifics
-    }
+    affected?: IAffect[];
 
     // Methods for item manipulation
     moveToRoom(room: Room): void {
@@ -187,6 +197,8 @@ class Item implements IItem {
         }
         return false;
     }
+
+    
 }
 
 export default Item;
