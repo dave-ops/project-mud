@@ -1,124 +1,111 @@
-import Character from './Character';
-import { IRoom } from './interfaces/IRoom';
-import ICharacter from './interfaces/ICharacter';
-import { INamed } from './interfaces/INamed';
+import Character from './Character'; // Assuming you have this export
+import Item from './Item'; // Assuming you have this export
+import IRoom from './interfaces/IRoom'; // Assuming you have this interface
 
+/**
+ * Represents a room in the MUD game world.
+ * Contains characters, items, and exits.
+ */
 class Room implements IRoom {
-    // Basic room properties
-    id: number;
-    name: string;
-    description: string;
+    private _id: number;
+    private _name: string;
+    private _description: string;
+    private _exits: { [direction: string]: { exit_info: number; room: Room } };
+    private _people: Character[];
+    private _contents: (Item | Character)[];
 
-    // Room flags or properties
-    room_flags: number; // Bitfield for special room properties like safe, dark, etc.
-    sector_type: number; // Type of terrain or environment
-
-    // Exits
-    exits: {
-        [key: string]: {
-            direction: string; // 'north', 'south', etc.
-            to_room_id: number; // ID of the room this exit leads to
-            description?: string; // Optional description of the exit
-            exit_info: number; // Bitfield for exit properties like closed, locked, etc.
-        }
-    };
-
-    // Characters and objects in the room
-    people: Character[];
-    contents: INamed[];
-
-    // Additional properties for game mechanics
-    light: number; // How much light in the room, affects visibility
-
-    constructor(id: number, name: string, description: string, sector_type: number = 0) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.room_flags = 0; // Default to no special flags
-        this.sector_type = sector_type;
-        this.exits = {};
-        this.people = [];
-        this.contents = [];
-        this.light = 0; // Default to no extra light
+    constructor(id: number, name: string, description: string) {
+        this._id = id;
+        this._name = name;
+        this._description = description;
+        this._exits = {};
+        this._people = [];
+        this._contents = [];
     }
 
-    // Add a character to the room
-    addCharacter(char: ICharacter): void {
-        if (!this.people.includes(char)) {
-            this.people.push(char);
-            char.room = this;
-        }
+    // Getters
+    get id(): number {
+        return this._id;
     }
 
-    describeContents(char: ICharacter) {
-        char.send(`You see: ${this.contents.map(o => o.name).join(', ')}.\n\r`);
+    get name(): string {
+        return this._name;
     }
 
-    // Remove a character from the room
-    removeCharacter(char: ICharacter): void {
-        const index = this.people.indexOf(char);
-        if(index > -1) {
-            this.people.splice(index, 1);
-            if (char.room === this) {
-                delete char.room;
-            }
+    get description(): string {
+        return this._description;
+    }
+
+    get exits(): { [direction: string]: { exit_info: number; room: Room } } {
+        return this._exits;
+    }
+
+    get people(): Character[] {
+        return this._people;
+    }
+
+    get contents(): (Item | Character)[] {
+        return this._contents;
+    }
+
+    // Methods for managing exits
+    addExit(direction: string, exitInfo: number, exitRoom: Room): void {
+        this._exits[direction] = { exit_info: exitInfo, room: exitRoom };
+    }
+
+    removeExit(direction: string): void {
+        delete this._exits[direction];
+    }
+
+    // Methods for managing people in the room
+    addCharacter(char: Character): void {
+        if (!this._people.includes(char)) {
+            this._people.push(char);
         }
     }
 
-    // Add an object to the room
-    addObject(obj: object): void {
-        if(!this.contents.includes(obj)) {
-            this.contents.push(obj);
+    removeCharacter(char: Character): void {
+        this._people = this._people.filter(c => c !== char);
+    }
+
+    // Methods for managing contents (items or characters)
+    addObject(obj: Item | Character): void {
+        if (obj instanceof Item) {
             obj.in_room = this;
         }
+        this._contents.push(obj);
     }
 
-    // Remove an object from the room
-    removeObject(obj: object): void {
-        const index = this.contents.indexOf(obj);
-        if(index > -1) {
-            this.contents.splice(index, 1);
-            if (obj.in_room === this) {
-                delete obj.in_room;
-            }
+    removeObject(obj: Item | Character): void {
+        if (obj instanceof Item && obj.in_room === this) {
+            delete obj.in_room;
         }
+        this._contents = this._contents.filter(o => o !== obj);
     }
 
-    // Add an exit to the room
-    addExit(direction: string, to_room_id: number, description ?: string, exit_info: number = 0): void {
-        this.exits[direction] = { direction, to_room_id, description, exit_info };
+    // Methods for describing the room
+    describe(char: Character): void {
+        char.send(this._description);
+        this.describeExits(char);
+        this.describeContents(char);
     }
 
-    // Check if an exit exists in a given direction
-    hasExit(direction: string): boolean {
-        return direction in this.exits;
+    private describeExits(char: Character): void {
+        const visibleExits = Object.keys(this._exits).filter(dir => 
+            this._exits[dir].exit_info === 0 || !(this._exits[dir].exit_info & 1)
+        );
+        char.send(`Obvious exits: ${visibleExits.join(', ')}.\n\r`);
     }
 
-    // Get the room ID for an exit given a direction
-    getExitRoomId(direction: string): number | undefined {
-        return this.exits[direction]?.to_room_id;
-    }
-
-    // Method to describe the room to a character
-    describeTo(char: Character): void {
-        char.send(`\n\r${this.name}\n\r${this.description}\n\r`);
-
-        if(this.people.length > 1) {
-            const visibleChars = this.people.filter(c => c !== char && char.canSee(c));
-            if (visibleChars.length > 0) {
-                char.send(`Also here: ${visibleChars.map(c => c.name).join(', ')}.\n\r`);
-            }
+    private describeContents(char: Character): void {
+        const visibleChars = this._people.filter(c => c !== char && char.canSee(c));
+        const visibleItems = this._contents.filter(o => o instanceof Item && char.canSee(o as Item));
+        
+        if (visibleChars.length > 0) {
+            char.send(`You see: ${visibleChars.map(c => c.name).join(', ')}.\n\r`);
         }
-
-        if (this.contents.length > 0) {
-            char.send(`You see: ${this.contents.map(o => o.name).join(', ')}.\n\r`);
-        }
-
-        const visibleExits = Object.keys(this.exits).filter(dir =>
-            this.exits[dir].exit_info === 0 || !(this.exits[dir].exit_info & 1)
-        ); // Assuming 1 represents EX_CLOSED
-        if (visibleExits.length > 0) {
-            char.send(`Obvious exits: ${visibleExits.join(', ')}.\n\r`);
+        if (visibleItems.length > 0) {
+            char.send(`Items here: ${visibleItems.map(i => (i as Item).name).join(', ')}.\n\r`);
         }
     }
 }
