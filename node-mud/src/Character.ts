@@ -186,14 +186,14 @@ class Character implements ICharacter {
 
     // TODO: IMPLEMENT
     // eslint-disable-next-line
-  public canSee(other: ICharacter): boolean {
-    // Implementation of visibility logic
-    // For example:
-    // - Check if both characters are in the same room
-    // - Check if the other character is invisible or if this character is blind
-    // Here's a very basic implementation:
-        console.log(other)  // TODO:  REVERSE ENGINEER IMPLEMENTATION
-        return true; // Default to true if not implemented fully yet
+  public canSee(other: ICharacter | Item): boolean {
+    if (other instanceof Item) {
+      // Logic for seeing items, e.g.,:
+      return true; // or some condition for item visibility
+  } else {
+      // Logic for seeing characters, e.g.,:
+      return true; // or your existing character visibility logic
+  }
     }
 
     public send(message: string): void {
