@@ -75,7 +75,7 @@ class Character implements ICharacter {
     affected: IAffect[] = []; // Active affects on the character
     save_time: number; // Last save time
 
-    constructor(name: string, level: number = 1, sex: Sex = Sex.NEUTRAL, race: Race = Race.HUMAN, classType: Class = Class.MAGE) {
+    constructor(name: string, level: number = 1, sex: Sex = Sex.NEUTRAL, race: Race = Race.HUMAN, classType: Class = Class.MAGE, isNpc: boolean) {
         this.name = name;
         this.level = level;
         this.sex = sex;
@@ -92,6 +92,7 @@ class Character implements ICharacter {
         this.max_mana = 100;
         this.move = 100;
         this.max_move = 100;
+        this.isNPC = isNpc;
 
         this.position = Position.STANDING;
         this.gold = 0;
