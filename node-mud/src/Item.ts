@@ -2,56 +2,67 @@ import Character from './Character'; // Assuming you've created the Character mo
 import Room from './Room'; // Assuming you've created the Room model
 import { AffectLocation } from './enums/AffectLocation';
 import { IAffect } from './interfaces/IAffect';
-import ICharacter from './interfaces/ICharacter'; 
-import { IItem } from './interfaces/IItem'; 
+import ICharacter from './interfaces/ICharacter';
+import { IItem } from './interfaces/IItem';
 
 // Define constants for item types
 const enum ItemType {
-  LIGHT = 0,
-  SCROLL,
-  WAND,
-  STAFF,
-  WEAPON,
-  TREASURE,
-  ARMOR,
-  POTION,
-  FURNITURE,
-  TRASH,
-  CONTAINER,
-  DRINK_CON,
-  KEY,
-  FOOD,
-  MONEY,
-  PEN,
-  BOAT,
-  CORPSE_NPC,
-  CORPSE_PC,
-  FOUNTAIN,
-  PILL,
-  // Add more types as needed
+    LIGHT = 0,
+    SCROLL,
+    WAND,
+    STAFF,
+    WEAPON,
+    TREASURE,
+    ARMOR,
+    POTION,
+    FURNITURE,
+    TRASH,
+    CONTAINER,
+    DRINK_CON,
+    KEY,
+    FOOD,
+    MONEY,
+    PEN,
+    BOAT,
+    CORPSE_NPC,
+    CORPSE_PC,
+    FOUNTAIN,
+    PILL,
+    // Add more types as needed
 }
 
 // Define constants for item wear flags (bitwise)
 const enum WearFlag {
-  TAKE = 1 << 0,
-  FINGER = 1 << 1,
-  NECK = 1 << 2,
-  BODY = 1 << 3,
-  HEAD = 1 << 4,
-  LEGS = 1 << 5,
-  FEET = 1 << 6,
-  HANDS = 1 << 7,
-  ARMS = 1 << 8,
-  SHIELD = 1 << 9,
-  ABOUT = 1 << 10,
-  WAIST = 1 << 11,
-  WRIST = 1 << 12,
-  WIELD = 1 << 13,
-  HOLD = 1 << 14,
-  // Add more wear flags as needed
+    TAKE = 1 << 0,
+    FINGER = 1 << 1,
+    NECK = 1 << 2,
+    BODY = 1 << 3,
+    HEAD = 1 << 4,
+    LEGS = 1 << 5,
+    FEET = 1 << 6,
+    HANDS = 1 << 7,
+    ARMS = 1 << 8,
+    SHIELD = 1 << 9,
+    ABOUT = 1 << 10,
+    WAIST = 1 << 11,
+    WRIST = 1 << 12,
+    WIELD = 1 << 13,
+    HOLD = 1 << 14,
+    // Add more wear flags as needed
 }
 
 class Item implements IItem {
+    id: number;
+    name: string;
+    description: string;
+    weight: number;
+    itemType: string;
+    canBeEquipped: boolean;
+    equipmentSlot?: string;
+
+    // Values for different item types
+    value: [number, number, number, number];
+
     constructor(id: number, name: string, item_type: ItemType, level: number = 1) {
         this.id = id;
         this.name = name;
@@ -71,6 +82,9 @@ class Item implements IItem {
         this.value = [0, 0, 0, 0]; // Default values for item specifics
         this.hidden = false; // or whatever default state you want
 
+  
+        this.canBeEquipped = canBeEquipped;
+
     }
 
     hidden: boolean = false; // Default to not hidden
@@ -81,26 +95,19 @@ class Item implements IItem {
         this.visibilityCondition = condition;
     }
 
-    // Basic properties
-    id: number;
-    name: string;
     short_descr: string;
-    description: string;
 
     // Item type and properties
-    item_type: ItemType; 
+    item_type: ItemType;
     extra_flags: number; // Bitfield for extra properties like ITEM_GLOW, ITEM_HUM, etc.
     wear_flags: number; // Bitfield for where the item can be worn
     wear_loc: number; // Current wear location (-1 means not worn)
 
     // Stats
     level: number;
-    weight: number;
     cost: number;
     timer: number; // How long until the item decays or disappears
 
-    // Values for different item types
-    value: [number, number, number, number];
 
     // Location
     in_room?: Room; // If the item is in a room
@@ -173,14 +180,14 @@ class Item implements IItem {
 
     // Helper method to get a human-readable name for affect locations
     private getAffectLocationName(location: number): string {
-        switch(location) {
-        case AffectLocation.APPLY_STR: return "strength";
-        case AffectLocation.APPLY_INT: return "intelligence";
-        case AffectLocation.APPLY_WIS: return "wisdom";
-        case AffectLocation.APPLY_DEX: return "dexterity";
-        case AffectLocation.APPLY_CON: return "constitution";
+        switch (location) {
+            case AffectLocation.APPLY_STR: return "strength";
+            case AffectLocation.APPLY_INT: return "intelligence";
+            case AffectLocation.APPLY_WIS: return "wisdom";
+            case AffectLocation.APPLY_DEX: return "dexterity";
+            case AffectLocation.APPLY_CON: return "constitution";
             // Add more cases for other locations
-        default: return "unknown";
+            default: return "unknown";
         }
     }
 
@@ -199,7 +206,7 @@ class Item implements IItem {
         return false;
     }
 
-    
+
 }
 
 export default Item;

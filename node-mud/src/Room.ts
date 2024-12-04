@@ -33,7 +33,14 @@ class Room implements IRoom {
     private _items: IItem[] = [];
 
     // ... other existing methods
+    getLightLevel(): number {
+        return this._lightLevel;
+    }
 
+    setLightLevel(level: number): void {
+        this._lightLevel = level;
+    }
+    
     get characters(): ICharacter[] {
         return this._characters;
     }

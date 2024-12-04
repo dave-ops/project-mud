@@ -5,7 +5,12 @@ export interface IItem {
     name: string;
     description: string;
     weight: number;
-    value: number; // Monetary value
+    value: {
+        base: number;
+        sell: number;
+        buy: number;
+        special: number;
+    };
     itemType: string; // e.g., 'weapon', 'armor', 'potion'
     canBeEquipped: boolean; // If true, this item can be equipped
     equipmentSlot?: string; // If canBeEquipped, what slot it occupies, e.g., 'head', 'hand'
