@@ -14,7 +14,7 @@ class Character implements ICharacter {
     long_descr: string;
     description: string;
     isNPC: boolean;
-    
+
     // Stats
     level: number;
     trust: number = -1;
@@ -83,6 +83,7 @@ class Character implements ICharacter {
         this.short_descr = `${name} the ${this.getClassName()}`;
         this.long_descr = `${name} stands here.`;
         this.description = `You see nothing special about ${name}.`;
+        this.desc = new Socket();
 
         this.hit = 100;
         this.max_hit = 100;
@@ -133,19 +134,13 @@ class Character implements ICharacter {
             return; // Early return if text or character is null/undefined
         }
 
-        if (!this.desc) {
-            return; // If there's no connection to send to, do nothing
+        if (this.desc) {
+            this.desc.write(text + '\n\r');
+        } else {
+            console.log(`Attempted to send message "${text}" to character without a descriptor.`);
+            // Or handle this case in another way, like storing messages for later or logging
         }
-
-        this.writeToBuffer(text); // Assuming you have this method or similar
     }
-
-    private writeToBuffer(text: string): void {
-        // In Node.js, you'd write directly to the socket
-        this.desc.write(text + '\n\r'); // '\n\r' for MUD style line endings
-    }
-
-
 
     private levelUp(): void {
         const expNeeded = this.expPerLevel[this.level];
