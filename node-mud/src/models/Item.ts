@@ -38,12 +38,14 @@ class Item implements IItem {
         this.cost = 0;
         this.timer = 0; // No timer by default
 
-        this.value = [0, 0, 0, 0]; // Default values for item specifics
+        this.value = {
+            base: -1,
+            sell: -1,
+            buy: -1,
+            special: -1,
+        }; // Default values for item specifics
+
         this.hidden = false; // or whatever default state you want
-
-  
-        this.canBeEquipped = canBeEquipped;
-
     }
 
     hidden: boolean = false; // Default to not hidden

@@ -175,7 +175,7 @@ class Character implements ICharacter {
         item.carried_by = this; // Assuming carried_by is part of IItem now
     }
 
-    public removeItemFromInventory(item: IItem): IItem | undefined {
+    public removeItem(item: IItem): IItem | undefined {
         const index = this.carrying.indexOf(item);
         if (index > -1) {
             const removedItem = this.carrying.splice(index, 1)[0];
