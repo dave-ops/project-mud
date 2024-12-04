@@ -9,6 +9,19 @@ import { IItem } from './interfaces/IItem'; // Assuming you have this interface
  * Contains characters, items, and exits.
  */
 class Room implements IRoom {
+    private _lightLevel: number;
+
+    constructor(id: number, name: string, description: string, lightLevel: number = 0) {
+        // ... other initialization
+        this._id = id;
+        this._name = name;
+        this._description = description;
+        this._lightLevel = lightLevel;
+        this._exits = {};
+        this._people = [];
+        this._contents = [];
+    }
+
     private _id: number;
     private _name: string;
     private _description: string;
