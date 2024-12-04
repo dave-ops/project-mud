@@ -23,16 +23,26 @@ class Character implements ICharacter {
     race: Race;
     class: Class;
 
+    armor: number = -1;
+    damroll: number = -1;
+    hitpoints: number = -1;
+    hitroll: number = -1;
+
+    maxMana: number = -1;
+    maxMove: number = -1;
+    max_hit: number;
+    max_mana: number;
+    max_move: number;
+    move: number;
+    position: Position; // e.g., 'standing', 'sitting', 'sleeping'
+    saving_throw: number = -1;
+    maxHitpoints: number = -1;
+
     // Health and resources
     hit: number;
-    max_hit: number;
     mana: number;
-    max_mana: number;
-    move: number;
-    max_move: number;
 
     // Position and combat
-    position: Position;
     fighting?: ICharacter; // Optional if in combat
 
     // Wealth and experience
@@ -104,26 +114,26 @@ class Character implements ICharacter {
         this.deaf = false;
 
         this.pcdata = {
-            pwd: "", // Should be hashed in real implementation
             bamfin: "",
             bamfout: "",
-            title: "",
-            perm_str: 13,
-            perm_int: 13,
-            perm_wis: 13,
-            perm_dex: 13,
-            perm_con: 13,
-            mod_str: 0,
-            mod_int: 0,
-            mod_wis: 0,
-            mod_dex: 0,
-            mod_con: 0,
             condition: {
+                [COND_DRUNK]: 0,
                 [COND_FULL]: 48,
                 [COND_THIRST]: 48,
-                [COND_DRUNK]: 0,
             },
             learned: {},
+            mod_con: 0,
+            mod_dex: 0,
+            mod_int: 0,
+            mod_str: 0,
+            mod_wis: 0,
+            perm_con: 13,
+            perm_dex: 13,
+            perm_int: 13,
+            perm_str: 13,
+            perm_wis: 13,
+            pwd: "", // Should be hashed in real implementation
+            title: "",
         };
 
         this.save_time = Date.now();

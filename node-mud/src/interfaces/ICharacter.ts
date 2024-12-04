@@ -1,6 +1,7 @@
-import { Class, Sex, } from '../enums'
+import { Class, Position, Sex, } from '../enums'
 import { IAffect } from './IAffect'; // Assuming you have an Affect model
 import { IItem } from './IItem'; // Assuming you have an Affect model
+import { IPlayerCondition } from './IPlayerCondition';
 
 export default interface ICharacter {
     id: number;
@@ -19,14 +20,13 @@ export default interface ICharacter {
     isNPC: boolean;
     level: number;
     mana: number;
-    maxHitpoints: number;
     maxMana: number;
     maxMove: number;
     max_hit: number;
     max_mana: number;
     max_move: number;
     move: number;
-    position: string; // e.g., 'standing', 'sitting', 'sleeping'
+    position: Position; // e.g., 'standing', 'sitting', 'sleeping'
     saving_throw: number;
     sex: Sex;
     short_descr: string;
@@ -34,14 +34,22 @@ export default interface ICharacter {
     trust: number;
     race: number;
     pcdata: {
-        mod_chr: number;
-        mod_con: number;
-        mod_dex: number;
-        mod_int: number;
-        mod_lck: number;
+        pwd: string;
+        bamfin: string;
+        bamfout: string;
+        title: string;
+        perm_str: number;
+        perm_int: number;
+        perm_wis: number;
+        perm_dex: number;
+        perm_con: number;
         mod_str: number;
+        mod_int: number;
         mod_wis: number;
-        max_hit: number;
+        mod_dex: number;
+        mod_con: number;
+        condition: IPlayerCondition;
+        learned: { [key: string]: number };
     };
 
     // Methods that might be abstract or implemented in derived classes:
