@@ -91,6 +91,10 @@ class Room implements IRoom {
         return this._contents;
     }
 
+    set contents(stuff) {
+        this._contents = stuff;
+    }
+
     // Methods for managing exits
     addExit(direction: string, exitInfo: number, exitRoom: Room): void {
         this._exits[direction] = { exit_info: exitInfo, room: exitRoom };
