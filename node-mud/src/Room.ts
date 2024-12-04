@@ -108,7 +108,9 @@ class Room {
             char.send(`You see: ${this.contents.map(o => o.name).join(', ')}.\n\r`);
         }
 
-        const visibleExits = Object.keys(this.exits).filter(dir => this.exits[dir].exit_info === 0 || !this.exits[dir].exit_info & 1); // Assuming 1 is EX_CLOSED
+        const visibleExits = Object.keys(this.exits).filter(dir => 
+            this.exits[dir].exit_info === 0 || !(this.exits[dir].exit_info & 1)
+        ); // Assuming 1 represents EX_CLOSED
         if (visibleExits.length > 0) {
             char.send(`Obvious exits: ${visibleExits.join(', ')}.\n\r`);
         }

@@ -1,11 +1,15 @@
-import { ICharacter } from './ICharacter'; // Assuming you have an Affect model
+import ICharacter from './ICharacter'; // Assuming you have an Affect model
 import { IItem } from './IItem'; // Assuming you have an Affect model
 
 export interface IRoom {
     id: number;
     name: string;
     description: string;
-    exits: { [direction: string]: IRoom | null }; // e.g., {'north': room, 'south': null}
+    //exits: { [direction: string]: IRoom | null }; // e.g., {'north': room, 'south': null} // old
+    exits: { [direction: string]: { 
+        exit_info: number; 
+        // other properties for exits 
+    } };
     characters: ICharacter[];
     items: IItem[];
 
