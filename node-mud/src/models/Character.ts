@@ -6,7 +6,6 @@ import { IPlayerCondition, COND_FULL, COND_THIRST, COND_DRUNK } from '../interfa
 import { Socket } from 'net'; // If using Node.js for socket communication
 
 class Character implements ICharacter {
-    [x: string]: boolean;
     private desc?: Socket; // Assuming 'desc' for descriptor or connection
 
     id: number = -1;
@@ -14,7 +13,8 @@ class Character implements ICharacter {
     short_descr: string;
     long_descr: string;
     description: string;
-
+    isNPC: boolean;
+    
     // Stats
     level: number;
     trust: number = -1;

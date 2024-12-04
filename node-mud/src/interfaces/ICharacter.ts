@@ -16,6 +16,7 @@ export default interface ICharacter {
     gold: number;
     hitpoints: number;
     hitroll: number;
+    isNPC: boolean;
     level: number;
     mana: number;
     maxHitpoints: number;
