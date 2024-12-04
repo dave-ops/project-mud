@@ -36,7 +36,6 @@ class Character implements ICharacter {
     move: number;
     position: Position; // e.g., 'standing', 'sitting', 'sleeping'
     saving_throw: number = -1;
-    maxHitpoints: number = -1;
 
     // Health and resources
     hit: number;
@@ -171,8 +170,26 @@ class Character implements ICharacter {
         console.log(`${this.name} gained level ${this.level}`);
     }
 
-    private advanceLevel(): void {
+    private attack(): void {
         // Placeholder for level advancement logic. Should include updating skills, spells, etc.
+    }
+
+    private canSee(): boolean {
+        // Placeholder for level advancement logic. Should include updating skills, spells, etc.
+        return false;
+    }
+
+    private castSpell(): void {
+        // Placeholder for level advancement logic. Should include updating skills, spells, etc.
+    }
+
+    private hasLightSource(): boolean {
+        // Placeholder for level advancement logic. Should include updating skills, spells, etc.
+        return false;    }
+
+    private isBlind(): boolean {
+        // Placeholder for level advancement logic. Should include updating skills, spells, etc.
+        return false;
     }
 
     private getRandomNumber(min: number, max: number): number {
