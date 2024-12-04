@@ -1,6 +1,7 @@
 import Character from './Character'; // Assuming you've created the Character model
 import Room from './Room'; // Assuming you've created the Room model
 import { AffectLocation } from './enums/AffectLocation';
+import { IAffect } from './interfaces/IAffect';
 import ICharacter from './interfaces/ICharacter'; 
 import { IItem } from './interfaces/IItem'; 
 
