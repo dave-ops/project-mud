@@ -1,7 +1,7 @@
-import ICharacter from './interfaces/ICharacter';
+import ICharacter from '../interfaces/ICharacter';
 import Character from './Character';
-import { IAffect } from './interfaces/IAffect';
-import { IItem } from './interfaces/IItem';
+import { IAffect } from '../interfaces/IAffect';
+import { IItem } from '../interfaces/IItem';
 
 // Define constants for affect locations
 const enum AffectLocation {

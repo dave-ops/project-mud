@@ -1,9 +1,9 @@
 import Room from './Room';
 import Item from './Item'; // Assuming you have an Object model
-import { IAffect } from './interfaces/IAffect';
-import { IItem } from './interfaces/IItem'; 
-import ICharacter from './interfaces/ICharacter';
-import { IPlayerCondition, COND_FULL, COND_THIRST, COND_DRUNK } from './interfaces/IPlayerCondition';
+import { IAffect } from '../interfaces/IAffect';
+import { IItem } from '../interfaces/IItem'; 
+import ICharacter from '../interfaces/ICharacter';
+import { IPlayerCondition, COND_FULL, COND_THIRST, COND_DRUNK } from '../interfaces/IPlayerCondition';
 import { Socket } from 'net';
 
 // Define constants for positions, sex, etc. for clarity and type safety
@@ -43,70 +43,62 @@ const enum Class {
  * This class includes both player characters and NPCs.
  */
 class Character implements ICharacter {
-    // Basic attributes
+    id: number;
     name: string;
-    short_descr: string;
-    long_descr: string;
     description: string;
 
-    // Stats
-    level: number;
-    trust: number;
-    sex: Sex;
-    race: Race;
-    class: Class;
-
-    // Health and resources
-    hit: number;
-    max_hit: number;
-    mana: number;
-    max_mana: number;
-    move: number;
-    max_move: number;
-
-    // Position and combat
-    position: Position;
-    fighting?: ICharacter; // Optional if in combat
-
-    // Wealth and experience
-    gold: number;
-    exp: number;
-
-    // Flags
     act: number; // Bitfield for various player flags
-    affected_by: number; // Bitfield for affects
-
-    // Game mechanics
-    timer: number; // Timer for inactivity
-    wimpy: number; // When to flee
-    deaf: boolean; // If character is deaf
-
-    // Player-specific data
-    pcdata: {
-    pwd: string; // Password hash for player characters
-    bamfin: string; // String for entering a room
-    bamfout: string; // String for leaving a room
-    title: string; // Character's title
-    perm_str: number;
-    perm_int: number;
-    perm_wis: number;
-    perm_dex: number;
-    perm_con: number;
-    mod_str: number;
-    mod_int: number;
-    mod_wis: number;
-    mod_dex: number;
-    mod_con: number;
-    condition: IPlayerCondition; // Player's condition
-    learned: { [key: string]: number }; // Skills learned by the player
-  };
-
-    // Game state
-    room?: Room; // Current room
-    was_in_room?: Room; // Previous room before moving to limbo or similar
-    carrying?: Item[]; // Items carried by the character
     affected?: IAffect[]; // Active affects on the character
+    affected_by: number; // Bitfield for affects
+    armor: number;
+    carrying?: Item[]; // Items carried by the character
+    class: Class;
+    damroll: number;
+    deaf: boolean; // If character is deaf
+    exp: number;
+    fighting?: ICharacter; // Optional if in combat
+    gold: number;
+    hit: number;
+    hitpoints: number;
+    hitroll: number;
+    level: number;
+    mana: number;
+    maxHitpoints: number;
+    maxMana: number;
+    maxMove: number;
+    max_hit: number;
+    max_mana: number;
+    max_move: number;
+    move: number;
+    pcdata: {
+      bamfin: string; // String for entering a room
+      bamfout: string; // String for leaving a room
+      condition: IPlayerCondition; // Player's condition
+      learned: { [key: string]: number }; // Skills learned by the player
+      mod_con: number;
+      mod_dex: number;
+      mod_int: number;
+      mod_str: number;
+      mod_wis: number;
+      perm_con: number;
+      perm_dex: number;
+      perm_int: number;
+      perm_str: number;
+      perm_wis: number;
+      pwd: string; // Password hash for player characters
+      title: string; // Character's title
+    };
+    position: string; // e.g., 'standing', 'sitting', 'sleeping'
+    race: Race;
+    room?: Room; // Current room
     save_time: number; // Last save time
+    saving_throw: number;
+    sex: Sex;
+    short_descr: string;
+    timer: number; // Timer for inactivity
+    trust: number;
+    was_in_room?: Room; // Previous room before moving to limbo or similar
+    wimpy: number; // When to flee
 
     // Private properties
     private socket: Socket | null = null; // Assuming you're using sockets for communication

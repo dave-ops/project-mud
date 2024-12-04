@@ -1,4 +1,4 @@
-import { ICharacter } from './ICharacter'; // Assuming you have an Affect model
+import ICharacter from './ICharacter'; // Assuming you have an Affect model
 import { IRoom } from './IRoom'; // Assuming you have an Affect model
 
 export interface ISpell {

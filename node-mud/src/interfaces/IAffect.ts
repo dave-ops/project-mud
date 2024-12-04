@@ -1,4 +1,4 @@
-import { ICharacter } from './ICharacter'; // Assuming you have an Affect model
+import ICharacter from './ICharacter'; // Assuming you have an Affect model
 import { IItem } from './IItem'; // Assuming you have an Affect model
 
 export interface IAffect {
