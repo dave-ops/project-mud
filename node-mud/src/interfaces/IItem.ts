@@ -7,6 +7,7 @@ export interface IItem {
     description: string;
     position: Position;
     weight: number;
+    size: number;
     value: {
         base: number;
         sell: number;
