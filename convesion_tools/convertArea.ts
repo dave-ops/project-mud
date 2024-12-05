@@ -8,6 +8,7 @@ class BaseEntity {
     hitpoints: number;
     itemType: string;
     level: number;
+    longDescription: string;
     mana: number;
     move: number;
     shortDescription: string;
@@ -18,6 +19,7 @@ class BaseEntity {
                 exits: { [direction: string]: { to: number, closed: boolean } } = {},
                 hitpoints: number = 0,
                 itemType: string = '', 
+                longDescription: string = '',
                 level: number = 0,
                 mana: number = 0,
                 move: number = 0,
@@ -29,6 +31,7 @@ class BaseEntity {
         this.hitpoints = hitpoints;
         this.itemType = itemType;
         this.level = level;
+        this.longDescription = longDescription;
         this.mana = mana;
         this.move = move;
         this.shortDescription = shortDescription;
@@ -46,7 +49,6 @@ interface Area extends BaseEntity {
 }
 
 interface Mobile extends BaseEntity {
-    longDescription: string;
     sectorType: string;
 }
 
