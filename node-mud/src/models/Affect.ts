@@ -2,23 +2,9 @@ import ICharacter from '../interfaces/ICharacter';
 import Character from './Character';
 import { IAffect } from '../interfaces/IAffect';
 import { IItem } from '../interfaces/IItem';
+import { AffectLocation } from '../enums';
 
-// Define constants for affect locations
-const enum AffectLocation {
-  APPLY_STR = 0,
-  APPLY_INT,
-  APPLY_WIS,
-  APPLY_DEX,
-  APPLY_CON,
-  APPLY_HIT,
-  APPLY_MANA,
-  APPLY_MOVE,
-  APPLY_AC, // Armor Class
-  APPLY_HITROLL,
-  APPLY_DAMROLL,
-  APPLY_SAVING_SPELL,
-  // Add more as needed
-}
+
 
 // Define constants for common affect bitvectors
 // eslint-disable-next-line
