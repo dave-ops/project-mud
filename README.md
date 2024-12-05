@@ -13,7 +13,7 @@ building a role-playing experience based on ad&d characters, monsters, game-play
 
 
 ## guild.area
-
+```
                     PORTAL     
                    HOMETOWN  
                       │                
@@ -28,9 +28,10 @@ building a role-playing experience based on ad&d characters, monsters, game-play
 ┌───────────┐   ┌───────────┐   ┌───────────┐
 │  LIBRARY  │───│    HALL   │───│  RECALL   │
 └───────────┘   └───────────┘   └───────────┘
-
+```
 
 ## halfelf.area
+```
                         ┌───────────┐
         ┌───────────┐   │  HILLTOP  │
         │   BEFORE  │ / └───────────┘ 
@@ -54,6 +55,6 @@ CONT ───│  GRASS    │───│    GRASS  │   │  BEHIND   │
               │              │                │              
             CONT            CONT            PORTAL     
                                            HOMETOWN  
-                                     
+```                                     
 
 
