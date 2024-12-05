@@ -3,6 +3,7 @@ import Character from './Character';
 import { IAffect } from '../interfaces/IAffect';
 import { IItem } from '../interfaces/IItem';
 import { AffectLocation } from '../enums';
+import Item from './Item';
 
 
 
@@ -49,7 +50,7 @@ class Affect implements IAffect {
     remove(character: ICharacter | IItem): void {
         if ('pcdata' in character && 'affected_by' in character && 'affected' in character) {
             this.removeFrom(character as Character);
-        } else if (character instanceof IItem) {
+        } else if (character instanceof Item) {
             // Placeholder for item affects
             console.log("Removing affect from item not implemented yet.");
         }

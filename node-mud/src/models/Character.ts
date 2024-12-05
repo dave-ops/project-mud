@@ -7,7 +7,7 @@ import { Socket } from 'net'; // If using Node.js for socket communication
 import { IRoom } from '../interfaces/IRoom';
 
 class Character implements ICharacter {
-    private desc?: Socket; // Assuming 'desc' for descriptor or connection
+    public desc?: Socket; // Assuming 'desc' for descriptor or connection
 
     id: number = -1;
     name: string;
@@ -168,6 +168,12 @@ class Character implements ICharacter {
 
         //this.advanceLevel();
         console.log(`${this.name} gained level ${this.level}`);
+    }
+
+    public writeToBuffer(text: string): void {
+        if (this.desc) {
+            this.desc.write(text + '\n\r'); // Example implementation
+        }
     }
 
     private advanceLevel(): void {
