@@ -1,0 +1,47 @@
+{
+	"name": "Thief",
+	"classAbbr": "Thi",
+	"playable": true,
+	"mv": 10,
+	"detection": 2,
+	"gold": 100,
+	"mainStat": "dex",
+	"baseDex": 1,
+	"skills": [
+		{
+			"id": "backstab",
+			"display": "Backstab",
+			"mod": 0,
+			"train": 100,
+			"type": "melee initializer",
+			"wait": 3,
+			"learned": false,
+			"prerequisites": {
+				"level": 2,
+				"charClass": "thief"
+			}
+		}, {
+			"id": "sneak",
+			"display": "Sneak",
+			"mod": 0,
+			"train": 100, 
+			"type": "passive",
+			"wait": 1,
+			"learned": false,
+			"prerequisites": {
+				"level": 1
+			}
+		}, {
+			"id": "secondAttack",
+			"display": "Second Attack",
+			"mod": 0,
+			"train": 65,
+			"learned": false,
+			"type": "passive",
+			"prerequisites": {
+				"level": 1,
+				"skill": {"id": "backstab", "prop": "train", "value": 78}
+			}
+		}
+	]
+}

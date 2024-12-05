@@ -1,0 +1,9 @@
+{
+	"name": "Halfling",
+	"baseCon": -1,
+	"baseDex": 2,
+	"hp": -10,
+	"mv": 20,
+	"playable": true,
+	"size": {"value": 2, "display": "very small"}
+}

@@ -1,0 +1,7 @@
+
+{
+	"name": "Human",
+	"baseWis": 1,
+	"playable": true,
+	"trains": 5
+}

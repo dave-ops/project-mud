@@ -1,0 +1,11 @@
+{
+	"name": "Dwarf",
+	"baseCon": 2,
+	"hp": 8,
+	"mv": -20,
+	"ac": 1,
+	"meleeRes": 2,
+	"playable": true,
+	"size": {"value": 2, "display": "small"},
+	"affects": []
+}

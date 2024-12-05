@@ -1,0 +1,46 @@
+{
+	"name": "Cleric",
+	"classAbbr": "Cle",
+	"playable": true,
+	"mana": 1,
+	"baseWis": 1,
+	"mainStat": "wis",
+	"skills": [
+		{
+			"id": "cureLight",
+			"display": "Cure Light",
+			"mod": 2,
+			"train": 100,
+			"type": "heal spell",
+			"wait": 2,
+			"learned": true,
+			"prerequisites": {
+				"level": 1
+			}
+		}, 
+		{
+			"id": "detectInvis",
+			"display": "Detect Invisibility",
+			"mod": 0,
+			"train": 100,
+			"type": "passive spell",
+			"wait": 2,
+			"learned": true,
+			"prerequisites": {
+				"level": 4
+			}
+		}, 
+		{
+			"id": "massHeal",
+			"display": "Mass Heal",
+			"mod": 0,
+			"train": 100,
+			"type": "area heal spell",
+			"wait": 3,
+			"learned": true,
+			"prerequisites": {
+				"level": 1
+			}
+		}
+	]
+}
