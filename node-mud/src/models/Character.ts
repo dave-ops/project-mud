@@ -8,6 +8,7 @@ import { IRoom } from '../interfaces/IRoom';
 import { WEAR_MAX } from '../constants';
 
 class Character implements ICharacter {
+    private socket?: Socket; // This would be the character's network connection
     public desc?: Socket; // Assuming 'desc' for descriptor or connection
 
     id: number = -1;
@@ -149,6 +150,12 @@ class Character implements ICharacter {
         }
 
         console.log(`${this.name} receives: ${text}`);
+
+        if (this.socket) {
+            this.socket.write(message + '\n\r'); // '\n\r' for MUD style line endings
+        } else {
+            console.log(`Character ${this.name} has no socket to send message: ${message}`);
+        }
     }
 
     private levelUp(): void {
@@ -550,6 +557,27 @@ class Character implements ICharacter {
         console.log(`${this.name} has created ${newItem.name}.`);
         this.carrying.push(newItem); // Assuming characters have a carrying array for items
         return newItem;
+    }
+
+    // Echo functionality for toggling character's echo
+    public toggleEcho(on: boolean): void {
+        if (this.socket) {
+            if (on) {
+                this.socket.setNoDelay(false); // Assume echo off means no delay for performance, though this is an oversimplification
+                this.send("Echo is now ON.");
+            } else {
+                this.socket.setNoDelay(true); // Enable Nagle's algorithm, which is kind of like echo off, but not really
+                this.send("Echo is now OFF.");
+            }
+        } else {
+            console.log(`${this.name} attempted to toggle echo without a socket connection.`);
+        }
+    }
+
+    // Placeholder for method to handle input from character
+    public handleInput(command: string): void {
+        // Here you'd parse and execute the command
+        console.log(`${this.name} entered command: ${command}`);
     }
 
     // ... other methods like equip, unequip, etc.
