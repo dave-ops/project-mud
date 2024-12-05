@@ -10,30 +10,6 @@ export const exp_per_level: number[] = [
     // ... more levels
 ];
 
-export enum AffectLocation {
-  APPLY_STR = 0,
-  APPLY_INT = 1,
-  APPLY_WIS = 2,
-  APPLY_DEX = 3,
-  APPLY_CON = 4,
-APPLY_HIT,
-  APPLY_MANA,
-  APPLY_MOVE,
-  APPLY_AC, // Armor Class
-  APPLY_HITROLL,
-  APPLY_DAMROLL,
-  APPLY_SAVING_SPELL,
-  // Add more as needed
-}
-
-
-export enum Class {
-    // Your class definitions here
-    MAGE = 'MAGE',
-    WARRIOR = 'WARRIOR',
-    CLERIC = 'CLERIC',
-    THIEF = 'THIEF',
-}
 
 // Define constants for item wear flags (bitwise)
 export const enum WearFlag {
@@ -53,35 +29,8 @@ export const enum WearFlag {
     WIELD = 1 << 13,
     HOLD = 1 << 14,
     // Add more wear flags as needed
-  }
+}
   
-// Define constants for positions, sex, etc. for clarity and type safety
-export const enum Position {
-    UNKNOWN = -1,
-    DEAD = 0,
-    MORTAL,
-    INCAP,
-    STUNNED,
-    SLEEPING,
-    RESTING,
-    FIGHTING,
-    STANDING,
-  }
-  
-export const enum Sex {
-  UNKNOWN = -1,
-  NEUTRAL = 0,
-    MALE,
-    FEMALE,
-  }
-  
-export const enum Race {
-    // Add races from your game here
-    HUMAN = 0,
-    ELF,
-    // etc.
-  }
-
 // Define constants for item types
 export const enum ItemType {
   UNKNOWN = -1,
@@ -129,4 +78,77 @@ export enum WearLocation {
   WEAR_WIELD,
   WEAR_HOLD,
   WEAR_FLOAT,
+}
+
+// Placeholder for enums like Position, Sex, Class, etc.
+export enum Position {
+  UNKNOWN = -1,
+  DEAD = 0,
+  MORTAL,
+  INCAP,
+  STUNNED,
+  SLEEPING,
+  RESTING,
+  SITTING,
+  FIGHTING,
+  STANDING
+}
+
+export enum Sex {
+  UNKNOWN = -1,
+  NEUTRAL = 0,
+  MALE,
+  FEMALE
+}
+
+export enum Class {
+  MAGE,
+  CLERIC,
+  THIEF,
+  WARRIOR
+  // Add more classes as needed
+}
+
+export enum Race {
+  HUMAN,
+  ELF,
+  DWARF,
+  // Add more races as needed
+}
+
+// For affect locations
+export enum AffectLocation {
+  APPLY_NONE = 0,
+  APPLY_STR,
+  APPLY_DEX,
+  APPLY_INT,
+  APPLY_WIS,
+  APPLY_CON,
+  APPLY_SEX,
+  APPLY_CLASS,
+  APPLY_LEVEL,
+  APPLY_AGE,
+  APPLY_HEIGHT,
+  APPLY_WEIGHT,
+  APPLY_MANA,
+  APPLY_HIT,
+  APPLY_MOVE,
+  APPLY_GOLD,
+  APPLY_EXP,
+  APPLY_AC,
+  APPLY_HITROLL,
+  APPLY_DAMROLL,
+  APPLY_SAVING_PARA,
+  APPLY_SAVING_ROD,
+  APPLY_SAVING_PETRI,
+  APPLY_SAVING_BREATH,
+  APPLY_SAVING_SPELL
+}
+
+// For affect bitvectors
+export enum AffectBitvector {
+  AFF_BLIND = 1 << 0,
+  AFF_INVISIBLE = 1 << 1,
+  AFF_DETECT_EVIL = 1 << 2,
+  // Add more affects as needed
 }
