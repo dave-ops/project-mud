@@ -33,6 +33,8 @@ export default interface ICharacter {
     long_descr: string;
     trust: number;
     race: number;
+    carrying: IItem[];
+    equipment: { [key: number]: IItem | null };
     pcdata: {
         pwd: string;
         bamfin: string;

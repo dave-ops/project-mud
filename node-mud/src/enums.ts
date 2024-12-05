@@ -109,3 +109,25 @@ export const enum ItemType {
   // Add more types as needed
 }
 
+export enum WearLocation {
+  WEAR_LIGHT = 0,
+  WEAR_FINGER_L,
+  WEAR_FINGER_R,
+  WEAR_NECK_1,
+  WEAR_NECK_2,
+  WEAR_BODY,
+  WEAR_HEAD,
+  WEAR_LEGS,
+  WEAR_FEET,
+  WEAR_HANDS,
+  WEAR_ARMS,
+  WEAR_SHIELD,
+  WEAR_ABOUT,
+  WEAR_WAIST,
+  WEAR_WRIST_L,
+  WEAR_WRIST_R,
+  WEAR_WIELD,
+  WEAR_HOLD,
+  WEAR_FLOAT,
+  WEAR_MAX
+}

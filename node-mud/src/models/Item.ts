@@ -4,27 +4,34 @@ import { AffectLocation, ItemType, Position, WearFlag } from '../enums';
 import { IAffect } from '../interfaces/IAffect';
 import ICharacter from '../interfaces/ICharacter';
 import { IItem } from '../interfaces/IItem';
+import { IRoom } from '../interfaces/IRoom';
 
 class Item implements IItem {
     id: number;
     name: string;
     description: string;
     position: Position = Position.UNKNOWN;
-    size: number;    
+    size: number;
     weight: number;
     itemType: ItemType = ItemType.UNKNOWN;
     canBeEquipped: boolean;
     equipmentSlot?: string;
-
+ 
     // Values for different item types
-    value:  {
+    value: {
         base: number;
         sell: number;
         buy: number;
         special: number;
     };
 
-    constructor(id: number, name: string, item_type: ItemType, level: number = 1, canBeEquipped: boolean, size: number) {
+    constructor(id: number, 
+        name: string, 
+        item_type: ItemType, 
+        level: number = 1, 
+        canBeEquipped: boolean, 
+        size: number
+    ) {
         this.id = id;
         this.name = name;
         this.short_descr = `a ${name}`;
@@ -51,6 +58,11 @@ class Item implements IItem {
         this.canBeEquipped = canBeEquipped;
         this.size = size;
     }
+    shortDescr: string = "null";
+    wearFlags: number = -1;
+    values: number[] = [];
+    carriedBy?: ICharacter | undefined;
+    inRoom?: IRoom | undefined;
 
     hidden: boolean = false; // Default to not hidden
     visibilityCondition?: (char: ICharacter) => boolean;
@@ -146,13 +158,13 @@ class Item implements IItem {
     // Helper method to get a human-readable name for affect locations
     private getAffectLocationName(location: number): string {
         switch (location) {
-        case AffectLocation.APPLY_STR: return "strength";
-        case AffectLocation.APPLY_INT: return "intelligence";
-        case AffectLocation.APPLY_WIS: return "wisdom";
-        case AffectLocation.APPLY_DEX: return "dexterity";
-        case AffectLocation.APPLY_CON: return "constitution";
+            case AffectLocation.APPLY_STR: return "strength";
+            case AffectLocation.APPLY_INT: return "intelligence";
+            case AffectLocation.APPLY_WIS: return "wisdom";
+            case AffectLocation.APPLY_DEX: return "dexterity";
+            case AffectLocation.APPLY_CON: return "constitution";
             // Add more cases for other locations
-        default: return "unknown";
+            default: return "unknown";
         }
     }
 
@@ -174,23 +186,23 @@ class Item implements IItem {
     use(character: ICharacter): void {
         // For items that can be 'used' like potions
         return;
-    } 
+    }
 
     equip(character: ICharacter): boolean {
         // Returns true if successfully equipped
         return false;
-    } 
-    
-    unequip(character: ICharacter): boolean { 
-        return false; 
-    } // Returns true if successfully unequipped
-    
-    getDescription(): string { 
-        return 'unknown'; 
     }
 
-    isWearable(): boolean{ 
-        return false; 
+    unequip(character: ICharacter): boolean {
+        return false;
+    } // Returns true if successfully unequipped
+
+    getDescription(): string {
+        return 'unknown';
+    }
+
+    isWearable(): boolean {
+        return false;
     } // Checks if the item can be equipped based on itemType and canBeEquipped
 
 }

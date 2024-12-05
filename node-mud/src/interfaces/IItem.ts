@@ -1,6 +1,7 @@
 import ICharacter from './ICharacter'; // Assuming you have an Affect model
 import { Position, ItemType } from '../enums'
 import Character from '../models/Character';
+import { IRoom } from './IRoom';
 
 export interface IItem {
     id: number;
@@ -20,6 +21,12 @@ export interface IItem {
     canBeEquipped: boolean; // If true, this item can be equipped
     equipmentSlot?: string; // If canBeEquipped, what slot it occupies, e.g., 'head', 'hand'
     hidden: boolean;
+
+    shortDescr: string;
+    wearFlags: number; // Bit flags for what the item can be worn on
+    values: number[];
+    carriedBy?: ICharacter;
+    inRoom?: IRoom;
 
 
     // Methods

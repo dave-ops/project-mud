@@ -136,7 +136,13 @@ class Character implements ICharacter {
         };
 
         this.save_time = Date.now();
+
+        for (let i = 0; i < WEAR_MAX; i++) {
+            this.equipment[i] = null;
+        }
     }
+
+    equipment: { [key: number]: IItem | null; } = {};
 
 
     // Method to send messages to the character
@@ -253,6 +259,79 @@ class Character implements ICharacter {
         while (this.exp >= expNeeded * 4) {
             this.levelUp();
         }
+    }
+
+    // Add item to inventory
+    public addToInventory(item: IItem): void {
+        this.carrying.push(item);
+        item.carriedBy = this;
+    }
+
+    // Remove item from inventory
+    public removeFromInventory(item: IItem): IItem | undefined {
+        const index = this.carrying.indexOf(item);
+        if (index > -1) {
+            this.carrying.splice(index, 1);
+            item.carriedBy = undefined;
+            return item;
+        }
+        return undefined;
+    }
+
+    // Equip an item
+    public equip(item: IItem, wearLocation: number): void {
+        if (!this.canEquipItem(item, wearLocation)) {
+            console.log(`You can't wear ${item.shortDescr} there.`);
+            return;
+        }
+
+        if (this.equipment[wearLocation]) {
+            console.log("You already have something equipped there.");
+            return;
+        }
+
+        if (this.checkAlignmentConflict(item)) {
+            console.log("You can't wear that!");
+            return;
+        }
+
+        this.removeFromInventory(item);
+        this.equipment[wearLocation] = item;
+        console.log(`You wear ${item.shortDescr}.`);
+    }
+
+    // Unequip an item
+    public unequip(wearLocation: number): IItem | null {
+        const item = this.equipment[wearLocation];
+        if (!item) {
+            console.log("You aren't wearing anything there.");
+            return null;
+        }
+
+        this.equipment[wearLocation] = null;
+        this.addToInventory(item);
+        console.log(`You remove ${item.shortDescr}.`);
+        return item;
+    }
+
+    // Helper methods
+    private canEquipItem(item: IItem, wearLocation: number): boolean {
+        return !!(item.wearFlags & (1 << wearLocation));
+    }
+
+    private checkAlignmentConflict(item: IItem): boolean {
+        // Assuming alignment is stored in values[3] where 1 might mean anti-evil, 2 anti-good
+        return (item.values[3] === 1 && this.isEvil()) || (item.values[3] === 2 && this.isGood());
+    }
+
+    private isEvil(): boolean {
+        // Placeholder for checking if character is evil
+        return false;
+    }
+
+    private isGood(): boolean {
+        // Placeholder for checking if character is good
+        return false;
     }
 
     // ... other methods like equip, unequip, etc.
