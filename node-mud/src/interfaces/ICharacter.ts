@@ -10,7 +10,7 @@ export default interface ICharacter {
 
     affected_by: number; // Assuming it's a bit flag
     affected: IAffect[];    
-    armor: number;
+    armor: number[];
     class: Class; // based on class system in the game
     damroll: number;
     exp: number;
@@ -35,6 +35,8 @@ export default interface ICharacter {
     race: number;
     carrying: IItem[];
     equipment: { [key: number]: IItem | null };
+    fighting?: ICharacter;
+    hit: number;
     pcdata: {
         pwd: string;
         bamfin: string;

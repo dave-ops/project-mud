@@ -16,22 +16,19 @@ class Character implements ICharacter {
     long_descr: string;
     description: string;
     isNPC: boolean;
-
-    // Stats
+    fighting?: ICharacter;
     level: number;
     trust: number = -1;
     sex: Sex = Sex.UNKNOWN;
     race: Race;
     class: Class;
-
-    armor: number = -1;
-    damroll: number = -1;
-    hitpoints: number = -1;
-    hitroll: number = -1;
-
+    armor: number[] = [0, 0, 0, 0]; 
+    hit: number = 0;
+    max_hit: number = 0;
+    damroll: number = 0;
+    hitroll: number = 0;
     maxMana: number = -1;
     maxMove: number = -1;
-    max_hit: number;
     max_mana: number;
     max_move: number;
     move: number;
@@ -39,11 +36,9 @@ class Character implements ICharacter {
     saving_throw: number = -1;
 
     // Health and resources
-    hit: number;
     mana: number;
 
     // Position and combat
-    fighting?: ICharacter; // Optional if in combat
 
     // Wealth and experience
     gold: number;
@@ -187,11 +182,6 @@ class Character implements ICharacter {
         // Logic for improving skills, spells, etc.
     }
 
-    public attack(target: ICharacter): void {
-        // Placeholder for level advancement logic. Should include updating skills, spells, etc.
-        console.log(target);
-    }
-
     public canSee(): boolean {
         // Placeholder for level advancement logic. Should include updating skills, spells, etc.
         return false;
@@ -333,6 +323,54 @@ class Character implements ICharacter {
     private isGood(): boolean {
         // Placeholder for checking if character is good
         return false;
+    }
+
+    // Attack another character
+    public attack(target: Character): void {
+        if (this.hit <= 0) return; // Dead characters can't attack
+        if (target.hit <= 0) return; // Don't attack already dead targets
+
+        const hitChance = this.hitroll - target.armor[0]; // Example, adjust for your combat system
+        if (Math.random() * 100 < hitChance) {
+            const damage = this.calculateDamage();
+            this.dealDamage(target, damage);
+            this.checkCombatStatus(target);
+        } else {
+            console.log(`${this.name} misses ${target.name}.`);
+        }
+    }
+
+    private calculateDamage(): number {
+        // Simplified damage calculation
+        return Math.max(0, Math.floor(Math.random() * (this.damroll + 1)) + 1);
+    }
+
+    private dealDamage(target: Character, damage: number): void {
+        target.hit = Math.max(0, target.hit - damage);
+        console.log(`${this.name} hits ${target.name} for ${damage} damage.`);
+
+        if (target.hit === 0) {
+            this.kill(target);
+        }
+    }
+
+    private checkCombatStatus(target: Character): void {
+        if (target.hit <= 0) {
+            this.stopFighting();
+        }
+    }
+
+    private kill(target: Character): void {
+        console.log(`${target.name} has been slain by ${this.name}!`);
+        // Handle death mechanics here, like experience gain, loot, etc.
+        this.stopFighting();
+    }
+
+    public stopFighting(): void {
+        if (this.fighting) {
+            this.fighting.fighting = undefined;
+            this.fighting = undefined;
+        }
     }
 
     // ... other methods like equip, unequip, etc.
