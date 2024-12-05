@@ -217,7 +217,9 @@ function parseAreaFile(filePath: string): Area {
     return area;
 }
 
+console.log('start')
 // Example usage:
+console.log(`path: ${__dirname}`)
 const areaFilePath = path.join(__dirname, 'midgaard.are');
 const areaData = parseAreaFile(areaFilePath);
 fs.writeFileSync('midgaard.json', JSON.stringify(areaData, null, 2));
