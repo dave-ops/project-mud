@@ -11,13 +11,22 @@ export const exp_per_level: number[] = [
 ];
 
 export enum AffectLocation {
-    APPLY_STR = 0, // Assuming these are the correct numeric values you want to use
-    APPLY_INT = 1,
-    APPLY_WIS = 2,
-    APPLY_DEX = 3,
-    APPLY_CON = 4,
-    // Add more as needed
+  APPLY_STR = 0,
+  APPLY_INT = 1,
+  APPLY_WIS = 2,
+  APPLY_DEX = 3,
+  APPLY_CON = 4,
+APPLY_HIT,
+  APPLY_MANA,
+  APPLY_MOVE,
+  APPLY_AC, // Armor Class
+  APPLY_HITROLL,
+  APPLY_DAMROLL,
+  APPLY_SAVING_SPELL,
+  // Add more as needed
 }
+
+
 export enum Class {
     // Your class definitions here
     MAGE = 'MAGE',
