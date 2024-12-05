@@ -142,7 +142,7 @@ function parseAreaFile(filePath: string): Area {
                         roomFlags: [], 
                         mobiles: [], 
                         objects: [] 
-                    };
+                    } as Room;
                 }
             }
         } else {
