@@ -13,7 +13,6 @@ margin: 0;
 height: 100%;
 color: #fff !important;
 font-family: monospace;
-font-size: 105%;
 }
 table {
     color: #fff !important;
@@ -24,7 +23,6 @@ color: #60f066;
 h1 {
 padding: 0 0 0 0;
 margin: 0;
-font-size: 155%;
 color: #ffcc00;
 font-weight: bold;
 }
@@ -32,7 +30,6 @@ h2, h3, h4, h5, h6, .title {
 color: #ddd;
 padding: 0 0 0 0;
 margin: 0;
-font-size: 145%;
 }
 #mudwrapper {
 float: left;
@@ -83,7 +80,6 @@ padding: 0 auto 0 auto;
 opacity: 0.75;
 }
 .opening-title {
-font-size: 3em;
 color: #ff0033;
 -webkit-transition: text-shadow 0.2s linear;
 -moz-transition: text-shadow 0.2s linear;
@@ -200,10 +196,7 @@ color: #ffcc00;
 .grey {
 color: #d3d3d3;
 }
-.large {
-font-size: 1.5em;
-letter-spacing: 0em;
-}
+
 .link-btn {
 background: none !important;
 border: none;
@@ -230,7 +223,6 @@ color: red;
 }
 .quest-complete {
 font-weight: bold;
-font-size: 120%;
 }
 .player-death-msg {
 font-weight: bold;
