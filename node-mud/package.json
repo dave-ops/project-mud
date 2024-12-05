@@ -31,7 +31,7 @@
     "express": "^4.21.1",
     "globals": "^15.13.0",
     "touch-cli": "^0.0.1",
-    "typescript": "^5.7.2",
+    "typescript": "^5.7.2",    
     "typescript-eslint": "^8.17.0"
   }
 }

@@ -1,0 +1,18 @@
+{
+  "name": "etls",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "typescript": "^5.7.2"
+  },
+  "scripts": {
+    "etl": "tsc convertArea.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^22.10.1"
+  }
+}

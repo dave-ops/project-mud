@@ -2,52 +2,57 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 interface Area {
-    name: string;
     author: string;
     levelRange: [number, number];
     mobiles: Mobile[];
+    name: string;
     objects: ObjectItem[];
-    rooms: Room[];
     resets: Reset[];
+    rooms: Room[];
 }
 
 interface Mobile {
-    vnum: number;
-    name: string;
-    shortDescription: string;
-    longDescription: string;
-    level: number;
+    description: string;
+    exits: { [direction: string]: { to: number, closed: boolean } };
     hitpoints: number;
+    itemType: string;
+    level: number;
+    longDescription: string;
     mana: number;
     move: number;
+    name: string;
+    sectorType: string;
+    shortDescription: string;
+    vnum: number;
     // Add more properties as needed
 }
 
 interface ObjectItem {
-    vnum: number;
-    name: string;
-    shortDescription: string;
+    affects: { location: string, modifier: number }[];
+    cost: number;
     description: string;
     itemType: string;
-    wearFlags: string[];
+    name: string;
+    sectorType: string;
+    shortDescription: string;
     values: number[];
+    vnum: number;
+    wearFlags: string[];
     weight: number;
-    cost: number;
-    affects: { location: string, modifier: number }[];
     // Add more properties as needed
 }
 
 interface Room {
-    vnum: number;
-    name: string;
     description: string;
     exits: { [direction: string]: { to: number, closed: boolean } };
-    sectorType: string;
-    roomFlags: string[]; // Placeholder for room flags, would need to be parsed from bits
     mobiles: number[];
+    name: string;
     objects: number[];
+    roomFlags: string[]; // Placeholder for room flags, would need to be parsed from bits
+    sectorType: string;
+    shortDescription: string;
+    vnum: number;
 }
-
 interface Reset {
     command: string;
     arg1: number;
