@@ -1,35 +1,41 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<title>node-mud</title>
+		<title>RockMUD</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="HandheldFriendly" content="true" />
+		<link href="bootstrap.css" rel="stylesheet" media="all" />
 		<link href="styles.css" rel="stylesheet" media="all" />
 	</head>
 	<body>
-		<div id="mudwrapper">
+		<div id="mudwrapper" class="container">
 			<div id="terminal">
-				<div id="mudopen">
-					<div>
-						<h1 class="opening-title">node-mud-v1.0.0</h1>
-						<div class="subtext">words words words words words words words words words </div>
+				<div id="mudopen" class="row">
+					<div class="col-md-12">
+					
+						<h1 class="opening-title">RockMUD v0.4.0</h1>
+						<div class="subtext">
+							<p>
+								Checkout the code on <a title="Link to the RockMUD repo on GitHub" href="https://github.com/MoreOutput/RockMUD">GitHub</a>.
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div id="inputwrapper">
-				<div>
-					<div>
+			<div id="inputwrapper" class="container">
+				<div class="row">
+					<div class="col-md-12">
 						<form id="console" autocomplete="off">
-							<div>
+							<div class="form-group">
 								<input class="user-input form-control" id="cmd" type="input" value="" placeholder="Enter a character name"/>
 							</div>
 						</form>
 					</div>
-					<ol id="prev-cmd-list"></ol>
+					<ol class="col-md-12" id="prev-cmd-list"></ol>
 				</div>
 			</div>
 		</div>
 		<script src="rockmud-client.js"></script>
 	</body>
 </html>
-
