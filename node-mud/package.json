@@ -1,37 +1,21 @@
 {
   "name": "node-mud",
-  "version": "1.0.0",
-  "description": "a node version of the original Diku Merc_21 MUD",
+  "dependencies": {
+    "ws": "^7.3.1"
+  },
+  "version": "0.4.0",
+  "engines": {
+    "node": ">= 14.0.0"
+  },
+  "description": "JavaScript WebSocket MUD server",
   "main": "server.js",
-  "type": "module",
-  "scripts": {
-    "build": "tsc",
-    "lint": "eslint src/*.ts src/**/*.ts etls/*.ts --fix",
-    "start": "node dist/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "dave-ops",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dave-ops/project-mud.git"
-  },
-  "bugs": {
-    "url": "https://github.com/dave-ops/project-mud/issues"
-  },
-  "homepage": "https://github.com/dave-ops/project-mud#readme",
+  "license": "MIT",
   "devDependencies": {
-    "@eslint/eslintrc": "^3.2.0",
-    "@eslint/js": "^9.16.0",
-    "@types/express": "^5.0.0",
-    "@types/node": "^22.10.1",
-    "@typescript-eslint/eslint-plugin": "^8.17.0",
-    "@typescript-eslint/parser": "^8.17.0",
-    "eslint": "^9.16.0",
-    "express": "^4.21.1",
-    "globals": "^15.13.0",
-    "touch-cli": "^0.0.1",
-    "typescript": "^5.7.2",    
-    "typescript-eslint": "^8.17.0"
+    "istanbul": "^0.4.5",
+    "jasmine": "^3.6.0",
+    "request": "^2.88.2"
+  },
+  "scripts": {
+    "test": "npx --max-old-space-size=4096 istanbul cover node_modules\\jasmine\\bin\\jasmine.js"
   }
 }
