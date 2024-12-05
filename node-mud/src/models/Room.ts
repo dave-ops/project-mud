@@ -167,13 +167,6 @@ class Room implements IRoom {
         return true; // If none of the above conditions prevent visibility, the item is visible
     }
     
-    public broadcast(message: string, exclude?: ICharacter): void {
-        this.characters.forEach(char => {
-            if (char !== exclude) {
-                char.send(message);
-            }
-        });
-    }
 
     // Methods for managing the people in the room
 
@@ -190,6 +183,15 @@ class Room implements IRoom {
             this.characters.splice(index, 1);
             char.room = undefined;
         }
+    }
+
+    // Broadcast a message to everyone in the room except the sender
+    public broadcast(message: string, exclude?: ICharacter): void {
+        this.characters.forEach(char => {
+            if (char !== exclude) {
+                char.send(message);
+            }
+        });
     }
 }
 

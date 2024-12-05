@@ -451,6 +451,107 @@ class Character implements ICharacter {
         this.room.broadcast(`${this.name} shouts '${message.toUpperCase()}'`, this);
         this.send(`You shout '${message.toUpperCase()}'`);
     }
+
+    // Method for switching into another character's body
+    public switchTo(character: ICharacter): void {
+        if (this.level < 51) { // Example level check for admin commands
+            this.send("You are not powerful enough to switch into another body.");
+            return;
+        }
+        // Logic to switch bodies or perspectives - in practice, you'd need to manage the state
+        console.log(`${this.name} has switched into ${character.name}'s body.`);
+        // Here you might want to swap some properties or create a new game state for this
+    }
+
+    // Method for returning to original body after switching
+    public returnToSelf(): void {
+        if (!this.isSwitched()) {
+            this.send("You are already in your own body.");
+            return;
+        }
+        console.log(`${this.name} has returned to their original body.`);
+        // Reset any switched state here
+    }
+
+    // Helper method to check if character is switched
+    private isSwitched(): boolean {
+        // Placeholder logic to check if character is currently switched
+        return false; // Implement actual check based on game state
+    }
+
+    // Method for teleporting to another character
+    public teleportTo(character: ICharacter): void {
+        if (this.level < 51) {
+            this.send("You don't have the power to teleport to others.");
+            return;
+        }
+        if (!character.room) {
+            this.send("That character is not in any room.");
+            return;
+        }
+        // Move this character to the target's room
+        this.moveToRoom(character.room);
+    }
+
+    // Method to move character to a specified room
+    private moveToRoom(room: IRoom): void {
+        // Remove from current room if applicable
+        if (this.room) {
+            this.room.characters = this.room.characters.filter(char => char !== this);
+        }
+
+        // Add to new room
+        this.room = room;
+        room.characters.push(this);
+
+        // Notify character of new location
+        this.send(`You teleport to ${room.name}.`);
+        room.broadcast(`${this.name} suddenly appears.`, this);
+    }
+
+    // Method to set time (day/night cycle)
+    public setTime(time: 'day' | 'night'): void {
+        if (this.level < 51) {
+            this.send("You can't control time.");
+            return;
+        }
+        // Here you'd update the game's time state
+        console.log(`${this.name} has set the time to ${time}.`);
+        // Broadcast to all players or update game state
+    }
+
+    // Method for global messages (godspeak)
+    public godspeak(message: string): void {
+        if (this.level < 51) {
+            this.send("You are not a god.");
+            return;
+        }
+        console.log(`The gods speak: "${message}"`);
+        // In a real game, you'd broadcast this message to all players
+    }
+
+    // Method for creating items out of thin air (poof)
+    public poof(itemName: string): IItem {
+        if (this.level < 51) {
+            this.send("You can't create items from nothing.");
+            return null as unknown as IItem;
+        }
+
+        // Here you'd create an item with default values or pull from a database
+        const newItem: IItem = {
+            name: itemName,
+            short_descr: `${itemName} appears out of thin air`,
+            description: `A magically created ${itemName}.`,
+            weight: 1,
+            cost: 0,
+            // ... other item properties
+        };
+
+        console.log(`${this.name} has created ${newItem.name}.`);
+        this.carrying.push(newItem); // Assuming characters have a carrying array for items
+        return newItem;
+    }
+
     // ... other methods like equip, unequip, etc.
 }
 
