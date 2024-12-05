@@ -7,6 +7,7 @@ import { IRoom } from './IRoom';
 export default interface ICharacter {
     id: number;
     name: string;
+    
     description: string;
     affected_by: number; // Assuming it's a bit flag
     affected: IAffect[];    
@@ -35,7 +36,7 @@ export default interface ICharacter {
     trust: number;
     race: number;
     carrying: IItem[];
-    equipment: { [key: number]: IItem | null };
+    equiped_items: { [key: number]: IItem | null };
     fighting?: ICharacter;
     hit: number;
     pcdata: {

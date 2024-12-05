@@ -127,12 +127,12 @@ class Character implements ICharacter {
         this.save_time = Date.now();
 
         for (let i = 0; i < WEAR_MAX; i++) {
-            this.equipment[i] = null;
+            this.equiped_items[i] = null;
         }
 
     }
 
-    equipment: { [key: number]: IItem | null; } = {};
+    equiped_items: { [key: number]: IItem | null; } = {};
 
 
     // Method to send messages to the character
@@ -168,40 +168,12 @@ class Character implements ICharacter {
         console.log(`${this.name} gained level ${this.level}`);
     }
 
-    public writeToBuffer(text: string): void {
-        if (this.desc) {
-            this.desc.write(text + '\n\r'); // Example implementation
-        }
-    }
-
     private advanceLevel(): void {
         // Logic for improving skills, spells, etc.
     }
 
-    public canSee(): boolean {
-        // Placeholder for level advancement logic. Should include updating skills, spells, etc.
-        return false;
-    }
-
-    public castSpell(): void {
-        // Placeholder for level advancement logic. Should include updating skills, spells, etc.
-    }
-
-    public hasLightSource(): boolean {
-        // Placeholder for level advancement logic. Should include updating skills, spells, etc.
-        return false;    }
-
-    public isBlind(): boolean {
-        // Placeholder for level advancement logic. Should include updating skills, spells, etc.
-        return false;
-    }
-
-    private getRandomNumber(min: number, max: number): number {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    public getInventory(): IItem[] {
-        return this.carrying.slice();
+    public addItem(item: IItem): void {
+        this.carrying.push(item);
     }
 
     public addItemToInventory(item: IItem): void {
@@ -209,30 +181,109 @@ class Character implements ICharacter {
         item.carried_by = this; // Assuming carried_by is part of IItem now
     }
 
-    // Helper method to get class name
-    private getClassName(): string {
-        // Implementation based on enum Class
-        return Class[this.class];
-    }
-
-    // Add inventory methods
-    public addItem(item: IItem): void {
+    public addToInventory(item: IItem): void {
         this.carrying.push(item);
+        item.carriedBy = this;
     }
 
-    public removeItem(item: IItem): boolean {
-        const index = this.carrying.indexOf(item);
-        if (index > -1) {
-            this.carrying.splice(index, 1);
-            return true;
+    public attack(target: Character): void {
+        if (this.hit <= 0) return; // Dead characters can't attack
+        if (target.hit <= 0) return; // Don't attack already dead targets
+
+        const hitChance = this.hitroll - target.armor[0]; // Example, adjust for your combat system
+        if (Math.random() * 100 < hitChance) {
+            const damage = this.calculateDamage();
+            this.dealDamage(target, damage);
+            this.checkCombatStatus(target);
+        } else {
+            console.log(`${this.name} misses ${target.name}.`);
         }
+    }
+
+    public canSee(): boolean {
+        // Placeholder for level advancement logic. Should include updating skills, spells, etc.
         return false;
     }
 
-    private expPerLevel: number[] = exp_per_level;
-    private readonly LEVEL_HERO = MAX_LEVEL; // Assuming LEVEL_HERO is the max level for XP gain
+    private canSee(other: ICharacter | IItem): boolean {
+        return true; // Simplified for this example
+    }
 
-    // Gain experience method updated to use expPerLevel
+    private canEquipItem(item: IItem, wearLocation: number): boolean {
+        return !!(item.wearFlags & (1 << wearLocation));
+    }
+
+    private calculateDamage(): number {
+        // Simplified damage calculation
+        return Math.max(0, Math.floor(Math.random() * (this.damroll + 1)) + 1);
+    }
+
+    public castSpell(): void {
+        // Placeholder for level advancement logic. Should include updating skills, spells, etc.
+    }
+
+    private checkAlignmentConflict(item: IItem): boolean {
+        // Assuming alignment is stored in values[3] where 1 might mean anti-evil, 2 anti-good
+        return (item.values[3] === 1 && this.isEvil()) || (item.values[3] === 2 && this.isGood());
+    }
+
+    private checkCombatStatus(target: Character): void {
+        if (target.hit <= 0) {
+            this.stopFighting();
+        }
+    }
+
+    private dealDamage(target: Character, damage: number): void {
+        target.hit = Math.max(0, target.hit - damage);
+        console.log(`${this.name} hits ${target.name} for ${damage} damage.`);
+
+        if (target.hit === 0) {
+            this.kill(target);
+        }
+    }
+
+    public emote(action: string): void {
+        if (!this.room) return;
+
+        this.room.broadcast(`${this.name} ${action}`, this);
+        this.send(`You ${action}`);
+    }
+
+    public equip(item: IItem, wearLocation: number): void {
+        if (!this.canEquipItem(item, wearLocation)) {
+            console.log(`You can't wear ${item.shortDescr} there.`);
+            return;
+        }
+
+        if (this.equiped_items[wearLocation]) {
+            console.log("You already have something equipped there.");
+            return;
+        }
+
+        if (this.checkAlignmentConflict(item)) {
+            console.log("You can't wear that!");
+            return;
+        }
+
+        this.removeFromInventory(item);
+        this.equiped_items[wearLocation] = item;
+        console.log(`You wear ${item.shortDescr}.`);
+    }
+
+    public equipment(): void {
+        const equipmentSlots = Object.keys(this.equiped_items);
+        if (equipmentSlots.every(key => this.equiped_items[key] === null)) {
+            this.send("You are not wearing anything.");
+        } else {
+            this.send("You are using:");
+            for (const slot in this.equiped_items) {
+                if (this.equiped_items[slot]) {
+                    this.send(`  ${slot}: ${this.equiped_items[slot]?.short_descr}`);
+                }
+            }
+        }
+    }
+
     public gainExperience(gain: number): void {
         if (this.isNPC || this.level >= this.LEVEL_HERO) return;
 
@@ -248,67 +299,42 @@ class Character implements ICharacter {
         }
     }
 
-    // Add item to inventory
-    public addToInventory(item: IItem): void {
-        this.carrying.push(item);
-        item.carriedBy = this;
+    private getClassName(): string {
+        // Implementation based on enum Class
+        return Class[this.class];
     }
 
-    // Remove item from inventory
-    public removeFromInventory(item: IItem): IItem | undefined {
-        const index = this.carrying.indexOf(item);
-        if (index > -1) {
-            this.carrying.splice(index, 1);
-            item.carriedBy = undefined;
-            return item;
-        }
-        return undefined;
+    public getInventory(): IItem[] {
+        return this.carrying.slice();
     }
 
-    // Equip an item
-    public equip(item: IItem, wearLocation: number): void {
-        if (!this.canEquipItem(item, wearLocation)) {
-            console.log(`You can't wear ${item.shortDescr} there.`);
-            return;
-        }
-
-        if (this.equipment[wearLocation]) {
-            console.log("You already have something equipped there.");
-            return;
-        }
-
-        if (this.checkAlignmentConflict(item)) {
-            console.log("You can't wear that!");
-            return;
-        }
-
-        this.removeFromInventory(item);
-        this.equipment[wearLocation] = item;
-        console.log(`You wear ${item.shortDescr}.`);
+    private getRandomNumber(min: number, max: number): number {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    // Unequip an item
-    public unequip(wearLocation: number): IItem | null {
-        const item = this.equipment[wearLocation];
-        if (!item) {
-            console.log("You aren't wearing anything there.");
-            return null;
+    public gossip(message: string): void {
+        // In a real game, this would go to all players online
+        console.log(`Gossip channel: ${this.name} gossips, '${message}'`);
+        this.send(`You gossip, '${message}'`);
+    }
+
+    public hasLightSource(): boolean {
+        // Placeholder for level advancement logic. Should include updating skills, spells, etc.
+        return false;
+    }
+
+    public inventory(): void {
+        if (this.carrying.length === 0) {
+            this.send("You are not carrying anything.");
+        } else {
+            this.send("You are carrying:");
+            this.carrying.forEach(item => this.send(`  ${item.short_descr}`));
         }
-
-        this.equipment[wearLocation] = null;
-        this.addToInventory(item);
-        console.log(`You remove ${item.shortDescr}.`);
-        return item;
     }
 
-    // Helper methods
-    private canEquipItem(item: IItem, wearLocation: number): boolean {
-        return !!(item.wearFlags & (1 << wearLocation));
-    }
-
-    private checkAlignmentConflict(item: IItem): boolean {
-        // Assuming alignment is stored in values[3] where 1 might mean anti-evil, 2 anti-good
-        return (item.values[3] === 1 && this.isEvil()) || (item.values[3] === 2 && this.isGood());
+    private isBlind(): boolean {
+        // Placeholder for level advancement logic. Should include updating skills, spells, etc.
+        return false;
     }
 
     private isEvil(): boolean {
@@ -321,52 +347,55 @@ class Character implements ICharacter {
         return false;
     }
 
-    // Attack another character
-    public attack(target: Character): void {
-        if (this.hit <= 0) return; // Dead characters can't attack
-        if (target.hit <= 0) return; // Don't attack already dead targets
-
-        const hitChance = this.hitroll - target.armor[0]; // Example, adjust for your combat system
-        if (Math.random() * 100 < hitChance) {
-            const damage = this.calculateDamage();
-            this.dealDamage(target, damage);
-            this.checkCombatStatus(target);
-        } else {
-            console.log(`${this.name} misses ${target.name}.`);
-        }
-    }
-
-    private calculateDamage(): number {
-        // Simplified damage calculation
-        return Math.max(0, Math.floor(Math.random() * (this.damroll + 1)) + 1);
-    }
-
-    private dealDamage(target: Character, damage: number): void {
-        target.hit = Math.max(0, target.hit - damage);
-        console.log(`${this.name} hits ${target.name} for ${damage} damage.`);
-
-        if (target.hit === 0) {
-            this.kill(target);
-        }
-    }
-
-    private checkCombatStatus(target: Character): void {
-        if (target.hit <= 0) {
-            this.stopFighting();
-        }
-    }
-
     private kill(target: Character): void {
         console.log(`${target.name} has been slain by ${this.name}!`);
         // Handle death mechanics here, like experience gain, loot, etc.
         this.stopFighting();
     }
 
-    public stopFighting(): void {
-        if (this.fighting) {
-            this.fighting.fighting = undefined;
-            this.fighting = undefined;
+    public look(): void {
+        if (!this.room) {
+            this.send("You are in a void.");
+            return;
         }
+
+        this.send(this.room.description);
+        this.send(`Obvious exits: ${Object.keys(this.room.exits).join(", ")}.`);
+        this.lookAtCharacters();
+        this.lookAtItems();
+    }
+
+    private lookAtCharacters(): void {
+        if (this.room?.characters.length) {
+            this.send("You see:");
+            this.room.characters.forEach(char => this.send(`  ${char.short_descr}`));
+        }
+    }
+
+    private lookAtItems(): void {
+        if (this.room?.items.length) {
+            this.send("Items here:");
+            this.room.items.forEach(item => this.send(`  ${item.short_descr}`));
+        }
+    }
+
+    public removeFromInventory(item: IItem): IItem | undefined {
+        const index = this.carrying.indexOf(item);
+        if (index > -1) {
+            this.carrying.splice(index, 1);
+            item.carriedBy = undefined;
+            return item;
+        }
+        return undefined;
+    }
+
+    public removeItem(item: IItem): boolean {
+        const index = this.carrying.indexOf(item);
+        if (index > -1) {
+            this.carrying.splice(index, 1);
+            return true;
+        }
+        return false;
     }
 
     public say(message: string): void {
@@ -376,16 +405,38 @@ class Character implements ICharacter {
         this.send(`You say '${message}'`);
     }
 
-    // Method to yell (shout)
-    public yell(message: string): void {
-        if (!this.room) return;
-
-        // In a real game, this would broadcast to multiple rooms
-        this.room.broadcast(`${this.name} shouts '${message.toUpperCase()}'`, this);
-        this.send(`You shout '${message.toUpperCase()}'`);
+    public send(message: string): void {
+        console.log(`${this.name} receives: ${message}`);
+        // In a real game, this would send the message to the client
     }
 
-    // Method for whispering (tell)
+    public stopFighting(): void {
+        if (this.fighting) {
+            this.fighting.fighting = undefined;
+            this.fighting = undefined;
+        }
+    }
+
+    public unequip(wearLocation: number): IItem | null {
+        const item = this.equiped_items[wearLocation];
+        if (!item) {
+            console.log("You aren't wearing anything there.");
+            return null;
+        }
+
+        this.equiped_items[wearLocation] = null;
+        this.addToInventory(item);
+        console.log(`You remove ${item.short_descr}.`);
+        return item;
+    }
+
+    public who(): void {
+        // This would require access to all characters in the game
+        // For simplicity, we'll simulate:
+        this.send("Players online:");
+        this.send(`  ${this.name} (Level ${this.level})`);
+    }
+
     public whisper(target: ICharacter, message: string): void {
         if (!this.room || !target.room || this.room !== target.room) {
             this.send("They aren't here.");
@@ -396,21 +447,19 @@ class Character implements ICharacter {
         target.send(`${this.name} whispers to you, '${message}'`);
     }
 
-    // Method to emote (emote)
-    public emote(action: string): void {
+    public writeToBuffer(text: string): void {
+        if (this.desc) {
+            this.desc.write(text + '\n\r'); // Example implementation
+        }
+    }
+
+    public yell(message: string): void {
         if (!this.room) return;
 
-        this.room.broadcast(`${this.name} ${action}`, this);
-        this.send(`You ${action}`);
+        // In a real game, this would broadcast to multiple rooms
+        this.room.broadcast(`${this.name} shouts '${message.toUpperCase()}'`, this);
+        this.send(`You shout '${message.toUpperCase()}'`);
     }
-
-    // Method for out of character chat (gossip)
-    public gossip(message: string): void {
-        // In a real game, this would go to all players online
-        console.log(`Gossip channel: ${this.name} gossips, '${message}'`);
-        this.send(`You gossip, '${message}'`);
-    }
-
     // ... other methods like equip, unequip, etc.
 }
 

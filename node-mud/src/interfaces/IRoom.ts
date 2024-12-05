@@ -5,6 +5,7 @@ import { INamed } from './INamed'
 export interface IRoom {
     id: number;
     name: string;
+    
     contents: INamed[];
     description: string;
     //exits: { [direction: string]: IRoom | null }; // e.g., {'north': room, 'south': null} // old
