@@ -174,25 +174,25 @@ class Character implements ICharacter {
         // Logic for improving skills, spells, etc.
     }
 
-    private attack(target: ICharacter): void {
+    public attack(target: ICharacter): void {
         // Placeholder for level advancement logic. Should include updating skills, spells, etc.
         console.log(target);
     }
 
-    private canSee(): boolean {
+    public canSee(): boolean {
         // Placeholder for level advancement logic. Should include updating skills, spells, etc.
         return false;
     }
 
-    private castSpell(): void {
+    public castSpell(): void {
         // Placeholder for level advancement logic. Should include updating skills, spells, etc.
     }
 
-    private hasLightSource(): boolean {
+    public hasLightSource(): boolean {
         // Placeholder for level advancement logic. Should include updating skills, spells, etc.
         return false;    }
 
-    private isBlind(): boolean {
+    public isBlind(): boolean {
         // Placeholder for level advancement logic. Should include updating skills, spells, etc.
         return false;
     }
