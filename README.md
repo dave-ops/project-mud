@@ -33,9 +33,58 @@ project-mud/
 - **package.json**: Manages Node.js package dependencies.
 - **tsconfig.json**: Configures TypeScript compiler options.
 
+## Topology
 This structure promotes separation of concerns, enhancing code navigation and maintenance.
 
-## ESLint Configuration (Flat Config System)
+### Project-MUD Architecture Diagram:
+```
+[Game Server]
+   |
+   |-- [Client Connection Handler]
+   |    |
+   |    |-- [Socket Manager]
+   |         |
+   |         |-- [Player Session]
+   |
+   |-- [World Manager]
+   |    |
+   |    |-- [Area Loader]
+   |    |    |
+   |    |    |-- [Area Files (.are)]
+   |    |
+   |    |-- [Room Manager]
+   |    |    |
+   |    |    |-- [Rooms]
+   |    |
+   |    |-- [Mobile Manager]
+   |    |    |
+   |    |    |-- [Mobiles/NPCs]
+   |    |
+   |    |-- [Object Manager]
+   |         |
+   |         |-- [Items/Objects]
+   |
+   |-- [Combat Manager]
+   |    |
+   |    |-- [Combat Logic]
+   |
+   |-- [Magic System]
+   |    |
+   |    |-- [Spell Manager]
+   |    |-- [Affect Manager]
+   |
+   |-- [Command Parser]
+   |    |
+   |    |-- [Command Handlers]
+   |
+   |-- [Database]
+        |
+        |-- [Player Data]
+        |-- [Game State]
+```
+
+## TODO
+### ESLint Configuration (Flat Config System)
 
 ```javascript
 import globals from "globals";

@@ -7,7 +7,7 @@
     "typescript": "^5.7.2"
   },
   "scripts": {
-    "etl": "tsc convertArea.ts"
+    "convert-area": "tsc convertArea.ts"
   },
   "author": "",
   "license": "ISC",
