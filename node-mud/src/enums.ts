@@ -129,5 +129,4 @@ export enum WearLocation {
   WEAR_WIELD,
   WEAR_HOLD,
   WEAR_FLOAT,
-  WEAR_MAX
 }

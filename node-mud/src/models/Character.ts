@@ -5,6 +5,7 @@ import { IItem } from '../interfaces/IItem';
 import { IPlayerCondition, COND_FULL, COND_THIRST, COND_DRUNK } from '../interfaces/IPlayerCondition';
 import { Socket } from 'net'; // If using Node.js for socket communication
 import { IRoom } from '../interfaces/IRoom';
+import { WEAR_MAX } from '../constants';
 
 class Character implements ICharacter {
     public desc?: Socket; // Assuming 'desc' for descriptor or connection

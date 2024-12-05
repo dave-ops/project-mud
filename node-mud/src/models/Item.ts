@@ -158,13 +158,13 @@ class Item implements IItem {
     // Helper method to get a human-readable name for affect locations
     private getAffectLocationName(location: number): string {
         switch (location) {
-            case AffectLocation.APPLY_STR: return "strength";
-            case AffectLocation.APPLY_INT: return "intelligence";
-            case AffectLocation.APPLY_WIS: return "wisdom";
-            case AffectLocation.APPLY_DEX: return "dexterity";
-            case AffectLocation.APPLY_CON: return "constitution";
+        case AffectLocation.APPLY_STR: return "strength";
+        case AffectLocation.APPLY_INT: return "intelligence";
+        case AffectLocation.APPLY_WIS: return "wisdom";
+        case AffectLocation.APPLY_DEX: return "dexterity";
+        case AffectLocation.APPLY_CON: return "constitution";
             // Add more cases for other locations
-            default: return "unknown";
+        default: return "unknown";
         }
     }
 
