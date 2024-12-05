@@ -205,10 +205,6 @@ class Character implements ICharacter {
         return false;
     }
 
-    private canSee(other: ICharacter | IItem): boolean {
-        return true; // Simplified for this example
-    }
-
     private canEquipItem(item: IItem, wearLocation: number): boolean {
         return !!(item.wearFlags & (1 << wearLocation));
     }
@@ -403,11 +399,6 @@ class Character implements ICharacter {
 
         this.room.broadcast(`${this.name} says '${message}'`, this);
         this.send(`You say '${message}'`);
-    }
-
-    public send(message: string): void {
-        console.log(`${this.name} receives: ${message}`);
-        // In a real game, this would send the message to the client
     }
 
     public stopFighting(): void {

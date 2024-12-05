@@ -7,7 +7,7 @@ import { IRoom } from './IRoom';
 export default interface ICharacter {
     id: number;
     name: string;
-    
+
     description: string;
     affected_by: number; // Assuming it's a bit flag
     affected: IAffect[];    
