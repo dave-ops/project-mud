@@ -1,57 +1,70 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-interface Area {
+class BaseEntity {
+    vnum: number;
+    name: string;
+    exits: { [direction: string]: { to: number, closed: boolean } };
+    hitpoints: number;
+    itemType: string;
+    level: number;
+    mana: number;
+    move: number;
+    shortDescription: string;
+    description: string;
+
+    constructor(vnum: number, 
+                name: string = '',
+                exits: { [direction: string]: { to: number, closed: boolean } } = {},
+                hitpoints: number = 0,
+                itemType: string = '', 
+                level: number = 0,
+                mana: number = 0,
+                move: number = 0,
+                shortDescription: string = '', 
+                description: string = '') {
+        this.vnum = vnum;
+        this.name = name;
+        this.exits = exits;
+        this.hitpoints = hitpoints;
+        this.itemType = itemType;
+        this.level = level;
+        this.mana = mana;
+        this.move = move;
+        this.shortDescription = shortDescription;
+        this.description = description;
+    }
+}
+
+interface Area extends BaseEntity {
     author: string;
     levelRange: [number, number];
     mobiles: Mobile[];
-    name: string;
     objects: ObjectItem[];
     resets: Reset[];
     rooms: Room[];
 }
 
-interface Mobile {
-    description: string;
-    exits: { [direction: string]: { to: number, closed: boolean } };
-    hitpoints: number;
-    itemType: string;
-    level: number;
+interface Mobile extends BaseEntity {
     longDescription: string;
-    mana: number;
-    move: number;
-    name: string;
     sectorType: string;
-    shortDescription: string;
-    vnum: number;
-    // Add more properties as needed
 }
 
-interface ObjectItem {
+interface ObjectItem extends BaseEntity {
     affects: { location: string, modifier: number }[];
     cost: number;
-    description: string;
-    itemType: string;
-    name: string;
     sectorType: string;
-    shortDescription: string;
     values: number[];
-    vnum: number;
     wearFlags: string[];
     weight: number;
     // Add more properties as needed
 }
 
-interface Room {
-    description: string;
-    exits: { [direction: string]: { to: number, closed: boolean } };
+interface Room extends BaseEntity {
     mobiles: number[];
-    name: string;
     objects: number[];
     roomFlags: string[]; // Placeholder for room flags, would need to be parsed from bits
     sectorType: string;
-    shortDescription: string;
-    vnum: number;
 }
 interface Reset {
     command: string;
@@ -118,7 +131,7 @@ function parseAreaFile(filePath: string): Area {
                         weight: 0, 
                         cost: 0, 
                         affects: [] 
-                    };
+                    } as ObjectItem;
                 } else if (line.startsWith('#R ')) {
                     currentItem = { 
                         vnum: parseInt(line.slice(3), 10), 
