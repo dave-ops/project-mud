@@ -193,17 +193,68 @@ class Character implements ICharacter {
         item.carriedBy = this;
     }
 
+    // Method to attack another character
     public attack(target: Character): void {
         if (this.hit <= 0) return; // Dead characters can't attack
         if (target.hit <= 0) return; // Don't attack already dead targets
 
-        const hitChance = this.hitroll - target.armor[0]; // Example, adjust for your combat system
-        if (Math.random() * 100 < hitChance) {
+        const hitChance = this.calculateHitChance(target);
+        if (Math.random() < hitChance) {
             const damage = this.calculateDamage();
             this.dealDamage(target, damage);
-            this.checkCombatStatus(target);
         } else {
-            console.log(`${this.name} misses ${target.name}.`);
+            this.send(`${this.name} misses ${target.name}.`);
+        }
+    }
+
+    private calculateHitChance(target: Character): number {
+        // Simplified hit calculation, adjust based on your combat system
+        return Math.min(1, (this.hitroll - target.armor[0]) / 100);
+    }
+
+    private calculateDamage(): number {
+        return Math.max(1, Math.floor(Math.random() * (this.damroll + 1)) + 1);
+    }
+
+    private dealDamage(target: Character, damage: number): void {
+        const reducedDamage = Math.max(1, damage - Math.floor(Math.random() * (target.armor[1] + 1)));
+        target.hit = Math.max(0, target.hit - reducedDamage);
+        this.send(`${this.name} hits ${target.name} for ${reducedDamage} damage.`);
+        target.send(`${this.name} hits you for ${reducedDamage} damage.`);
+
+        if (target.hit === 0) {
+            this.kill(target);
+        }
+    }
+
+    private kill(target: Character): void {
+        this.send(`${target.name} has been slain by ${this.name}!`);
+        target.send(`You have been slain by ${this.name}!`);
+        this.stopFighting();
+        target.stopFighting();
+        // Here you would handle death mechanics, like experience gain, loot, etc.
+    }
+
+    public stopFighting(): void {
+        if (this.fighting) {
+            this.fighting.fighting = undefined;
+            this.fighting = undefined;
+        }
+    }
+
+    // Example of a special combat move (backstab)
+    public backstab(target: Character): void {
+        if (this.hit <= 0 || target.hit <= 0) return; // Check if either is dead
+
+        // Assuming backstab has a higher hit chance
+        if (Math.random() < this.calculateHitChance(target) + 0.3) {
+            const damage = this.calculateDamage() * 2; // Double damage for backstab
+            this.dealDamage(target, damage);
+            this.send(`You backstab ${target.name} for ${damage} damage!`);
+            target.send(`${this.name} backstabs you for ${damage} damage!`);
+        } else {
+            this.send(`Your attempt to backstab ${target.name} fails.`);
+            target.send(`${this.name} tries to backstab you but misses!`);
         }
     }
 
