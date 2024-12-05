@@ -631,6 +631,61 @@ class Character implements ICharacter {
         console.log(`${this.name} entered command: ${command}`);
     }
 
+    // Method to apply affects to character stats (e.g., apply_ac)
+    public applyAffects(): void {
+        this.hit = this.max_hit;
+        this.mana = this.max_mana;
+        this.move = this.max_move;
+
+        for (const affect of this.affected) {
+            switch (affect.location) {
+                case 0: // Hit points
+                    this.hit += affect.modifier;
+                    break;
+                case 1: // Mana
+                    this.mana += affect.modifier;
+                    break;
+                case 2: // Move
+                    this.move += affect.modifier;
+                    break;
+                // Add more cases for different affect locations
+                default:
+                    console.warn(`Unknown affect location: ${affect.location}`);
+            }
+        }
+    }
+
+    // Method to calculate armor class or other defensive stats
+    public getArmorClass(): number {
+        let ac = 0;
+        for (const affect of this.affected) {
+            if (affect.location === 3) { // Assuming 3 is for armor class
+                ac += affect.modifier;
+            }
+        }
+        return ac;
+    }
+
+    // Method to check if character can see other characters or items (similar to can_see function)
+    public canSee(target: ICharacter | any): boolean {
+        // Simplified logic - in practice, this would check for things like invisibility, blindness, etc.
+        return true;
+    }
+
+    // Method for calculating carry weight or checking if character can carry more
+    public canCarryMore(weight: number): boolean {
+        // Placeholder logic - would involve calculating total weight of items carried vs. capacity
+        const currentWeight = this.affected.reduce((sum, affect) => {
+            if (affect.location === 4) { // Assuming 4 is for weight capacity
+                sum += affect.modifier;
+            }
+            return sum;
+        }, 0);
+        return currentWeight + weight <= this.maxCarryWeight;
+    }
+
+    private maxCarryWeight = 100; // Example, adjust according to game mechanics
+
     // ... other methods like equip, unequip, etc.
 }
 
