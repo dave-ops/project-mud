@@ -639,18 +639,18 @@ class Character implements ICharacter {
 
         for (const affect of this.affected) {
             switch (affect.location) {
-                case 0: // Hit points
-                    this.hit += affect.modifier;
-                    break;
-                case 1: // Mana
-                    this.mana += affect.modifier;
-                    break;
-                case 2: // Move
-                    this.move += affect.modifier;
-                    break;
+            case 0: // Hit points
+                this.hit += affect.modifier;
+                break;
+            case 1: // Mana
+                this.mana += affect.modifier;
+                break;
+            case 2: // Move
+                this.move += affect.modifier;
+                break;
                 // Add more cases for different affect locations
-                default:
-                    console.warn(`Unknown affect location: ${affect.location}`);
+            default:
+                console.warn(`Unknown affect location: ${affect.location}`);
             }
         }
     }
