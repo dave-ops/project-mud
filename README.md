@@ -14,7 +14,7 @@ building a role-playing experience based on ad&d characters, monsters, game-play
 
 ## guild.area
 
-                   PORTAL TO     
+                    PORTAL     
                    HOMETOWN  
                       │                
 ┌───────────┐   ┌───────────┐   ┌───────────┐
