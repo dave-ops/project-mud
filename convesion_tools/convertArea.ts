@@ -97,11 +97,38 @@ function parseAreaFile(filePath: string): Area {
                 break;
             default:
                 if (line.startsWith('#M ')) {
-                    currentItem = { vnum: parseInt(line.slice(3), 10), name: '', shortDescription: '', longDescription: '', level: 0, hitpoints: 0, mana: 0, move: 0 };
+                    currentItem = { 
+                        vnum: parseInt(line.slice(3), 10),
+                        name: '',
+                        shortDescription: '',
+                        longDescription: '',
+                        level: 0,
+                        hitpoints: 0,
+                        mana: 0,
+                    } as Mobile;
                 } else if (line.startsWith('#O ')) {
-                    currentItem = { vnum: parseInt(line.slice(3), 10), name: '', shortDescription: '', description: '', itemType: '', wearFlags: [], values: [], weight: 0, cost: 0, affects: [] };
+                    currentItem = { 
+                        vnum: parseInt(line.slice(3), 10), 
+                        name: '',  
+                        shortDescription: '', 
+                        description: '', 
+                        itemType: '', 
+                        wearFlags: [], 
+                        values: [], 
+                        weight: 0, 
+                        cost: 0, 
+                        affects: [] 
+                    };
                 } else if (line.startsWith('#R ')) {
-                    currentItem = { vnum: parseInt(line.slice(3), 10), name: '', description: '', exits: {}, sectorType: '', roomFlags: [], mobiles: [], objects: [] };
+                    currentItem = { 
+                        vnum: parseInt(line.slice(3), 10), 
+                        name: '', description: '', 
+                        exits: {}, 
+                        sectorType: '', 
+                        roomFlags: [], 
+                        mobiles: [], 
+                        objects: [] 
+                    };
                 }
             }
         } else {
