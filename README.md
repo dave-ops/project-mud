@@ -72,6 +72,7 @@ export default [
     }
   }
 ];
+```
 
 ### Gap Analysis: node-mud vs. Merc_21
 #### Structural Comparison
