@@ -78,15 +78,14 @@ interface Reset {
 function parseAreaFile(filePath: string): Area {
     const content = fs.readFileSync(filePath, 'utf-8');
     const lines = content.split('\n');
-    const area: Area = {
-        name: '',
-        author: '',
-        levelRange: [0, 0],
-        mobiles: [],
-        objects: [],
-        rooms: [],
-        resets: []
-    };
+    const area: Area = new BaseEntity(0) as Area; // Assuming 0 or any default vnum for the area
+    area.name = '';
+    area.author = '';
+    area.levelRange = [0, 0];
+    area.mobiles = [];
+    area.objects = [];
+    area.rooms = [];
+    area.resets = [];
 
     let currentSection: 'area' | 'mobiles' | 'objects' | 'rooms' | 'resets' = 'area';
     let currentItem: Mobile | ObjectItem | Room | null = null;
