@@ -2,12 +2,12 @@ import { Class, Position, Sex, } from '../enums'
 import { IAffect } from './IAffect'; // Assuming you have an Affect model
 import { IItem } from './IItem'; // Assuming you have an Affect model
 import { IPlayerCondition } from './IPlayerCondition';
+import { IRoom } from './IRoom';
 
 export default interface ICharacter {
     id: number;
     name: string;
     description: string;
-
     affected_by: number; // Assuming it's a bit flag
     affected: IAffect[];    
     armor: number[];
@@ -27,6 +27,7 @@ export default interface ICharacter {
     max_move: number;
     move: number;
     position: Position; // e.g., 'standing', 'sitting', 'sleeping'
+    room?: IRoom;
     saving_throw: number;
     sex: Sex;
     short_descr: string;

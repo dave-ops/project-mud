@@ -3,8 +3,6 @@ import { IItem } from './IItem'; // Assuming you have an Affect model
 import { INamed } from './INamed'
 
 export interface IRoom {
-    getLightLevel(): number;
-    setLightLevel(level: number): void;
     id: number;
     name: string;
     contents: INamed[];
@@ -23,4 +21,7 @@ export interface IRoom {
     addItem(item: IItem): void;
     removeItem(item: IItem): void;
     look(character?: ICharacter): string; // Returns a description of the room, possibly tailored
+    broadcast(message: string, exclude?: ICharacter): void;
+    getLightLevel(): number;
+    setLightLevel(level: number): void;
 }

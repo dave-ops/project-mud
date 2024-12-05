@@ -10,6 +10,7 @@ import { IItem } from '../interfaces/IItem'; // Assuming you have this interface
  */
 class Room implements IRoom {
     private _lightLevel: number;
+    public characters: ICharacter[] = [];
 
     constructor(id: number, name: string, description: string, lightLevel: number = 0) {
         // ... other initialization
@@ -29,7 +30,6 @@ class Room implements IRoom {
     private _people: ICharacter[];
     private _contents: (Item | ICharacter)[];
 
-    private _characters: ICharacter[] = [];
     private _items: IItem[] = [];
 
     // ... other existing methods
@@ -41,10 +41,6 @@ class Room implements IRoom {
         this._lightLevel = level;
     }
     
-    get characters(): ICharacter[] {
-        return this._characters;
-    }
-
     get items(): IItem[] {
         return this._items;
     }
@@ -102,15 +98,6 @@ class Room implements IRoom {
 
     removeExit(direction: string): void {
         delete this._exits[direction];
-    }
-
-    // Methods for managing people in the room
-    public addCharacter(character: ICharacter): void {
-        this._characters.push(character);
-    }
-
-    public removeCharacter(character: ICharacter): void {
-        this._characters = this._characters.filter(c => c !== character);
     }
 
     // Methods for managing contents (items or characters)
@@ -180,6 +167,30 @@ class Room implements IRoom {
         return true; // If none of the above conditions prevent visibility, the item is visible
     }
     
+    public broadcast(message: string, exclude?: ICharacter): void {
+        this.characters.forEach(char => {
+            if (char !== exclude) {
+                char.send(message);
+            }
+        });
+    }
+
+    // Methods for managing the people in the room
+
+    // Add character to room
+    public addCharacter(char: ICharacter): void {
+        this.characters.push(char);
+        char.room = this;
+    }
+
+    // Remove character from room
+    public removeCharacter(char: ICharacter): void {
+        const index = this.characters.indexOf(char);
+        if (index > -1) {
+            this.characters.splice(index, 1);
+            char.room = undefined;
+        }
+    }
 }
 
 export default Room;

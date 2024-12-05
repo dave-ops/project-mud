@@ -12,46 +12,42 @@ class Character implements ICharacter {
 
     id: number = -1;
     name: string;
-    short_descr: string;
-    long_descr: string;
-    description: string;
-    isNPC: boolean;
-    fighting?: ICharacter;
-    level: number;
-    trust: number = -1;
-    sex: Sex = Sex.UNKNOWN;
-    race: Race;
-    class: Class;
+
+    act: number; // Bitfield for various player flags
+    affected: IAffect[] = []; // Active affects on the character
+    affected_by: number; // Bitfield for affects
     armor: number[] = [0, 0, 0, 0]; 
-    hit: number = 0;
-    max_hit: number = 0;
+    carrying: IItem[] = []; // Items carried by the character
+    class: Class;
     damroll: number = 0;
+    deaf: boolean; // If character is deaf
+    description: string;
+    exp: number;
+    fighting?: ICharacter;
+    gold: number;
+    hit: number = 0;
     hitroll: number = 0;
+    isNPC: boolean;
+    level: number;
+    long_descr: string;
+    mana: number;
     maxMana: number = -1;
     maxMove: number = -1;
+    max_hit: number = 0;
     max_mana: number;
     max_move: number;
     move: number;
     position: Position; // e.g., 'standing', 'sitting', 'sleeping'
+    race: Race;
+    room?: IRoom; // Current room
+    save_time: number; // Last save time
     saving_throw: number = -1;
-
-    // Health and resources
-    mana: number;
-
-    // Position and combat
-
-    // Wealth and experience
-    gold: number;
-    exp: number;
-
-    // Flags
-    act: number; // Bitfield for various player flags
-    affected_by: number; // Bitfield for affects
-
-    // Game mechanics
+    sex: Sex = Sex.UNKNOWN;
+    short_descr: string;
     timer: number; // Timer for inactivity
+    trust: number = -1;
+    was_in_room?: IRoom; // Previous room before moving to limbo or similar
     wimpy: number; // When to flee
-    deaf: boolean; // If character is deaf
 
     // Player-specific data
     pcdata: {
@@ -73,12 +69,6 @@ class Character implements ICharacter {
         learned: { [key: string]: number };
     };
 
-    // Game state
-    room?: IRoom; // Current room
-    was_in_room?: IRoom; // Previous room before moving to limbo or similar
-    carrying: IItem[] = []; // Items carried by the character
-    affected: IAffect[] = []; // Active affects on the character
-    save_time: number; // Last save time
 
     constructor(name: string, level: number = 1, sex: Sex = Sex.NEUTRAL, race: Race = Race.HUMAN, classType: Class = Class.MAGE, isNpc: boolean) {
         this.name = name;
@@ -86,7 +76,10 @@ class Character implements ICharacter {
         this.sex = sex;
         this.race = race;
         this.class = classType;
+
         this.short_descr = `${name} the ${this.getClassName()}`;
+        this.short_descr = `${name} is here.`;
+
         this.long_descr = `${name} stands here.`;
         this.description = `You see nothing special about ${name}.`;
         this.desc = new Socket();
@@ -136,6 +129,7 @@ class Character implements ICharacter {
         for (let i = 0; i < WEAR_MAX; i++) {
             this.equipment[i] = null;
         }
+
     }
 
     equipment: { [key: number]: IItem | null; } = {};
@@ -153,6 +147,8 @@ class Character implements ICharacter {
             console.log(`Attempted to send message "${text}" to character without a descriptor.`);
             // Or handle this case in another way, like storing messages for later or logging
         }
+
+        console.log(`${this.name} receives: ${text}`);
     }
 
     private levelUp(): void {
@@ -371,6 +367,48 @@ class Character implements ICharacter {
             this.fighting.fighting = undefined;
             this.fighting = undefined;
         }
+    }
+
+    public say(message: string): void {
+        if (!this.room) return;
+
+        this.room.broadcast(`${this.name} says '${message}'`, this);
+        this.send(`You say '${message}'`);
+    }
+
+    // Method to yell (shout)
+    public yell(message: string): void {
+        if (!this.room) return;
+
+        // In a real game, this would broadcast to multiple rooms
+        this.room.broadcast(`${this.name} shouts '${message.toUpperCase()}'`, this);
+        this.send(`You shout '${message.toUpperCase()}'`);
+    }
+
+    // Method for whispering (tell)
+    public whisper(target: ICharacter, message: string): void {
+        if (!this.room || !target.room || this.room !== target.room) {
+            this.send("They aren't here.");
+            return;
+        }
+
+        this.send(`You whisper to ${target.name}, '${message}'`);
+        target.send(`${this.name} whispers to you, '${message}'`);
+    }
+
+    // Method to emote (emote)
+    public emote(action: string): void {
+        if (!this.room) return;
+
+        this.room.broadcast(`${this.name} ${action}`, this);
+        this.send(`You ${action}`);
+    }
+
+    // Method for out of character chat (gossip)
+    public gossip(message: string): void {
+        // In a real game, this would go to all players online
+        console.log(`Gossip channel: ${this.name} gossips, '${message}'`);
+        this.send(`You gossip, '${message}'`);
     }
 
     // ... other methods like equip, unequip, etc.
