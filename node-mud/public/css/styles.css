@@ -1,11 +1,10 @@
 /*
-red: #ff0033;
-green: #60f066;
-blue: #0066ff;
-yellow: #ffcc00;
-gray:  #d3d3d3
-
-area   #008080
+White Text: #FFFFFF
+Yellow Text: #FFFF00
+Cyan Text: #00FFFF
+Green Text: #00FF00
+Red Text: #FF0000
+Magenta Text: #FF00FF
 */
 
 html, body {
@@ -20,7 +19,7 @@ table {
     color: #fff !important;
 }
 html, body a {
-color: #60f066;
+color: #00FF00;
 }
 h1 {
 padding: 0 0 0 0;
@@ -38,13 +37,13 @@ float: left;
 height: 620px;
 }
 .error {
-color: #ff0033;
+color: #FF0000;
 }
 .failure {
-color: #ff0033;
+color: #FF0000;
 }
 .success {
-color: #60f066;
+color: #00FF00;
 }
 .warning {
 color: #ffcc00;
@@ -82,7 +81,7 @@ padding: 0 auto 0 auto;
 opacity: 0.75;
 }
 .opening-title {
-color: #ff0033;
+color: #FF0000;
 -webkit-transition: text-shadow 0.2s linear;
 -moz-transition: text-shadow 0.2s linear;
 -ms-transition: text-shadow 0.2s linear;
@@ -90,7 +89,7 @@ color: #ff0033;
 transition: text-shadow 0.2s linear;
 }
 .opening-title:hover {
-    text-shadow: 0 0 5px #60f066;
+    text-shadow: 0 0 5px #00FF00;
 }
 .score {
 margin-bottom: .25em;
@@ -103,7 +102,7 @@ text-shadow: none;
 border-bottom: 1px solid #000;
 }
 .score .score-level {
-color: #ff0033;
+color: #FF0000;
 }
 .score .saves li{
 list-style-type: square;
@@ -112,7 +111,7 @@ list-style-type: square;
 color: #ffcc00;
 }
 .score .stat-hp {
-color: #ff0033;
+color: #FF0000;
 }
 .score .stat-mana {
 color: #0066ff;
@@ -125,7 +124,7 @@ color: #888;
 font-style: italic;
 }
 .cmd-get {
-color: #60f066;
+color: #00FF00;
 }
 .cmd-chat {
 color: #fff;
@@ -139,7 +138,7 @@ color: #fff;
 }
 .cmd-say .msg-name {
 font-weight: bold;
-color: #60f066;
+color: #00FF00;
 }
 .cmd-yell {
 color: #fff;
@@ -151,7 +150,7 @@ color: purple;
 .motd {
 border-top: 1px dashed #ffcc00;
 border-bottom: 1px dashed #ffcc00;
-color: #ff0033;
+color: #FF0000;
 padding: 1em 1em .25em 1em;
 font-weight: bold;
 }
@@ -162,7 +161,7 @@ padding-bottom: .5em;
 color: #ffcc00;
 }
 .room .room-exits {
-color: #ff0033;
+color: #FF0000;
 }
 .room-content,
 .room-item {
@@ -173,7 +172,7 @@ font-weight: bold;
 }
 .logout-msg {
 font-weight: bold;
-color: #ff0033;
+color: #FF0000;
 }
 .table-no-border>thead>tr>th, 
 .table-no-border>tbody>tr>th, 
@@ -184,21 +183,23 @@ color: #ff0033;
 border-top: none;
 }
 .red {
-color: #ff0033;
+color: #FF0000;
 }
 .green {
-color: #60f066;
+color: #00FF00;
 }
 .blue {
 color: #0066ff;
 }
 .yellow {
-color: #ffcc00;
+color: #FFFF00;
 }
 .grey {
 color: #d3d3d3;
 }
-
+.white {
+    color: #d3d3d3;
+    }
 .link-btn {
 background: none !important;
 border: none;

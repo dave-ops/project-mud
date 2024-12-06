@@ -57,11 +57,11 @@ Room.prototype.getDisplayHTML = function(roomObj, player) {
 		for (i; i < exits.length; i += 1) {
 			if (World.character.canSeeObject(player, exits[i])) {
 				if (!exits[i].door) {
-					exitsHTML += '<li class="list-inline-item"><button class="link-btn red" data-cmd="true" data-cmd-value="move ' + exits[i].cmd + '">' + exits[i].cmd + '</button></li>';
+					exitsHTML += '<li class="list-inline-item"><button class="link-btn white" data-cmd="true" data-cmd-value="move ' + exits[i].cmd + '">' + exits[i].cmd + '</button></li>';
 				} else if (exits[i].door && !exits[i].isOpen) {
-					exitsHTML += '<li class="list-inline-item"><button class="link-btn grey" data-cmd="true" data-cmd-value="move ' + exits[i].cmd + '">' +  exits[i].cmd + '</button></li>';
+					exitsHTML += '<li class="list-inline-item"><button class="link-btn white" data-cmd="true" data-cmd-value="move ' + exits[i].cmd + '">' +  exits[i].cmd + '</button></li>';
 				} else {
-					exitsHTML += '<li class="list-inline-item"><button class="link-btn yellow" data-cmd="true" data-cmd-value="move ' + exits[i].cmd + '">' + exits[i].cmd + '</button></li>';
+					exitsHTML += '<li class="list-inline-item"><button class="link-btn white" data-cmd="true" data-cmd-value="move ' + exits[i].cmd + '">' + exits[i].cmd + '</button></li>';
 				}
 			}
 		}
