@@ -39,7 +39,7 @@ Room.prototype.getDisplayHTML = function(roomObj, player) {
 	playersInRoom = roomObj.playersInRoom,
 	monsters = roomObj.monsters,
 	titleStyleClass = 'room-title',
-	titleHtmlTag = 'h2',
+	titleHtmlTag = 'p',
 	items = roomObj.items;
 
 	if (roomObj.titleHtmlTag) {

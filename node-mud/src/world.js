@@ -1610,10 +1610,11 @@ World.prototype.prompt = function(target) {
 		target.cmv = 0;
 	}
 
-	prompt = '<div class="col-md-12"><div class="cprompt"><strong><'
-		+ player.chp + '/'  + player.hp + '<span class="red">hp</span>><'
-		+ player.cmana + '/'  + player.mana + '<span class="blue">m</span>><'
-		+ player.cmv + '/'  + player.mv +'<span class="warning">mv</span>></strong>';
+	// footer <100hp(100) 140ma(158) 134mv(160) 16575xp(3943) 8100gp
+	prompt = '<div class="col-md-12"><div class="cprompt">'
+		+ '<' + player.chp + '<span class="red">hp</span>('  + player.hp + ')'
+		+ ' ' + player.cmana + '<span class="blue">ma</span>('  + player.mana + ')'
+		+ ' ' + player.cmv + '<span class="warning">mv</span>('  + player.mv +')> ';
 
 	if (this.config.allAdmin || player.role === "admin") {
 		prompt += '<' + player.wait + 'w>';
