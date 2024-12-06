@@ -1,0 +1,7 @@
+{
+	"name": "Half-Elf",
+	"baseInt": 1,
+	"baseCon": -1,
+	"playable": true,
+	"affects": []
+}
