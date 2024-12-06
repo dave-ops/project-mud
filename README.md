@@ -25,7 +25,7 @@ building a role-playing experience based on ad&d characters, monsters, game-play
                                   │ HOMETOWN | 
                                   └┐        ┌┘                       
                                     └──────┘
-                                       |
+                                        |
 ┌─────────────┐   ┌────────────┐   ┌───────────┐   ┌───────────┐
 │ BIZAAR (2)  │───│ BIZAAR (2) │───│  HALLWAY  │───│   BANK    │
 │ Food Vendor |   │ Fountain   │   │  Trainer  │   │           │
