@@ -163,8 +163,9 @@ color: #ffcc00;
 .room .room-exits {
 color: #ff0033;
 }
+.room-content,
 .room-item {
-color: #eee;
+color: #09ed24;
 }
 .enter-name {
 font-weight: bold;

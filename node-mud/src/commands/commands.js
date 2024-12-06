@@ -1497,18 +1497,18 @@ Cmd.prototype.move = function(target, command, fn) {
 										if (!target.outName) {
 											if (target.short) {
 												if (World.dice.roll(1, 2) === 1) {
-													msg = '<span class="warning">' + target.capitalShort
-														+ ' leaves heading <strong class="grey">'
-														+ direction + '</strong>.</span>';	
+													msg = '' + target.capitalShort
+														+ ' leaves to the '
+														+ direction + '';	
 												} else {
 													msg = '' + target.capitalShort
-														+ ' leaves '
+														+ ' leaves heading '
 														+ direction + '.';
 												}
 											} else {
-												msg = '<span class="warning">' + target.displayName
-													+ ' leaves going <strong class="grey">' + direction 
-													+ '</strong>.</span>';
+												msg = '' + target.displayName
+													+ ' leaves going ' + direction 
+													+ '.';
 											}
 										} else if (target.outName && !target.outMessage) {
 											msg = '<span class="warning">' + target.outName

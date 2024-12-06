@@ -76,6 +76,7 @@ module.exports = {
                     attackType: 'staff',
                     damroll: 5,
                     hitroll: 5,
+                    trainer: true,
                     ac: 10,
                     behaviors: [{
                         module: 'guard'
@@ -119,10 +120,13 @@ module.exports = {
                     short: 'pip',
                     long: 'pip the ogre tries to pick your pocket',
                     inName: 'pip',
-                    race: 'ogre',
+                    race: 'kobold',
                     id: '36',
                     area: 'guild',
                     weight: 10,
+                    hp: 5,
+                    damroll: -1,
+	                meleeRes: -1,
                     position: 'standing',
                     attackType: 'bite',
                     baseStr: 1,
@@ -164,21 +168,46 @@ module.exports = {
                     carryLimit: 50,
                     itemType: 'container',
                     weight: 10000,
-                    items: [{
-                        name: 'Sewer key', 
-                        short: 'small rusty key',
-                        long: 'A small rusty key made iron was left here',
-                        area: 'midgaard',
-                        id: '101',
-                        level: 1,
-                        itemType: 'key',
-                        material: 'iron', 
-                        weight: 0,
-                        slot: '',
-                        value: 1,
-                        equipped: false,
-                        isKey: true
-                    }]
+                    items: [
+                        {
+                            name: 'Sewer key', 
+                            short: 'small rusty key',
+                            long: 'A small rusty key made iron was left here',
+                            area: 'midgaard',
+                            id: '101',
+                            level: 1,
+                            itemType: 'key',
+                            material: 'iron', 
+                            weight: 0,
+                            slot: '',
+                            value: 1,
+                            equipped: false,
+                            isKey: true
+                        },
+                        {
+                            name: 'Short Sword',
+                            displayName: 'Short Sword',
+                            short: 'a common looking short sword',
+                            long: 'A short sword with a hilt wrapped in leather straps was left on the ground' ,
+                            area: 'midgaard',
+                            id: '8',
+                            level: 1,
+                            itemType: 'weapon',
+                            weaponType: 'sword',
+                            material: 'iron', 
+                            diceNum: 1, 
+                            diceSides: 6,
+                            attackType: 'slash',
+                            attackElement: '',
+                            weight: 4,
+                            slot: 'hands',
+                            equipped: false,
+                            modifiers: {
+                                damroll: 1,
+                                hitroll: 1
+                            }
+                        }
+                    ]
                 }            
             ]        
         },
