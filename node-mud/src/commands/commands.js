@@ -1,6 +1,7 @@
 'use strict';
 
 var Constants = require('../constants/inventory.js')
+console.log({ Constants })
 
 var fs = require('fs'),
 util = require('util'),
@@ -3305,65 +3306,32 @@ Cmd.prototype.remove = function(target, command) {
 };
 
 Cmd.prototype.inventory = function(player, command) {
-	var iStr = Constants.HEADER,
-   	    i = 0;
-
-	console.log(Constants)
-
-	iStr += '<table class="table table-condensed table-no-border i-table"><thead><tr>' +
-		'<td class="i-name-header">Item Name</td>' +
-		'<td class="i-equipped-header grey">Level</td>' +
-		'<td class="i-equipped-header green">Equipped</td>' +
-		'<td class="i-type-header">Type</td>' +
-		'<td class="i-weight-header">Weight</td>' +
-		'</tr></thead><tbody>';
+	var iStr = '<p>' + Constants.messages.header + '</p>',
+   	    i = 0,
+		unequipped_items = [],
+		result = Constants.messages.no_inventory; // default to none
 
 	if (player.items.length > 0) {
-		iStr += '<tr>';
+		// todo: add quantity
+		// ({item.quantity.pad(2)}) {item.description}
 
 		for (i; i < player.items.length; i += 1) {
-			if (World.character.canSeeObject(player, player.items[i]) || player.items[i].equipped) {
+			if (World.character.canSeeObject(player, player.items[i]) && !player.items[i].equipped) {
 				if (player.items[i].displayName) {
-					iStr += '<td class="i-name">' + player.items[i].displayName + '</td>';
-				} else {
-					iStr += '<td class="i-name">' + player.items[i].name + '</td>';
+					unequipped_items.push(player.items[i].displayName);
 				}
-
-				iStr += '<td class="i-level">' + player.items[i].level + '</td>';
-
-				if (!player.items[i].equipped) {
-					iStr += '<td class="i-equipped">No</td>';
-				} else {
-					iStr += '<td class="i-equipped">Yes</td>';
-				}
-
-				iStr += '<td class="i-type">' + player.items[i].itemType + '</td>'
-					+ '<td class="i-weight">' + player.items[i].weight + '</td></tr>';
-			} else {
-				iStr += '<td class="i-name">Something</td>';
-				iStr += '<td class="i-level">?</td>';
-				iStr += '<td class="i-equipped">No</td>';
-
-				iStr += '<td class="i-type">Unknown</td>'
-					+ '<td class="i-weight">' + player.items[i].weight + '</td></tr>';
 			}
 		}
 
-		if (player.level <= 2) {
-			iStr = '<p><strong class="red">NEWBIE TIP:</strong> You can see the items below on your person. '
-				+ 'Type <strong>eq</strong> or <strong>equipment</strong> to see worn equipment and empty slots.</p>'
-				+ iStr;
+		var hasItems = unequipped_items.length > 0;
+		if (hasItems) {
+			result = '<p>' + unequipped_items.join('</p><p>') + '</p>';
 		}
-
-		World.msgPlayer(player, {
-			msg: '<p class="inv-title">Your Inventory</p>'
-				+ iStr + '</tbody></table>'
-		});
-	} else {
-		World.msgPlayer(player, {
-			msg: 'No items in your inventory, can carry ' + World.character.getMaxCarry(player) + ' pounds.'
-		});
 	}
+	
+	World.msgPlayer(player, {
+		msg: '<p>' + Constants.messages.header + '</p>' + result,
+	});
 };
 
 Cmd.prototype.quests = function(target, commands) {

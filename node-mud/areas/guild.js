@@ -170,8 +170,8 @@ module.exports = {
                     weight: 10000,
                     items: [
                         {
-                            name: 'Sewer key', 
-                            short: 'small rusty key',
+                            name: 'sewer key', 
+                            short: 'a small rusty key',
                             long: 'A small rusty key made iron was left here',
                             area: 'midgaard',
                             id: '101',
@@ -185,8 +185,8 @@ module.exports = {
                             isKey: true
                         },
                         {
-                            name: 'Short Sword',
-                            displayName: 'Short Sword',
+                            name: 'short sword',
+                            displayName: 'a short sword',
                             short: 'a common looking short sword',
                             long: 'A short sword with a hilt wrapped in leather straps was left on the ground' ,
                             area: 'midgaard',
@@ -208,9 +208,10 @@ module.exports = {
                             }
                         },
                         {
-							name: 'Leather Armor',
+							name: 'leather armor',
+                            displayName: 'leather armor',
 							short: 'a leather chestplate',
-							long: 'Some leather armor was left here',
+							long: 'ome leather armor was left here',
 							area: 'midgaard',
 							id: '111',
 							level: 1,
@@ -223,7 +224,8 @@ module.exports = {
 							value: 5
 						},
 						{
-							name: 'Burlap sack',
+							name: 'burlap sack',
+                            displayName: 'a burlap sack',
 							short: 'a worn, tan, burlap sack',
 							long: 'A tan burlap sack with frizzed edges and various stains lies here',
 							area: 'midgaard',
