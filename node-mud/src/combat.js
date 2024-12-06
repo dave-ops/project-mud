@@ -812,44 +812,44 @@ Combat.prototype.attack = function(attacker, defender, battle, positionNumber, a
 
 									if (hitMsgRoll <= 2) {
 										msgForAttacker += '<div>Your ' + weapon.attackType + ' ' + damageText 
-											+ ' ' + defenderName + '<strong class="red">('+ damage + ')</strong></div>';
+											+ ' ' + defenderName + '<strong>('+ damage + ')</strong></div>';
 
 										msgForDefender += '<div>' + attackerNameCF + ' ' + damageText + ' you with a ' + weapon.attackType
-											+ ' from their ' + weapon.displayName + ' <strong class="red">('+ damage + ')</strong></div>';
+											+ ' from their ' + weapon.displayName + ' <strong>('+ damage + ')</strong></div>';
 									} else if (hitMsgRoll <= 4) {
 										msgForAttacker += '<div>You ' + weapon.attackType + ' with your ' + weapon.displayName + ' and it '
-											+ damageText + ' ' + defenderName + ' <strong class="red">(' + damage + ')</strong></div>';
+											+ damageText + ' ' + defenderName + ' <strong>(' + damage + ')</strong></div>';
 
 										msgForDefender += '<div>' + attackerNameCF + 's ' + weapon.attackType + ' ' + damageText
-											+ ' you <strong class="red">(' + damage + ')</strong></div>';
+											+ ' you <strong>(' + damage + ')</strong></div>';
 									} else {
 										msgForAttacker += '<div>A ' + weapon.attackType + ' from your ' + weapon.displayName + ' ' + damageText 
-											+ ' ' + defenderName + '<strong class="red">('+ damage + ')</strong></div>';
+											+ ' ' + defenderName + '<strong>('+ damage + ')</strong></div>';
 
 										msgForDefender += '<div>' + attackerNameCF + ' ' + weapon.attackType + 's you'
-											+ ' <strong class="red">('+ damage + ')</strong></div>';
+											+ ' <strong>('+ damage + ')</strong></div>';
 									}
 								} else {
 									msgForAttacker += '<div>You manage to ' + weapon.attackType + ' <strong>something</strong> '
-										+ ' with your ' + weapon.displayName + ' <strong class="red">(' + damage + ')</strong></div>';
+										+ ' with your ' + weapon.displayName + ' <strong>(' + damage + ')</strong></div>';
 								}
 							} else {
 								// critical hits
 								if (attackerCanSee) {
 									msgForAttacker += '<div>Your ' + weapon.displayName  + ' hit ' + defenderName
-										+ ' with <strong class="green">*---->CrItIcAl FOrcE<----*</strong><strong class="red">(' + damage + ')</strong></div>'
-										+ '<span class="yellow">You landed a <span class="red">critical hit</span>.</div>';
+										+ ' with <strong class="green">*---->CrItIcAl FOrcE<----*</strong><strong>(' + damage + ')</strong></div>'
+										+ '<span class="yellow">You landed a <span>critical hit</span>.</div>';
 
 									msgForDefender += '<div>' + attackerNameCF + ' ' + damageText + ' s you with '
-										+ '<strong class="red">*---->CrItIcAl FOrcE<----*</strong> <strong classw="red">(' + damage + ')</strong></div>';
+										+ '<strong>*---->CrItIcAl FOrcE<----*</strong> <strong classw="red">(' + damage + ')</strong></div>';
 								} else {
 									msgForAttacker += '<div>You ' + weapon.attackType
-										+ ' something even while being unable to see <span class="red">('
+										+ ' something even while being unable to see <span>('
 										+ damage + ')</span></div>'
-										+ '<div class="yellow">You landed a <span class="red">critical hit</span>.</div>';
+										+ '<div class="yellow">You landed a <span>critical hit</span>.</div>';
 										
 									msgForDefender += '<div>Something ' + weapon.attackType + 's you with '
-										+ ' with <span class="red">***CRITICAL***</span> force <strong classw="red">(' + damage + ')</strong></div>';
+										+ ' with <span>***CRITICAL***</span> force <strong classw="red">(' + damage + ')</strong></div>';
 								}
 							}
 						} else if (baseHit === 2) {
@@ -861,17 +861,17 @@ Combat.prototype.attack = function(attacker, defender, battle, positionNumber, a
 								+ weapon.attackType + ' you and misses! </div>';
 						} else if (Math.abs(armorTotal - attackRoll) <= defenderMods.dex) {
 							// dodge
-							msgForAttacker += '<div class="red">You lunge at ' + defenderName + ' but they dodge just in time!</div>';
+							msgForAttacker += '<div>You lunge at ' + defenderName + ' but they dodge just in time!</div>';
 								
 							msgForDefender = attackerName + ' misses'
 						} else {
 							// attack was blocked
 							if (World.dice.roll(1, 2) === 1) {
-								msgForAttacker += '<div class="red">You strike ' + defenderName + ' and they block your attack</div>';
-								msgForDefender += '<div class="red">You block ' + attackerName + '  attack</div>';
+								msgForAttacker += '<div>You strike ' + defenderName + ' and they block your attack</div>';
+								msgForDefender += '<div>You block ' + attackerName + '  attack</div>';
 							} else {
-								msgForAttacker += '<div class="red">You try to attack ' + defenderName + ' with ' + weapon.displayName + ' but they narrowly avoid the attack</div>';
-								msgForDefender += '<div class="red">You block ' + attackerName + '  attack</div>';
+								msgForAttacker += '<div>You try to attack ' + defenderName + ' with ' + weapon.displayName + ' but they narrowly avoid the attack</div>';
+								msgForDefender += '<div>You block ' + attackerName + '  attack</div>';
 							}
 						}
 					}
@@ -1151,7 +1151,7 @@ Combat.prototype.getDeathMessages = function(winner, loser, skillProfile) {
 		winner.exp += exp;
 
 		if (World.dice.roll(1, 3) < 3) {
-			deathOutput.msgToWinner += '<div class="victory">You have slain ' +  loser.short + '! You gain <span class="red">'
+			deathOutput.msgToWinner += '<div class="victory">You have slain ' +  loser.short + '! You gain <span>'
 				+ exp + '</span> experience points!</div>';
 		} else {
 			deathOutput.msgToWinner += '<div class="victory">You are victorious! ' + World.capitalizeFirstLetter(loser.name) +' has been killed! You earn <span class="green">'
