@@ -233,7 +233,7 @@ module.exports = {
                 },
                 {
                     cmd: 'south',
-                    id: '8'
+                    id: '9'
                 }
             ],
             playersInRoom: [],
@@ -307,10 +307,6 @@ module.exports = {
                 {
                     cmd: 'east',
                     id: '9'
-                },
-                {
-                    cmd: 'north',
-                    id: '5'
                 }
             ],
             playersInRoom: [],
@@ -354,7 +350,7 @@ module.exports = {
         },
         {
             id: '9',
-            title: 'Hall',
+            title: 'Hallway',
             light: true,
             area: 'guild',
             content: 'The final hall leads to a significant place within the guild.',
