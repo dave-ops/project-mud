@@ -1,7 +1,6 @@
 'use strict';
 
 var Constants = require('../constants/inventory.js')
-console.log({ Constants })
 
 var fs = require('fs'),
 util = require('util'),
