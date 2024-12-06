@@ -9,7 +9,7 @@ var Spell = function(newWorld) {
 *
 * Since these are combat spells they must return a Skill Profile Object
 */
-Spell.prototype.spark = function(skillObj, player, opponent, roomObj, command) {
+Spell.prototype.magicmissile = function(skillObj, player, opponent, roomObj, command) {
 	var intMod,
 	cost = 3,
 	skillOutput = World.combat.createSkillProfile(player, skillObj),
@@ -27,15 +27,15 @@ Spell.prototype.spark = function(skillObj, player, opponent, roomObj, command) {
 			skillOutput.defenderMods.chp = -damage;
 			skillOutput.defenderRefId = opponent.refId;
 			
-			skillOutput.msgToAttacker = 'You cast spark and a series of crackling '
+			skillOutput.msgToAttacker = 'You cast magic missile and a series of crackling '
 				+ '<span class="blue">bright blue bolts</span> burn <span class="grey">' + opponent.short
 				+ '</span> with maiming intensity! (' + damage + ')';
 
-			skillOutput.winMsg = 'Your spark hits '
+			skillOutput.winMsg = 'Your magic missile hits '
 				+ opponent.short + ' <span class="red">burning</span> their flesh!'
 				+ ' (' + damage + ')';
 
-			skillOutput.msgToDefender = player.displayName + ' casts spark and burns you with'
+			skillOutput.msgToDefender = player.displayName + ' casts magic missile and burns you with'
 				+ ' maiming intensity! (' + damage + ')';
 
 			World.combat.processSkill(player, opponent, skillOutput);

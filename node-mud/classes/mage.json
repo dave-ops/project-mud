@@ -7,8 +7,8 @@
 	"mainStat": "int",
 	"skills": [
 		{
-			"id": "spark",
-			"display": "Spark",
+			"id": "magicmissile",
+			"display": "magicmissile",
 			"mod": 0,
 			"train": 100,
 			"type": "combat spell",
