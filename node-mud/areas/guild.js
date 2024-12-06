@@ -129,7 +129,35 @@ module.exports = {
             ],
             playersInRoom: [],
             monsters: [],
-            items: []
+            items: [
+                {
+                    name: 'the pit',
+                    short: 'a pit is in the floor',
+                    long: 'a pit is in the floor filled with discarded equipment',
+                    area: 'guild',
+                    id: '427',
+                    level: 1,
+                    itemType: 'container',
+                    weight: 10000,
+                    items: [{
+                        name: 'Sewer key', 
+                        short: 'small rusty key',
+                        long: 'A small rusty key made iron was left here',
+                        area: 'midgaard',
+                        id: '101',
+                        level: 1,
+                        itemType: 'key',
+                        material: 'iron', 
+                        weight: 0,
+                        slot: '',
+                        value: 1,
+                        equipped: false,
+                        isKey: true
+                    }],
+                    isOpen: true,
+                    carryLimit: 50
+                }            
+            ]        
         },
         {
             id: '5',
