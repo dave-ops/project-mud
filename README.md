@@ -23,7 +23,7 @@ building a role-playing experience based on ad&d characters, monsters, game-play
                                   ┌┘        └┐ 
                                   │  PORTAL  │
                                   │ HOMETOWN | 
-                                  └┐        ┌┘                       
+                                  └┐   (3)  ┌┘                       
                                     └──────┘
                                         |
 ┌─────────────┐   ┌────────────┐   ┌───────────┐   ┌───────────┐
@@ -46,7 +46,7 @@ building a role-playing experience based on ad&d characters, monsters, game-play
 │  BIZAAR (2) │                    (*) Newbie Spawn Point
 │ Armor Vendor|                    (1) Ghost Librarian
 └─────────────┘                    (2) Outside  
-       |                                
+       |                           (3) Portal To Hometown
 ┌─────────────┐                    
 │    TENT (2) │                    
 │    GURU     |                    
@@ -81,21 +81,3 @@ CONT ───│  GRASS    │───│    GRASS  │   │  BEHIND   │
             CONT            CONT            PORTAL     
                                            HOMETOWN  
 ```                                     
-
-
-  PORTAL     
-                              HOMETOWN  
-                                  │                
-┌───────────┐   ┌───────────┐   ┌───────────┐   ┌───────────┐
-│ BIZAAR (2) │───│ BIZAAR (2) │───│  HALLWAY  │───│   BANK    │
-│Food Vendor|   │ Fountain  │   │  Trainer  │   │           │
-└───────────┘   └───────────┘   └───────────┘   └───────────┘
-                      │                ┌───────────┐   ┌───────────┐   ┌───────────┐
-                │ BIZAAR (2) │   │  THE PIT  │───│  HALLWAY  │───│   NEWBIE  │                │ Magic    │   │   [pit]   │   │           │───│    [*]    │                │ Vendor   │   └───────────┘   └───────────┘   └───────────┘
-                └───────────┘   │                                      │                ┌───────────┐   ┌───────────┐   ┌───────────┐
-                │  LIBRARY  │───│  HALLWAY  │───│  RECALL   │
-                │ Librarian │   |  (sewer)  │───│           │
-                └───────────┘   └───────────┘   └───────────┘
-
-Legend
-[*] New Character Spawn Point
