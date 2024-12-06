@@ -19,20 +19,35 @@ building a role-playing experience based on ad&d characters, monsters, game-play
 
 ## guild.area
 ```
-                    PORTAL     
-                   HOMETOWN  
-                      │                
-┌───────────┐   ┌───────────┐   ┌───────────┐
-│  VENDOR   │───│  HALLWAY  │───│   CHAT    │
-└───────────┘   └───────────┘   └───────────┘
-                      │                
-┌───────────┐   ┌───────────┐   ┌───────────┐
-│    PIT    │───│  HALLWAY  │───│   NEWBIE  │           
-└───────────┘   └───────────┘   └───────────┘
-                      │                
-┌───────────┐   ┌───────────┐   ┌───────────┐
-│  LIBRARY  │───│  HALLWAY  │───│  RECALL   │
-└───────────┘   └───────────┘   └───────────┘
+                                     ______ 
+                                  ┌┘        └┐ 
+                                  │  PORTAL  │
+                                  │ HOMETOWN | 
+                                  └┐        ┌┘                       
+                                    └──────┘
+                                       |
+┌─────────────┐   ┌───────────┐   ┌───────────┐   ┌───────────┐
+│   BIZAAR    │───│  BIZAAR   │───│  HALLWAY  │───│   BANK    │
+│ Food Vendor |   │ Fountain  │   │  Trainer  │   │           │
+└─────────────┘   └───────────┘   └───────────┘   └───────────┘
+       |                                |
+┌─────────────┐   ┌───────────┐   ┌───────────┐   ┌───────────┐
+│   BIZAAR    │   │  THE PIT  │───│  HALLWAY  │───│   NEWBIE  │
+│Magic Vendor |   │   (pit)   │   │           │───│    (*)    │                
+└─────────────┘   └───────────┘   └───────────┘   └───────────┘
+       |                                |
+┌─────────────┐   ┌───────────┐   ┌───────────┐   ┌───────────┐
+│   BIZAAR    │   │  LIBRARY  │   |  HALLWAY  │   │   RECALL  │
+│Weapon Vendor|   │ Librarian │───│           │───│           │                
+│             |   │    (1)    |   │           │   │           │                
+└─────────────┘   └───────────┘   └───────────┘   └───────────┘
+       |                                
+┌─────────────┐                    LEGEND:
+│   BIZAAR    │                    (*) Newbie Spawn Point
+│ Armor Vendor|                    (1) Ghost Librarian
+└─────────────┘   
+
+
 ```
 
 ## halfelf.area
@@ -63,3 +78,19 @@ CONT ───│  GRASS    │───│    GRASS  │   │  BEHIND   │
 ```                                     
 
 
+  PORTAL     
+                              HOMETOWN  
+                                  │                
+┌───────────┐   ┌───────────┐   ┌───────────┐   ┌───────────┐
+│  BIZAAR   │───│  BIZAAR   │───│  HALLWAY  │───│   BANK    │
+│Food Vendor|   │ Fountain  │   │  Trainer  │   │           │
+└───────────┘   └───────────┘   └───────────┘   └───────────┘
+                      │                ┌───────────┐   ┌───────────┐   ┌───────────┐
+                │  BIZAAR   │   │  THE PIT  │───│  HALLWAY  │───│   NEWBIE  │                │ Magic    │   │   [pit]   │   │           │───│    [*]    │                │ Vendor   │   └───────────┘   └───────────┘   └───────────┘
+                └───────────┘   │                                      │                ┌───────────┐   ┌───────────┐   ┌───────────┐
+                │  LIBRARY  │───│  HALLWAY  │───│  RECALL   │
+                │ Librarian │   |  (sewer)  │───│           │
+                └───────────┘   └───────────┘   └───────────┘
+
+Legend
+[*] New Character Spawn Point
