@@ -1,10 +1,14 @@
 /*
-White Text: #FFFFFF
-Yellow Text: #FFFF00
-Cyan Text: #00FFFF
-Green Text: #00FF00
-Red Text: #FF0000
-Magenta Text: #FF00FF
+| Selector  | Color   |
+|-----------|---------|
+| cyan      | #008080 |
+| dark-red  | #800000 |
+| red       | #800000 |
+| green     | #00FF00 |
+| blue      | #0066ff |
+| yellow    | #FFFF00 |
+| grey      | #d3d3d3 |
+| white     | #d3d3d3 |
 */
 
 html, body {
@@ -25,10 +29,10 @@ html, body a {
 }
 
 h1 {
-    padding: 0 0 0 0;
+    padding: 0;
     margin: 0;
-    color: #ffcc00;
-    font-weight: bold;
+    color: #00FFFF;
+    font-weight: normal;
 }
 
 h2, h3, h4, h5, h6, .title {
@@ -315,4 +319,8 @@ text-decoration: underline;
 
 #mudopen {
     margin-bottom: 10px;
+}
+
+.row .inv-title {
+    color: #008080;
 }

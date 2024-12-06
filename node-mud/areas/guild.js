@@ -206,7 +206,49 @@ module.exports = {
                                 damroll: 1,
                                 hitroll: 1
                             }
-                        }
+                        },
+                        {
+							name: 'Leather Armor',
+							short: 'a leather chestplate',
+							long: 'Some leather armor was left here',
+							area: 'midgaard',
+							id: '111',
+							level: 1,
+							itemType: 'armor',
+							material: 'leather',
+							ac: 3,
+							weight: 1,
+							slot: 'body',
+							equipped: false,
+							value: 5
+						},
+						{
+							name: 'Burlap sack',
+							short: 'a worn, tan, burlap sack',
+							long: 'A tan burlap sack with frizzed edges and various stains lies here',
+							area: 'midgaard',
+							id: '27',
+							level: 1,
+							itemType: 'container',
+							weight: 1,
+							items: [{
+								name: 'Sewer key', 
+								short: 'small rusty key',
+								long: 'A small rusty key made iron was left here',
+								area: 'midgaard',
+								id: '101',
+								level: 1,
+								itemType: 'key',
+								material: 'iron', 
+								weight: 0,
+								slot: '',
+								value: 1,
+								equipped: false,
+								isKey: true
+							}],
+							isOpen: true,
+							carryLimit: 50
+						}
                     ]
                 }            
             ]        

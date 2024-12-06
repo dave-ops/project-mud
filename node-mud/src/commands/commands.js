@@ -1,12 +1,13 @@
 'use strict';
 
+var Constants = require('../constants/inventory.js')
+
 var fs = require('fs'),
 util = require('util'),
 World,
 players,
 time,
 areas,
-
 Cmd = function (newWorld) {
 	World = newWorld
 	this.world = newWorld;
@@ -3305,7 +3306,7 @@ Cmd.prototype.remove = function(target, command) {
 
 Cmd.prototype.inventory = function(player, command) {
 	var iStr = '',
-	i = 0;
+   	    i = 0;
 
 	iStr += '<table class="table table-condensed table-no-border i-table"><thead><tr>' +
 		'<td class="i-name-header">Item Name</td>' +
@@ -3353,7 +3354,7 @@ Cmd.prototype.inventory = function(player, command) {
 		}
 
 		World.msgPlayer(player, {
-			msg: '<h1>Your Inventory</h1>'
+			msg: '<p class="inv-title">Your Inventory</p>'
 				+ iStr + '</tbody></table>'
 		});
 	} else {
