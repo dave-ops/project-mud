@@ -35,6 +35,7 @@ Room.prototype.getDisplayHTML = function(roomObj, player) {
 	var room = this,
 	i = 0,
 	displayHTML = '',
+	exitsHTML = '',
 	exits = roomObj.exits,
 	playersInRoom = roomObj.playersInRoom,
 	monsters = roomObj.monsters,
@@ -51,23 +52,23 @@ Room.prototype.getDisplayHTML = function(roomObj, player) {
 	}
 
 	if (exits.length > 0) {
-		displayHTML += '<ul class="room-exits list-inline"><li class="list-label list-inline-item"><strong>Exits: </strong></li>';
+		exitsHTML = '<ul class="room-exits list-inline"><li class="list-label list-inline-item"><strong>Exits: </strong></li>';
 
 		for (i; i < exits.length; i += 1) {
 			if (World.character.canSeeObject(player, exits[i])) {
 				if (!exits[i].door) {
-					displayHTML += '<li class="list-inline-item"><button class="link-btn red" data-cmd="true" data-cmd-value="move ' + exits[i].cmd + '">' + exits[i].cmd + '</button></li>';
+					exitsHTML += '<li class="list-inline-item"><button class="link-btn red" data-cmd="true" data-cmd-value="move ' + exits[i].cmd + '">' + exits[i].cmd + '</button></li>';
 				} else if (exits[i].door && !exits[i].isOpen) {
-					displayHTML += '<li class="list-inline-item"><button class="link-btn grey" data-cmd="true" data-cmd-value="move ' + exits[i].cmd + '">' +  exits[i].cmd + '</button></li>';
+					exitsHTML += '<li class="list-inline-item"><button class="link-btn grey" data-cmd="true" data-cmd-value="move ' + exits[i].cmd + '">' +  exits[i].cmd + '</button></li>';
 				} else {
-					displayHTML += '<li class="list-inline-item"><button class="link-btn yellow" data-cmd="true" data-cmd-value="move ' + exits[i].cmd + '">' + exits[i].cmd + '</button></li>';
+					exitsHTML += '<li class="list-inline-item"><button class="link-btn yellow" data-cmd="true" data-cmd-value="move ' + exits[i].cmd + '">' + exits[i].cmd + '</button></li>';
 				}
 			}
 		}
 
-		displayHTML += '</ul>';
+		exitsHTML += '</ul>';
 	} else {
-		displayHTML += '<p class="room-exits">Exits: None.</p>';
+		exitsHTML += '<p class="room-exits">Exits: None.</p>';
 	}
 
 	i = 0;
@@ -127,7 +128,8 @@ Room.prototype.getDisplayHTML = function(roomObj, player) {
 	displayHTML += '</ul>';
 
 	displayHTML = '<div class="room"><' + titleHtmlTag + ' class="' + titleStyleClass
-		+  '">' + roomObj.title + '</' + titleHtmlTag  + '>' 
+		+  '">' + roomObj.title + '</' + titleHtmlTag  + '>'
+		+  exitsHTML 
 		+ '<p class="room-content">' + roomObj.content + '</p>' + displayHTML + '</div>';
 
 	return displayHTML;

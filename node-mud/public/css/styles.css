@@ -4,6 +4,8 @@ green: #60f066;
 blue: #0066ff;
 yellow: #ffcc00;
 gray:  #d3d3d3
+
+area   #008080
 */
 
 html, body {
@@ -164,7 +166,7 @@ color: #ff0033;
 }
 .room-content,
 .room-item {
-color: #09ed24;
+color: #008080;
 }
 .enter-name {
 font-weight: bold;
