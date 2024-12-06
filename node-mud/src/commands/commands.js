@@ -3305,8 +3305,10 @@ Cmd.prototype.remove = function(target, command) {
 };
 
 Cmd.prototype.inventory = function(player, command) {
-	var iStr = '',
+	var iStr = Constants.HEADER,
    	    i = 0;
+
+	console.log(Constants)
 
 	iStr += '<table class="table table-condensed table-no-border i-table"><thead><tr>' +
 		'<td class="i-name-header">Item Name</td>' +
