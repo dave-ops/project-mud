@@ -3,14 +3,14 @@ var http = require('http'),
 fs = require('fs'),
 World = require('./src/world'),
 WebSocket = require('ws'),
-NodeMud = function(port, cfg, callback) {
+RockMUD = function(port, cfg, callback) {
 	this.port = port;
 	this.server = null;
 	this.running = false;
 	this.setup(cfg, callback);
 };
 
-NodeMud.prototype.setup = function(cfg, callback) {
+RockMUD.prototype.setup = function(cfg, callback) {
 	var mud = this;
 
 	mud.server = http.createServer(function (req, res) {
@@ -48,8 +48,8 @@ NodeMud.prototype.setup = function(cfg, callback) {
 				res.write(data);
 				res.end();
 			});
-		} else if (req.url === '/NodeMud-client.js') {
-			fs.readFile('./public/js/NodeMud-client.js', function (err, data) {
+		} else if (req.url === '/rockmud-client.js') {
+			fs.readFile('./public/js/rockmud-client.js', function (err, data) {
 				if (err) {
 					throw err;
 				}
@@ -240,4 +240,4 @@ NodeMud.prototype.setup = function(cfg, callback) {
 	});
 }
 
-module.exports = NodeMud;
+module.exports = RockMUD;

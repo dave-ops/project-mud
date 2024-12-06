@@ -1,6 +1,6 @@
 'use strict';
-var mud = require('./rockmud'),
+var mud = require('./nodemud'),
 cfg = require('./config'),
 server = new mud(cfg.server.port, cfg.server.game);
 
-console.log('RockMUD is now running on port:', server.port)
+console.log('node-mud is now running on port:', server.port)
