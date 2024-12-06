@@ -5,8 +5,11 @@ building a role-playing experience based on ad&d characters, monsters, game-play
 
 ## todo
 - [x] get game engine running
-- [ ] create guild area
-- [ ] create half-elf race
+- [x] create guild area
+  - [x] create the pit
+  - [x] create the recall room
+  - [ ] create the guild hometown portal
+- [x] create half-elf race
 - [ ] create half-elf home town
 - [ ] create magic missle spell
 - [ ] create kobold mob
