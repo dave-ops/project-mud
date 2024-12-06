@@ -63,7 +63,7 @@
 	"area": "",
 	"originatingArea": "",
 	"roomid": "1",
-	"recall": {"roomid": "1", "area": "midgaard"},
+	"recall": {"roomid": "1", "area": "guild"},
 	"description": "",
 	"reply": "",
 	"following": false,
