@@ -18,11 +18,11 @@ module.exports = {
     rooms: [
         {
             id: '1',
-            title: 'The Market',
+            title: 'The Guild Bazaar',
             light: true,
             area: 'guild',
-            content: 'An empty room with nothing of interest.',
-            outdoors: false,
+            content: 'Nestled right outside the guild is a market where the air hums with the sounds and the aroma of exotic fungi. Here, under the glow of phosphorescent moss, kobolds trade everything from enchanted mushrooms to cleverly designed traps, making it a vibrant hub of commerce and culture.',
+            outdoors: true,
             exits: [
                 {
                     cmd: 'east',
