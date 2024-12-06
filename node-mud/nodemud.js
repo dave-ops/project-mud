@@ -48,8 +48,8 @@ RockMUD.prototype.setup = function(cfg, callback) {
 				res.write(data);
 				res.end();
 			});
-		} else if (req.url === '/rockmud-client.js') {
-			fs.readFile('./public/js/rockmud-client.js', function (err, data) {
+		} else if (req.url.startsWith('/tkd.')) {
+			fs.readFile('./public/js' + req.url, function (err, data) {
 				if (err) {
 					throw err;
 				}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Command Line Terminal</title>
+<style>
+  body { font-family: monospace; }
+  #terminal { height: 200px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; }
+  #input { width: 100%; }
+</style>
+</head>
+<body>
+
+<div id="terminal"></div>
+<input type="text" id="input" onkeydown="handleKey(event)">
+
+<script>
+let lastCommand = null;
+let commandHistory = [];
+let historyIndex = -1;
+
+function handleKey(event) {
+  let input = document.getElementById('input');
+  let terminal = document.getElementById('terminal');
+  let keyCode = event.keyCode;
+
+  if (keyCode === 13) { // Enter key
+    if (input.value.trim() === '') return;
+    terminal.innerHTML += `<div> > ${input.value}</div>`;
+    commandHistory.unshift(input.value);
+    historyIndex = -1;
+    input.value = '';
+  } else if (keyCode === 38) { // Up arrow
+    if (historyIndex < commandHistory.length - 1) {
+      historyIndex++;
+      input.value = commandHistory[historyIndex];
+    }
+  } else if (keyCode === 40) { // Down arrow
+    if (historyIndex > 0) {
+      historyIndex--;
+      input.value = commandHistory[historyIndex];
+    } else if (historyIndex === 0) {
+      historyIndex = -1;
+      input.value = '';
+    }
+  }
+  terminal.scrollTop = terminal.scrollHeight; // Auto scroll to bottom
+}
+
+document.getElementById('input').addEventListener('keyup', function(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    handleKey({ keyCode: 13 }); // Simulate Enter keypress for consistency
+    var ele = document.getElementById('input');
+    ele.value = lastCommand;
+    ele.select();
+  } else {
+    lastCommand = document.getElementById('input').value;
+  }
+});
+</script>
+
+</body>
+</html>
