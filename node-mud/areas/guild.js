@@ -213,10 +213,10 @@ module.exports = {
         },
         {
             id: '5',
-            title: 'Hall',
+            title: 'Hallway',
             light: true,
             area: 'guild',
-            content: 'Another segment of the guild\'s hall.',
+            content: 'This hallway must have been built by giants!  It is huge!  Then again, there are more than a few giants that belong to The Guild, so it may just be so.  There are doors to your left and right leading to other places in the guild designed to serve the needs of all adventurers. A stairway leads down to a hallway below. You barely see the last wisp of smoke of something disintegrating.',
             outdoors: false,
             exits: [
                 {
