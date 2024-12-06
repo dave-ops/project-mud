@@ -146,7 +146,7 @@ module.exports = {
             title: 'The Pit',
             light: true,
             area: 'guild',
-            content: 'A pit is in the middle of the floor, filled with discarded adveturer gear.',
+            content: 'This is the room of last resort.  If you are weaponless, armorless, or in need of something you can\'t afford, this is where you go to depend on the generosity of others.  Veteran adventurers often come here to unload equipment they can\'t use, can\'t sell, or just want to donate to the less fortunate.  Be warned, less scrupulous individuals have been known to dump cursed equipment here, merely for the pleasure of seeing the poor suffer.  Less than vigilant janitors have left grim evidence that a choice piece of equipment is occasionally wanted by more than one person.',
             outdoors: false,
             exits: [
                 {
@@ -159,7 +159,7 @@ module.exports = {
             items: [
                 {
                     name: 'the pit',
-                    short: 'a pit is in the floor',
+                    short: 'A pit for donations dominates the room.',
                     long: 'a pit is in the floor filled with discarded equipment',
                     area: 'guild',
                     id: '427',

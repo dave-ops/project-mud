@@ -163,7 +163,11 @@ color: #ffcc00;
 .room .room-exits {
 color: #FF0000;
 }
-.room-content,
+
+.room-content {
+    color: #008080;
+}
+
 .room-item {
 color: #008080;
 }
@@ -265,5 +269,5 @@ text-decoration: underline;
 }
 
 .room p {
-    margin-bottom: 0;
+    margin-bottom: 10px;
 }
