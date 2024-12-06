@@ -46,7 +46,12 @@ building a role-playing experience based on ad&d characters, monsters, game-play
 │   BIZAAR    │                    (*) Newbie Spawn Point
 │ Armor Vendor|                    (1) Ghost Librarian
 └─────────────┘   
-
+       |                                
+┌─────────────┐                    
+│    TENT     │                    
+│    GURU     |                    
+│   Practice  |
+└─────────────┘   
 
 ```
 
