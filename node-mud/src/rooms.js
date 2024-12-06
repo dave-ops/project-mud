@@ -52,7 +52,7 @@ Room.prototype.getDisplayHTML = function(roomObj, player) {
 	}
 
 	if (exits.length > 0) {
-		exitsHTML = '<ul class="room-exits list-inline"><li class="list-label list-inline-item"><strong>Exits: </strong></li>';
+		exitsHTML = '<ul class="room-exits list-inline"><li class="list-label list-inline-item">[<strong>Exits: </strong></li>';
 
 		for (i; i < exits.length; i += 1) {
 			if (World.character.canSeeObject(player, exits[i])) {
@@ -66,7 +66,7 @@ Room.prototype.getDisplayHTML = function(roomObj, player) {
 			}
 		}
 
-		exitsHTML += '</ul>';
+		exitsHTML += '<li class="list-label list-inline-item">]</li></ul>';
 	} else {
 		exitsHTML += '<p class="room-exits">Exits: None.</p>';
 	}

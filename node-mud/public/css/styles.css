@@ -187,24 +187,35 @@ color: #FF0000;
 .table-no-border>tfoot>tr>td {
 border-top: none;
 }
+
+.dark-red {
+    color: #800000;
+}
+
 .red {
-color: #800000;
+    color: #800000;
 }
+
 .green {
-color: #00FF00;
+    color: #00FF00;
 }
+
 .blue {
-color: #0066ff;
+    color: #0066ff;
 }
+
 .yellow {
-color: #FFFF00;
+    color: #FFFF00;
 }
+
 .grey {
-color: #d3d3d3;
+    color: #d3d3d3;
 }
+
 .white {
     color: #d3d3d3;
-    }
+}
+
 .link-btn {
 background: none !important;
 border: none;
