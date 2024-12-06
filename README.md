@@ -21,15 +21,15 @@ building a role-playing experience based on ad&d characters, monsters, game-play
                    HOMETOWN  
                       │                
 ┌───────────┐   ┌───────────┐   ┌───────────┐
-│   EMPTY   │───│    HALL   │───│   EMPTY   │
+│  VENDOR   │───│  HALLWAY  │───│   CHAT    │
 └───────────┘   └───────────┘   └───────────┘
                       │                
 ┌───────────┐   ┌───────────┐   ┌───────────┐
-│    PIT    │───│    HALL   │───│   EMPTY   │           
+│    PIT    │───│  HALLWAY  │───│   NEWBIE  │           
 └───────────┘   └───────────┘   └───────────┘
                       │                
 ┌───────────┐   ┌───────────┐   ┌───────────┐
-│  LIBRARY  │───│    HALL   │───│  RECALL   │
+│  LIBRARY  │───│  HALLWAY  │───│  RECALL   │
 └───────────┘   └───────────┘   └───────────┘
 ```
 

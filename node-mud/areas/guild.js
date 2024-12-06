@@ -18,7 +18,7 @@ module.exports = {
     rooms: [
         {
             id: '1',
-            title: 'Empty Room',
+            title: 'The Market',
             light: true,
             area: 'guild',
             content: 'An empty room with nothing of interest.',
@@ -35,10 +35,10 @@ module.exports = {
         },
         {
             id: '2',
-            title: 'Hall',
+            title: 'Guild Hall',
             light: true,
             area: 'guild',
-            content: 'A central hall connecting various parts of the guild.',
+            content: 'This huge room is the meeting place for all known adventurers of the world.  Due to special magics set upon the room, going north will allow you instant transport to your hometown, no matter what your race may be.  The room is filled with many people, most of them wannabe adventurers, but scattered amongst the throng of people you spot more than a few living legends.  It is rumored that even immortals visit this place upon occasion.',
             outdoors: false,
             exits: [
                 {
@@ -115,12 +115,12 @@ module.exports = {
             monsters: [
                 {
                     name: 'pip the ogre child',
-                    displayName: 'pip',
+                    displayName: 'Pip',
                     level: 1,
-                    short: 'pip',
-                    long: 'pip the ogre tries to pick your pocket',
-                    inName: 'pip',
-                    race: 'kobold',
+                    short: 'Pip',
+                    long: 'Pip the ogre tries to pick your pocket',
+                    inName: 'Pip',
+                    race: 'ogre',
                     id: '36',
                     area: 'guild',
                     weight: 10,
