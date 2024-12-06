@@ -8,58 +8,71 @@ Magenta Text: #FF00FF
 */
 
 html, body {
-background-color: #000;
-padding: 1em;
-margin: 0;
-height: 100%;
-color: #fff !important;
-font-family: monospace;
+    background-color: #000;
+    padding: 1em;
+    margin: 0;
+    height: 100%;
+    color: #fff !important;
+    font-family: monospace;
 }
+
 table {
     color: #fff !important;
 }
+
 html, body a {
-color: #00FF00;
+    color: #00FF00;
 }
+
 h1 {
-padding: 0 0 0 0;
-margin: 0;
-color: #ffcc00;
-font-weight: bold;
+    padding: 0 0 0 0;
+    margin: 0;
+    color: #ffcc00;
+    font-weight: bold;
 }
+
 h2, h3, h4, h5, h6, .title {
-color: #ddd;
-padding: 0 0 0 0;
-margin: 0;
+    color: #ddd;
+    padding: 0 0 0 0;
+    margin: 0;
 }
+
 #mudwrapper {
-float: left;
-height: 620px;
+    float: left;
+    height: 620px;
 }
+
 .error {
-color: #FF0000;
+    color: #FF0000;
 }
+
 .failure {
-color: #FF0000;
+    color: #FF0000;
 }
+
 .success {
-color: #00FF00;
+    color: #00FF00;
 }
+
 .warning {
-color: #ffcc00;
+    color: #FFFF00;
 }
+
 .alert {
-color: #0066ff;
+    color: #0066ff;
 }
+
 .row {
-margin-bottom: 0;
+    margin-bottom: 0;
 }
+
 #terminal {
-width: 100%;
-overflow: auto;
-float: left;
-height: 600px;
+    width: 100%;
+    overflow: auto;
+    float: left;
+    height: 600px;
 }
+
 #terminal::-webkit-scrollbar {
 background: transparent;
 }
@@ -80,20 +93,24 @@ border: none;
 padding: 0 auto 0 auto;
 opacity: 0.75;
 }
+
 .opening-title {
-color: #FF0000;
--webkit-transition: text-shadow 0.2s linear;
--moz-transition: text-shadow 0.2s linear;
--ms-transition: text-shadow 0.2s linear;
--o-transition: text-shadow 0.2s linear;
-transition: text-shadow 0.2s linear;
+    color: #00FFFF;
+    -webkit-transition: text-shadow 0.2s linear;
+    -moz-transition: text-shadow 0.2s linear;
+    -ms-transition: text-shadow 0.2s linear;
+    -o-transition: text-shadow 0.2s linear;
+    transition: text-shadow 0.2s linear;
 }
+
 .opening-title:hover {
     text-shadow: 0 0 5px #00FF00;
 }
+
 .score {
-margin-bottom: .25em;
+    margin-bottom: .25em;
 }
+
 .score h1, h4 {
 border-bottom: 1px dashed #eee;
 }
@@ -147,25 +164,33 @@ color: #fff;
 font-weight: bold;
 color: purple;
 }
+
 .motd {
-border-top: 1px dashed #ffcc00;
-border-bottom: 1px dashed #ffcc00;
-color: #FF0000;
-padding: 1em 1em .25em 1em;
-font-weight: bold;
-}
-.cprompt {
-padding-bottom: .5em;
-}
-.room .room-title {
-color: #ffcc00;
-}
-.room .room-exits {
-color: #FF0000;
+    border-top: 1px dashed #ffcc00;
+    border-bottom: 1px dashed #ffcc00;
+    color: #FFFFFF;
+    padding: 10px;
+    font-weight: bold;
+    margin: 25px 0px;
 }
 
-.room-content {
+.cprompt {
+    padding-bottom: .5em;
+}
+
+.room .room-title {
     color: #008080;
+    margin-bottom: 0px;
+}
+
+.room .room-exits {
+    color: #FF0000;
+    margin-bottom: 0px;
+}
+
+.room .room-content {
+    color: #008080;
+    margin-bottom: 10px;
 }
 
 .room-item {
@@ -186,6 +211,10 @@ color: #FF0000;
 .table-no-border>tbody>tr>td, 
 .table-no-border>tfoot>tr>td {
 border-top: none;
+}
+
+.cyan {
+    color: #008080;
 }
 
 .dark-red {
@@ -280,6 +309,10 @@ text-decoration: underline;
     }
 }
 
-.room p {
+.row p {
+    margin: 0px;
+}
+
+#mudopen {
     margin-bottom: 10px;
 }
