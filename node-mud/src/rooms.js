@@ -78,7 +78,7 @@ Room.prototype.getDisplayHTML = function(roomObj, player) {
 	if (items.length > 0) {
 		for (i; i < items.length; i += 1) {
 			if (World.character.canSeeObject(player, items[i])) {
-				if (items[i].level && items[i].itemType !== 'corpse' && items[i].itemType !== 'ornament') {
+				if (items[i].level > 1 && items[i].itemType !== 'corpse' && items[i].itemType !== 'ornament') {
 					if (items[i].long) {
 						displayHTML += '<li class="room-item">' + items[i].long + ' (' + items[i].level + ')</li>';
 					} else {
