@@ -9,10 +9,12 @@ building a role-playing experience based on ad&d characters, monsters, game-play
   - [x] create the pit
   - [x] create the recall room
   - [ ] create the guild hometown portal
+  - [ ] create the vendor
+  - [ ] create the banker
 - [x] create half-elf race
 - [ ] create half-elf home town
-- [ ] create magic missle spell
-- [ ] create kobold mob
+- [x] create magic missle spell
+- [x] create kobold mob
 
 
 ## guild.area
