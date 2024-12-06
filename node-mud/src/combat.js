@@ -738,6 +738,7 @@ Combat.prototype.attack = function(attacker, defender, battle, positionNumber, a
 			shieldSlots = World.character.getSlotsWithShields(defender);
 
 			if (shieldSlots.length > 0) {
+				//todo: shield logic
 				//shield = shieldSlots[0].item;
 				
 				//shieldName = this.getCombatName(shield);
