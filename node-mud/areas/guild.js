@@ -2,7 +2,7 @@
 module.exports = {
     name: 'Guild Area',
     id: 'guild',
-    type: ['camp'],
+    type: ['safe'],
     levels: 'All',
     description: 'The central guild area where adventurers gather, train, and plan their quests.',
     reloads: 0,
@@ -111,15 +111,38 @@ module.exports = {
                 }
             ],
             playersInRoom: [],
-            monsters: [],
+            monsters: [
+                {
+                    name: 'pip the ogre child',
+                    displayName: 'pip',
+                    level: 1,
+                    short: 'pip',
+                    long: 'pip the ogre tries to pick your pocket',
+                    inName: 'pip',
+                    race: 'ogre',
+                    id: '36',
+                    area: 'guild',
+                    weight: 10,
+                    position: 'standing',
+                    attackType: 'bite',
+                    baseStr: 1,
+                    size: {value: 1, display: 'small'},
+                    runOnAliveWhenEmpty: true,
+                    behaviors: [{
+                        module: 'wander',
+                        moveDirections: ['north', 'east', 'west', 'south']
+                    }]
+                }
+
+            ],
             items: []
         },
         {
             id: '4',
-            title: 'Pit',
-            light: false,
+            title: 'The Pit',
+            light: true,
             area: 'guild',
-            content: 'A deep pit, possibly dangerous to fall into.',
+            content: 'A pit is in the middle of the floor, filled with discarded adveturer gear.',
             outdoors: false,
             exits: [
                 {
@@ -137,6 +160,8 @@ module.exports = {
                     area: 'guild',
                     id: '427',
                     level: 1,
+                    isOpen: true,
+                    carryLimit: 50,
                     itemType: 'container',
                     weight: 10000,
                     items: [{
@@ -153,9 +178,7 @@ module.exports = {
                         value: 1,
                         equipped: false,
                         isKey: true
-                    }],
-                    isOpen: true,
-                    carryLimit: 50
+                    }]
                 }            
             ]        
         },
@@ -190,28 +213,42 @@ module.exports = {
         },
         {
             id: '6',
-            title: 'Hall',
+            title: 'Newbie',
             light: true,
             area: 'guild',
             content: 'The hall here seems to have a notable echo.',
             outdoors: false,
+            playersInRoom: [],
+            monsters: [
+                {
+                    name: 'Glenda',
+                    level: 10,
+                    short: 'a vigilant guardian of the newbies',
+                    long: 'Glenda stands heres',
+                    description: 'The guardian is clad in ceremonial armor, equipped with a staff of authority.',
+                    race: 'human',
+                    charClass: "cleric",
+                    id: 61,
+                    area: 'guild',
+                    weight: 180,
+                    baseStr: 15,
+                    position: 'standing',
+                    attackType: 'staff',
+                    damroll: 5,
+                    hitroll: 5,
+                    ac: 10,
+                    behaviors: [{
+                        module: 'guard'
+                    }]
+                }
+            ],
+            items: [],
             exits: [
                 {
                     cmd: 'west',
                     id: '5'
                 },
-                {
-                    cmd: 'east',
-                    id: '7'
-                },
-                {
-                    cmd: 'south',
-                    id: '2'
-                }
-            ],
-            playersInRoom: [],
-            monsters: [],
-            items: []
+            ]
         },
         {
             id: '7',

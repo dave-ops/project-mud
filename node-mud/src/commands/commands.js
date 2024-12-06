@@ -1501,9 +1501,9 @@ Cmd.prototype.move = function(target, command, fn) {
 														+ ' leaves heading <strong class="grey">'
 														+ direction + '</strong>.</span>';	
 												} else {
-													msg = '<span class="warning">' + target.capitalShort
-														+ ' leaves traveling <strong class="grey">'
-														+ direction + '</strong>.</span>';
+													msg = '' + target.capitalShort
+														+ ' leaves '
+														+ direction + '.';
 												}
 											} else {
 												msg = '<span class="warning">' + target.displayName
