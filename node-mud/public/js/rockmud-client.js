@@ -215,7 +215,9 @@ window.onload = function() {
 				document.dispatchEvent(onSendEvt);
 			}
 
-			node.value = '';
+			//todo: make this a configuration setting
+			//node.value = '';
+			node.select();
 			node.focus();
 		
 			return false;

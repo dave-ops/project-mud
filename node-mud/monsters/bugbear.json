@@ -1,0 +1,70 @@
+{
+    "race": "bugbear",
+    "attributes": {
+      "strength": 16,
+      "dexterity": 12,
+      "constitution": 15,
+      "intelligence": 10,
+      "wisdom": 10,
+      "charisma": 8
+    },
+    "size": "large",
+    "speed": 30,
+    "languages": ["Common", "Goblin"],
+    "traits": {
+      "darkvision": 60,
+      "stealthy": true,
+      "surpriseAttack": {
+        "bonus": 2,
+        "damage": {
+          "diceCount": 2,
+          "diceSides": 6,
+          "bonus": 2
+        }
+      },
+      "brute": {
+        "when": "when it hits with a melee weapon attack, it can roll one additional weapon damage die"
+      },
+      "fearfulPresence": {
+        "range": 30,
+        "condition": "frightened",
+        "duration": "until the end of the bugbear's next turn"
+      }
+    },
+    "senses": {
+      "passivePerception": 10,
+      "keenHearingAndSmell": true
+    },
+    "environment": ["forest", "cave", "underground"],
+    "alignment": "chaotic evil",
+    "hitPoints": {
+      "diceCount": 3,
+      "diceSides": 8,
+      "bonus": 6
+    },
+    "armorClass": 16,
+    "challengeRating": 1,
+    "actions": {
+      "morningstar": {
+        "attackBonus": 4,
+        "damage": {
+          "diceCount": 2,
+          "diceSides": 6,
+          "bonus": 2
+        }
+      },
+      "javelin": {
+        "range": {
+          "normal": 30,
+          "long": 120
+        },
+        "attackBonus": 4,
+        "damage": {
+          "diceCount": 1,
+          "diceSides": 6,
+          "bonus": 2
+        }
+      }
+    },
+    "description": "A bugbear is a fearsome goblinoid known for its stealth and strength, often leading or terrorizing its goblin kin. With a burly build, sharp claws, and a mane of coarse hair, bugbears are a terrifying sight."
+  }

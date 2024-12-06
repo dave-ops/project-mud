@@ -1,0 +1,59 @@
+{
+    "race": "goblin",
+    "attributes": {
+      "strength": 8,
+      "dexterity": 14,
+      "constitution": 10,
+      "intelligence": 10,
+      "wisdom": 8,
+      "charisma": 8
+    },
+    "size": "small",
+    "speed": 30,
+    "languages": ["Common", "Goblin"],
+    "traits": {
+      "darkvision": 60,
+      "nimbleEscape": {
+        "description": "Once per turn, you can take the Disengage or Hide action as a bonus action on your turn."
+      },
+      "furyOfTheSmall": {
+        "bonus": 2,
+        "condition": "when you hit a creature with an attack and that creature's size is larger than yours"
+      }
+    },
+    "senses": {
+      "passivePerception": 9
+    },
+    "environment": ["forest", "cave", "underground"],
+    "alignment": "neutral evil",
+    "hitPoints": {
+      "diceCount": 2,
+      "diceSides": 6,
+      "bonus": 0
+    },
+    "armorClass": 12,
+    "challengeRating": 0.25,
+    "actions": {
+      "scimitar": {
+        "attackBonus": 4,
+        "damage": {
+          "diceCount": 1,
+          "diceSides": 6,
+          "bonus": 2
+        }
+      },
+      "shortbow": {
+        "range": {
+          "normal": 80,
+          "long": 320
+        },
+        "attackBonus": 4,
+        "damage": {
+          "diceCount": 1,
+          "diceSides": 6,
+          "bonus": 2
+        }
+      }
+    },
+    "description": "Goblins are small, green-skinned humanoids known for their cunning and agility. They often live in large groups, led by a stronger leader, and are notorious for their traps and ambushes. Goblins are adept at sneaking and escaping from danger."
+  }
