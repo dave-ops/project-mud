@@ -26,29 +26,29 @@ building a role-playing experience based on ad&d characters, monsters, game-play
                                   └┐        ┌┘                       
                                     └──────┘
                                        |
-┌─────────────┐   ┌───────────┐   ┌───────────┐   ┌───────────┐
-│   BIZAAR    │───│  BIZAAR   │───│  HALLWAY  │───│   BANK    │
-│ Food Vendor |   │ Fountain  │   │  Trainer  │   │           │
-└─────────────┘   └───────────┘   └───────────┘   └───────────┘
+┌─────────────┐   ┌────────────┐   ┌───────────┐   ┌───────────┐
+│ BIZAAR (2)  │───│ BIZAAR (2) │───│  HALLWAY  │───│   BANK    │
+│ Food Vendor |   │ Fountain   │   │  Trainer  │   │           │
+└─────────────┘   └────────────┘   └───────────┘   └───────────┘
        |                                |
 ┌─────────────┐   ┌───────────┐   ┌───────────┐   ┌───────────┐
-│   BIZAAR    │   │  THE PIT  │───│  HALLWAY  │───│   NEWBIE  │
+│  BIZAAR (2) │   │  THE PIT  │───│  HALLWAY  │───│   NEWBIE  │
 │Magic Vendor |   │   (pit)   │   │           │───│    (*)    │                
 └─────────────┘   └───────────┘   └───────────┘   └───────────┘
        |                                |
 ┌─────────────┐   ┌───────────┐   ┌───────────┐   ┌───────────┐
-│   BIZAAR    │   │  LIBRARY  │   |  HALLWAY  │   │   RECALL  │
+│  BIZAAR (2) │   │  LIBRARY  │   |  HALLWAY  │   │   RECALL  │
 │Weapon Vendor|   │ Librarian │───│           │───│           │                
 │             |   │    (1)    |   │           │   │           │                
 └─────────────┘   └───────────┘   └───────────┘   └───────────┘
        |                                
 ┌─────────────┐                    LEGEND:
-│   BIZAAR    │                    (*) Newbie Spawn Point
+│  BIZAAR (2) │                    (*) Newbie Spawn Point
 │ Armor Vendor|                    (1) Ghost Librarian
-└─────────────┘   
+└─────────────┘                    (2) Outside  
        |                                
 ┌─────────────┐                    
-│    TENT     │                    
+│    TENT (2) │                    
 │    GURU     |                    
 │   Practice  |
 └─────────────┘   
@@ -87,11 +87,11 @@ CONT ───│  GRASS    │───│    GRASS  │   │  BEHIND   │
                               HOMETOWN  
                                   │                
 ┌───────────┐   ┌───────────┐   ┌───────────┐   ┌───────────┐
-│  BIZAAR   │───│  BIZAAR   │───│  HALLWAY  │───│   BANK    │
+│ BIZAAR (2) │───│ BIZAAR (2) │───│  HALLWAY  │───│   BANK    │
 │Food Vendor|   │ Fountain  │   │  Trainer  │   │           │
 └───────────┘   └───────────┘   └───────────┘   └───────────┘
                       │                ┌───────────┐   ┌───────────┐   ┌───────────┐
-                │  BIZAAR   │   │  THE PIT  │───│  HALLWAY  │───│   NEWBIE  │                │ Magic    │   │   [pit]   │   │           │───│    [*]    │                │ Vendor   │   └───────────┘   └───────────┘   └───────────┘
+                │ BIZAAR (2) │   │  THE PIT  │───│  HALLWAY  │───│   NEWBIE  │                │ Magic    │   │   [pit]   │   │           │───│    [*]    │                │ Vendor   │   └───────────┘   └───────────┘   └───────────┘
                 └───────────┘   │                                      │                ┌───────────┐   ┌───────────┐   ┌───────────┐
                 │  LIBRARY  │───│  HALLWAY  │───│  RECALL   │
                 │ Librarian │   |  (sewer)  │───│           │
