@@ -68,42 +68,42 @@ Combat = function(newWorld) {
 			flagFlare: false
 		},
 		{
-			value: ['MUTILATES'],
+			value: ['<span class="green">MUTILATES</span>'],
 			min: 36,
 			max: 39,
 			sizeFlare: false,
 			flagFlare: false
 		},
 		{
-			value: ['DISEMBOWELS'],
+			value: ['<span class="brown">DISEMBOWELS</span>'],
 			min: 40,
 			max: 43,
 			sizeFlare: false,
 			flagFlare: false
 		},
 		{
-			value: ['EVISCERATES'],
+			value: ['<span class="orange">EVISCERATES</span>'],
 			min: 44,
 			max: 47,
 			sizeFlare: false,
 			flagFlare: false
 		},
 		{
-			value: ['MASSACRES'],
+			value: ['<span class="dark-green">MASSACRES</span>'],
 			min: 48,
 			max: 52,
 			sizeFlare: false,
 			flagFlare: false
 		},
 		{
-			value: ['*** DEMOLISHES ***'],
+			value: ['*** <span class="dark-red">DEMOLISHES</span> ***'],
 			min: 53,
 			max: 99,
 			sizeFlare: false,
 			flagFlare: false
 		},
 		{
-			value: ['*** ANNIHILATES ***'],
+			value: ['*** <span class="yellow">ANNIHILATES</span> ***'],
 			min: 100,
 			max: 1000,
 			sizeFlare: false,

@@ -225,6 +225,10 @@ border-top: none;
     color: #800000;
 }
 
+.dark-green {
+    color: #063b0d;
+}
+
 .red {
     color: #800000;
 }
@@ -241,8 +245,16 @@ border-top: none;
     color: #FFFF00;
 }
 
+.orange {
+    color: #f49c29;
+}
+
 .grey {
     color: #d3d3d3;
+}
+
+.brown {
+    color: #573304;
 }
 
 .white {
