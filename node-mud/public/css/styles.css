@@ -58,8 +58,12 @@ h2, h3, h4, h5, h6, .title {
     color: #00FF00;
 }
 
+.undefined {
+    color: #d3d3d3;
+}
+
 .warning {
-    color: #FFFF00;
+    color: #d3d3d3;
 }
 
 .alert {
