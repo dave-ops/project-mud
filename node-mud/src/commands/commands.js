@@ -258,7 +258,7 @@ Cmd.prototype.sell = function(target, command) {
 						
 						World.msgPlayer(target, {
 							msg: 'You sell ' + item.short,
-							styleClass: 'green'
+							styleClass: 'white'
 						});
 
 						World.processEvents('onSell', target, roomObj, merchant);
@@ -368,13 +368,13 @@ Cmd.prototype.give = function(target, command) {
 
 								World.msgPlayer(target, {
 									msg: 'You give ' + item.short + ' to ' + receiver.displayName + '.',
-									styleClass: 'green'
+									styleClass: 'white'
 								});
 
 								if (receiver.isPlayer) {
 									World.msgPlayer(receiver, {
 										msg: target.displayName + ' gives you ' + item.short + '.',
-										styleClass: 'green'
+										styleClass: 'white'
 									});
 								}
 
@@ -427,7 +427,7 @@ Cmd.prototype.give = function(target, command) {
 
 							World.msgPlayer(receiver,  {
 								msg: target.displayName + ' gives you ' + goldToTransfer + ' ' + World.config.coinage + 's.',
-								styleClass: 'green'
+								styleClass: 'white'
 							});
 
 							World.processEvents('onGoldReceived', receiver, roomObj, goldToTransfer, target);
@@ -1259,7 +1259,7 @@ Cmd.prototype.recall = function(target, command) {
 
 					World.msgPlayer(target, {
 						msg: '<strong>You have recalled to ' + targetRoom.title + '!</strong>',
-						styleClass: 'green'
+						styleClass: 'white'
 					});
 
 					World.character.save(target);
@@ -1276,7 +1276,7 @@ Cmd.prototype.recall = function(target, command) {
 
 			World.msgPlayer(target, {
 				msg: 'You will now recall to the current room!',
-				styleClass: 'green'
+				styleClass: 'white'
 			});
 		} else if (!command.msg && target.recall.roomid && target.recall.area) {
 			if (roomObj.area !== target.recall.area || roomObj.id !== target.recall.roomid) {
@@ -1300,7 +1300,7 @@ Cmd.prototype.recall = function(target, command) {
 
 					World.msgPlayer(target, {
 						msg: '<strong>You have recalled to ' + target.recall.area  + '!</strong>',
-						styleClass: 'green'
+						styleClass: 'white'
 					});
 				}
 			} else {
@@ -1315,7 +1315,7 @@ Cmd.prototype.recall = function(target, command) {
 
 			World.msgPlayer(target, {
 				msg: 'You will now recall to the current room!',
-				styleClass: 'green'
+				styleClass: 'white'
 			});
 		}
 	} else {
@@ -1620,7 +1620,7 @@ Cmd.prototype.who = function(target, command) {
 
 				str += '<tr>' +
 					'<td class="who-lvl">' + player.level + '</td>' +
-					'<td class="who-race green">' + player.race + '</td>' +
+					'<td class="who-race white">' + player.race + '</td>' +
 					'<td class="who-class red">' + player.classAbbr + '</td>' +
 					'<td class="who-player"><strong>' + displayName + '</strong></td>' +
 				'</tr>';
@@ -1763,7 +1763,7 @@ Cmd.prototype.get = function(target, command, fn) {
 						World.msgPlayer(target, {
 							msg: 'You get a ' + item.displayName + ' from a '
 								+ container.displayName + '.',
-							styleClass: 'green'
+							styleClass: 'white'
 						});
 
 						World.processEvents('onGet', container, roomObj, item, target);
@@ -1863,7 +1863,7 @@ Cmd.prototype.put = function(target, command) {
 
 					World.msgPlayer(target, {
 						msg: 'You put a <strong>' + item.displayName + '</strong> into ' + container.short + '.',
-						styleClass: 'green'
+						styleClass: 'white'
 					});
 
 					World.processEvents('onPut', container, roomObj, item);
@@ -2334,7 +2334,7 @@ Cmd.prototype.kill = function(player, command) {
 Cmd.prototype.worth = function(target, command) {
 	World.msgPlayer(target, {
 		msg: 'You have ' + target.gold + ' gold.',
-		styleClass: 'green'
+		styleClass: 'white'
 	});
 };
 
@@ -2625,7 +2625,7 @@ Cmd.prototype.reply = function(target, command) {
 			if (player) {
 				World.msgPlayer(player, {
 					msg: '<strong>' + target.displayName + ' replies></strong> ' + command.msg,
-					styleClass: 'green'
+					styleClass: 'white'
 				});
 
 				target.reply = player.name;
@@ -2807,7 +2807,7 @@ Cmd.prototype.train = function(target, command) {
 										msg: 'You train with ' + trainer.displayName 
 											+ '. (<strong>' + World.capitalizeFirstLetter(stat) 
 											+ ' +1 for ' + cost +  ' trains</strong>)',
-										styleClass: 'green'
+										styleClass: 'white'
 									});
 								} else {
 									World.msgPlayer(target, {
@@ -2935,19 +2935,19 @@ Cmd.prototype.practice = function(target, command) {
 					World.msgPlayer(target, {
 						msg: trainer.capitalShort + ' trains you in the art of '
 							+ skillObj.display + '.',
-						styleClass: 'green'
+						styleClass: 'white'
 					});
 				} else {
 					World.msgPlayer(target, {
 						msg: trainer.trainMsg,
-						styleClass: 'green'
+						styleClass: 'white'
 					});
 				}
 
 				World.msgRoom(roomObj, {
 					msg: trainer.capitalShort + ' trains ' + target.displayName
 						+ ' in the art of ' + skillObj.display + '.',
-					styleClass: 'green',
+					styleClass: 'white',
 					playerName: target.name
 				});
 			} else {
@@ -3056,7 +3056,7 @@ Cmd.prototype.practice = function(target, command) {
 									practiceDisplay += '<td class="prac-known red">Unmet prerequisites</td>';
 								} else {
 									if (trainer.skills[i].train >= skillObj.train || trainer.maxTrain) {
-										practiceDisplay += '<td class="prac-known green">Trainable</td>';
+										practiceDisplay += '<td class="prac-known white">Trainable</td>';
 									} else {
 										practiceDisplay += '<td class="prac-known">Already have superior knowledge</td>';
 									}
@@ -3108,7 +3108,7 @@ Cmd.prototype.save = function(target, command) {
 
 				World.msgPlayer(target, {
 					msg: target.displayName + ' was saved. Whew!',
-					styleClass: 'save green'
+					styleClass: 'save white'
 				});
 			});
 		} else if (target.position !== 'standing') {
@@ -3358,7 +3358,7 @@ Cmd.prototype.quests = function(target, commands) {
 			listStr += questObj.steps[questsArr[i].step];
 
 			if (questsArr[i].completed) {
-				listStr += ' <strong class="green">(Complete)</strong>';
+				listStr += ' <strong class="white">(Complete)</strong>';
 			}
 
 			qStr += '<li class="list-inline-item"><p>' + listStr  + '</p></li>';
@@ -3418,7 +3418,7 @@ Cmd.prototype.score = function(target, command) {
 					(target.affects.length ? '<p>You are under the influence of special affects.</p>' : '<p>You don\'t feel affected by anything.</p>').toString() +
 				'</div>' +
 				'<ul class="col-md-12 list-unstyled">' +
-					'<li class="stat-position">You are currently <span class="green">' + (target.fighting === false ? target.position : target.position + ' and fighting') + '</span>.</li>' +
+					'<li class="stat-position">You are currently <span class="white">' + (target.fighting === false ? target.position : target.position + ' and fighting') + '</span>.</li>' +
 					'<li class="stat-level">You are a level ' + target.level + ' ' + target.sex + ' ' + target.race + ' <strong class="red">'
 						+ target.charClass + '</strong> of ' + target.size.display + ' size with ' 
 						+ '<span class="warning">' + target.gold + ' ' + World.config.coinage  + '</span>.</li>' +
