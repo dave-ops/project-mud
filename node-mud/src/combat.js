@@ -5,40 +5,110 @@ Combat = function(newWorld) {
 
 	this.damage = [
 		{
-			value: ['nicks', 'grazes'],
+			value: ['scratches'],
 			min: 1,
-			max: 4,
+			max: 3,
 			sizeFlare: false, // means the value will display in uppercase if its within 70& of its max
-			flagFlare: false // means the value will display flare if its within 90& of its max
+			flagFlare: false  // means the value will display flare if its within 90& of its max
 		},
 		{
-			value: ['hurts', 'wounds', 'injures'],
-			min: 5,
-			max: 8,
+			value: ['grazes'],
+			min: 4,
+			max: 7,
 			sizeFlare: false,
 			flagFlare: false
 		},
 		{
-			value: ['maims', 'harms'],
-			min: 9,
-			max: 14,
-			sizeFlare: true,
+			value: ['hits'],
+			min: 8,
+			max: 11,
+			sizeFlare: false,
 			flagFlare: false
 		},
 		{
-			value: ['mauls', 'demolishes', 'punishes'],
-			min: 15,
-			max: 21,
-			sizeFlare: true,
+			value: ['injures'],
+			min: 12,
+			max: 15,
+			sizeFlare: false,
 			flagFlare: false
 		},
 		{
-			value: ['destroys', 'pulverizes'],
-			min: 22,
-			max: 100,
-			sizeFlare: true,
-			flagFlare: true
-		}
+			value: ['wounds'],
+			min: 16,
+			max: 19,
+			sizeFlare: false,
+			flagFlare: false
+		},
+		{
+			value: ['mauls'],
+			min: 20,
+			max: 23,
+			sizeFlare: false,
+			flagFlare: false
+		},
+		{
+			value: ['decimates'],
+			min: 24,
+			max: 27,
+			sizeFlare: false,
+			flagFlare: false
+		},
+		{
+			value: ['devastates'],
+			min: 28,
+			max: 31,
+			sizeFlare: false,
+			flagFlare: false
+		},
+		{
+			value: ['maims'],
+			min: 32,
+			max: 35,
+			sizeFlare: false,
+			flagFlare: false
+		},
+		{
+			value: ['MUTILATES'],
+			min: 36,
+			max: 39,
+			sizeFlare: false,
+			flagFlare: false
+		},
+		{
+			value: ['DISEMBOWELS'],
+			min: 40,
+			max: 43,
+			sizeFlare: false,
+			flagFlare: false
+		},
+		{
+			value: ['EVISCERATES'],
+			min: 44,
+			max: 47,
+			sizeFlare: false,
+			flagFlare: false
+		},
+		{
+			value: ['MASSACRES'],
+			min: 48,
+			max: 52,
+			sizeFlare: false,
+			flagFlare: false
+		},
+		{
+			value: ['*** DEMOLISHES ***'],
+			min: 53,
+			max: 99,
+			sizeFlare: false,
+			flagFlare: false
+		},
+		{
+			value: ['*** ANNIHILATES ***'],
+			min: 100,
+			max: 1000,
+			sizeFlare: false,
+			flagFlare: false
+		},
 	];
 	
 	/*
