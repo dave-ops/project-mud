@@ -81,3 +81,32 @@ CONT ───│  GRASS    │───│    GRASS  │   │  BEHIND   │
             CONT            CONT            PORTAL     
                                            HOMETOWN  
 ```                                     
+
+# The DikuMUD Family Tree
+```
+The DikuMUD Family Tree
+ 
+
+   ____________________________________DikuMUD_________________________ 
+  |         |         |         |         |         |         |        |
+Vie1      Silly    Pirate    Circle1   Diku_II   Sequent   Techno   Crimson
+  |         |                   |                   |   
+Vie2     DaleMUD        ______Circle2______       Copper1 
+  |                   |         |         |         |
+Vie3             Archipelago Circle3  LostLands   Copper2 ____________
+  |                                                 |               |
+Vie4                             _________________Merc1_______   Copper3 
+  |                             |                   |         |
+Vie5                         Rom1.0                  |        Vego 
+                                :_________________Merc2________________
+                                |         |         |         |        |
+          ___________________Rom2.3    TheIsles     Envy1      SMAUG      ACK
+         |         |            |      (NiMUD)      |        |
+      Sunder    EmberMUD    ___Rom2.4 ___           _Envy2 _
+                         |      |     |         |       |
+                     Anatolia Wurm Oblivion  Mythran    EOS
+                                 |
+                               RockMUD
+                                 |
+                           The Kobold's Den
+```
