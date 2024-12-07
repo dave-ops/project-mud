@@ -1185,7 +1185,9 @@ Character.prototype.getItemByName = function(entity, name) {
 }
 
 Character.prototype.getItem = function(entity, command) {
-	return World.search(entity.items, command);
+	console.log('Character.prototype.getItem')
+	console.log({entity, command})
+	return World.search(entity.items, false, false, command);
 };
 
 Character.prototype.getItems = function(player, command) {

@@ -178,6 +178,7 @@ module.exports = {
           carryLimit: 50,
           itemType: "container",
           weight: 10000,
+          isContainer: true,
           items: [
             {
               name: "sewer key",
@@ -261,6 +262,7 @@ module.exports = {
                 },
               ],
               isOpen: true,
+              isContainer: true,
               carryLimit: 50,
             },
           ],

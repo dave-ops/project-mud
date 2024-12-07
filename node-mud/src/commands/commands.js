@@ -1850,7 +1850,10 @@ Cmd.prototype.put = function(target, command) {
 			if (container) {
 				command.arg = command.second;
 
-				item = World.character.getItem(target, command);
+				//item = World.character.getItem(target, command);
+				console.log({ target })
+				console.log(target.items);
+				item = target.items.find(i => i.name.split(' ').includes(command.arg));
 
 				if (item && item.refId !== container.refId && item.id !== container.id) {
 					World.character.removeItem(target, item);
@@ -1866,6 +1869,7 @@ Cmd.prototype.put = function(target, command) {
 
 					World.character.save(target);
 				} else {
+					console.log({item, container})
 					if (item && item.refId !== container.refId) {
 						World.msgPlayer(target, {
 							msg: 'You aren\'t carrying anything by that name.',
