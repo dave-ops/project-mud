@@ -3385,7 +3385,8 @@ Cmd.prototype.score = function(target, command) {
 					'<li class="stat-wis"><label><strong>WIS:</strong></label> ' + target.baseWis + ' <strong>(' + target.wis + ')(' + (mods.wis > 0 ? '+' : '').toString() + mods.wis + ')</strong></li>' +
 					'<li class="stat-int"><label><strong>INT:</strong></label> ' + target.baseInt + ' <strong>(' + target.int + ')(' + (mods.int > 0 ? '+' : '').toString() + mods.int + ')</strong></li>' +
 					'<li class="stat-dex"><label><strong>DEX:</strong></label> ' + target.baseDex + ' <strong>(' + target.dex + ')(' + (mods.dex > 0 ? '+' : '').toString() + mods.dex + ')</strong></li>' +
-					'<li class="stat-con last"><label><strong>CON:</strong></label> ' + target.baseCon + ' <strong>(' + target.con + ')(' + (mods.con > 0 ? '+' : '').toString() + mods.con + ')</strong></li>' +
+					'<li class="stat-con"><label><strong>CON:</strong></label> ' + target.baseCon + ' <strong>(' + target.con + ')(' + (mods.con > 0 ? '+' : '').toString() + mods.con + ')</strong></li>' +
+					'<li class="stat-chr last"><label><strong>CHR:</strong></label> ' + target.baseChr + ' <strong>(' + target.chr + ')(' + (mods.chr > 0 ? '+' : '').toString() + mods.chr + ')</strong></li>' +
 				'</ul>' +
 				'<ul class="col-md-3 score-stats list-unstyled">' +
 					'<li class="stat-armor"><label><strong>Armor:</strong></label> ' + World.dice.getAC(target) + '</li>' +

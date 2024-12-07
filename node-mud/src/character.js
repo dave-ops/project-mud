@@ -297,6 +297,7 @@ Character.prototype.create = function(s) {
 			s.player.baseWis += 10 + s.player.wis;
 			s.player.baseCon += 10 + s.player.con;
 			s.player.baseDex += 10 + s.player.dex;
+			s.player.baseChr += 10 + s.player.chr;
 			s.player.mv = s.player.cmv;
 			s.player.mana = s.player.cmana;
 			s.player.chp = s.player.hp;
@@ -305,6 +306,7 @@ Character.prototype.create = function(s) {
 			s.player.wis = s.player.baseWis;
 			s.player.con = s.player.baseCon;
 			s.player.dex = s.player.baseDex;
+			s.player.chr = s.player.baseChr;
 			s.player.noFollow = false;
 			s.player.noGroup = false;
 
