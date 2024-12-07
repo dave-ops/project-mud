@@ -1761,7 +1761,7 @@ Cmd.prototype.get = function(target, command, fn) {
 						World.character.addItem(target, item);
 
 						World.msgPlayer(target, {
-							msg: 'You remove a <strong>' + item.displayName + '</strong> from a '
+							msg: 'You get a ' + item.displayName + ' from a '
 								+ container.displayName + '.',
 							styleClass: 'green'
 						});
