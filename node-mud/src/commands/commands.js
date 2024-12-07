@@ -838,7 +838,7 @@ Cmd.prototype.drink = function(target, command) {
 
 				World.msgPlayer(target, {
 					msg: 'You drink from a ' + bottle.short,
-					styleClass: 'cmd-drop blue'
+					styleClass: 'cmd-drop white'
 				});
 			} else {
 				World.msgPlayer(target, {
@@ -1706,7 +1706,7 @@ Cmd.prototype.get = function(target, command, fn) {
 
 									World.msgPlayer(target, {
 										msg: 'You pick up ' + item.short,
-										styleClass: 'blue'
+										styleClass: 'white'
 									});	
 								} else {
 
@@ -1804,7 +1804,7 @@ Cmd.prototype.get = function(target, command, fn) {
 						World.msgPlayer(target, {
 							msg: 'You grab everything you can from a '
 							+ container.displayName + '.',
-							styleClass: 'blue'
+							styleClass: 'white'
 						});
 
 						World.processEvents('onGet', roomObj.items, roomObj, null, target);
@@ -1936,7 +1936,7 @@ Cmd.prototype.drop = function(target, command, fn) {
 
 						World.msgPlayer(target, {
 							msg: 'You drop ' + item.short,
-							styleClass: 'blue'
+							styleClass: 'white'
 						});
 
 						World.processEvents('onDrop', target, roomObj, item);
@@ -1987,7 +1987,7 @@ Cmd.prototype.drop = function(target, command, fn) {
 					if (dropCnt > 1) {
 						World.msgPlayer(target, {
 							msg: 'You drop everything that you can.',
-							styleClass: 'blue'
+							styleClass: 'white'
 						});
 
 						World.msgRoom(roomObj, {
@@ -1998,7 +1998,7 @@ Cmd.prototype.drop = function(target, command, fn) {
 					} else if (dropCnt === 1) {
 						World.msgPlayer(target, {
 							msg: 'You drop everything that you can.',
-							styleClass: 'blue'
+							styleClass: 'white'
 						});
 
 						World.msgRoom(roomObj, {
@@ -2244,7 +2244,7 @@ Cmd.prototype.cast = function(player, command, fn) {
 					} else {
 						World.msgPlayer(player, {
 							msg: 'You do not know that spell.',
-							styleClass: 'blue'
+							styleClass: 'white'
 						});
 					}
 				} else {
@@ -3050,7 +3050,7 @@ Cmd.prototype.practice = function(target, command) {
 							practiceDisplay += '<tr><td class="prac-skill">' + trainer.skills[i].display + '</td>';
 
 							if (!skillObj) {
-								practiceDisplay += '<td class="prac-known blue">Not Trainable</td>';
+								practiceDisplay += '<td class="prac-known white">Not Trainable</td>';
 							} else {
 								if (!World.character.meetsSkillPrereq(target, skillObj.prerequisites)) {
 									practiceDisplay += '<td class="prac-known red">Unmet prerequisites</td>';
