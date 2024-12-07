@@ -1848,7 +1848,7 @@ Cmd.prototype.put = function(target, command) {
 
 			var char_container = target.items.find(i => i.name.split(' ').includes(command.input));
 			var room_container = command.roomObj.items.find(i => i.name.split(' ').includes(command.input));
-			container = char_container ? char_container : room_container;
+			container = room_container ? room_container : char_container;
 
 			if (container) {
 				command.arg = command.second;
