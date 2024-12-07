@@ -16,12 +16,13 @@ html, body {
     padding: 1em;
     margin: 0;
     height: 100%;
-    color: #fff !important;
+    color: #d3d3d3!important;
     font-family: monospace;
+    font-size: 16px;
 }
 
 table {
-    color: #fff !important;
+    color: #d3d3d3!important;
 }
 
 html, body a {
