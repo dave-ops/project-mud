@@ -1845,15 +1845,16 @@ Cmd.prototype.put = function(target, command) {
 
 	if (target.position !== 'sleeping') {
 		if (command.msg !== '') {
-			container = World.character.getContainer(target, command);
+
+			var char_container = target.items.find(i => i.name.split(' ').includes(command.input));
+			var room_container = command.roomObj.items.find(i => i.name.split(' ').includes(command.input));
+			container = char_container ? char_container : room_container;
 
 			if (container) {
 				command.arg = command.second;
 
-				//item = World.character.getItem(target, command);
-				console.log({ target })
-				console.log(target.items);
-				item = target.items.find(i => i.name.split(' ').includes(command.arg));
+				//item = World.character.getItem(target, command);  <-- trash
+				item = target.items.find(i => i.name.split(' ').includes(command.second));
 
 				if (item && item.refId !== container.refId && item.id !== container.id) {
 					World.character.removeItem(target, item);
