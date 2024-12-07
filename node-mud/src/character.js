@@ -740,13 +740,13 @@ Character.prototype.hunger = function(target) {
 			if (World.dice.roll(1, 2) === 1) {
 				World.msgPlayer(target, {msg: 'You feel hungry.', styleClass: 'hunger'});
 			} else {
-				World.msgPlayer(target, {msg: 'Your stomach begins to growl.', styleClass: 'hunger'});
+				World.msgPlayer(target, {msg: 'You are hungry.', styleClass: 'hunger'});
 			}
 		}
 	} else {
 		this.changeHp(target, -((World.dice.roll(1, target.level * 2) - conMod) + target.size.value));
 		
-		World.msgPlayer(target, {msg: 'You are dying of hunger.', styleClass: 'hunger'});
+		World.msgPlayer(target, {msg: 'You are hangry.', styleClass: 'hunger'});
 	}
 };
 
@@ -765,13 +765,13 @@ Character.prototype.thirst = function(target) {
 			if (World.dice.roll(1, 2) === 1) {
 				World.msgPlayer(target, {msg: 'You are thirsty.', styleClass: 'thirst'});
 			} else {
-				World.msgPlayer(target, {msg: 'Your lips are parched.', styleClass: 'thirst'});
+				World.msgPlayer(target, {msg: 'You are thirsty.', styleClass: 'thirst'});
 			}
 		}
 	} else {
 		this.changeHp(target, -((World.dice.roll(1, target.thirst) - conMod) + target.size.value));
 
-		World.msgPlayer(target, {msg: 'You are dying of thirst.', styleClass: 'thirst'});
+		World.msgPlayer(target, {msg: 'You are thirsty.', styleClass: 'thirst'});
 	}
 };
 

@@ -14,7 +14,7 @@ exports.server = {
 		// if its an array the selection is randomized.
 		startingArea: {
 			area: 'guild',
-			roomid: '1'
+			roomid: '6'
 		},
 		// Persistence drivers for data. World and Player data can use differing drivers.
 		persistenceDriverDir: '../databases/',

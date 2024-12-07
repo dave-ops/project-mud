@@ -2382,7 +2382,7 @@ Cmd.prototype.look = function(target, command) {
 					}
 
 					if (item.items) {
-						itemDescription += '<p>Inside you can see:</p><ul class="list container-list">'
+						itemDescription += '<p class="dark-cyan">The ' + item.name + ' contains:</p><ul class="list-unstyled dark-cyan">'
 
 						for (i; i < item.items.length; i += 1) {
 							itemDescription += '<li>' + item.items[i].displayName  + '</li>';

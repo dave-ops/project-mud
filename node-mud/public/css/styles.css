@@ -221,6 +221,10 @@ border-top: none;
     color: #008080;
 }
 
+.dark-cyan {
+    color: #008080;
+}
+
 .dark-red {
     color: #800000;
 }
@@ -283,7 +287,7 @@ display: inline-block;
 color: #ffcc00;
 }
 .hunger {
-color: red;
+color: 008080;
 }
 .quest-complete {
 font-weight: bold;

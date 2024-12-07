@@ -20,33 +20,6 @@ module.exports = {
   persistence: false,
   rooms: [
     {
-      id: "bizaar_weapon",
-      name: "Bazaar - Weapon Vendor",
-      description:
-        "The clang of metal and the sharp smell of oil dominate here. A weapon vendor displays an array of blades and armor.",
-      exits: {
-        north: "bizaar_magic",
-      },
-    },
-    {
-      id: "bizaar_armor",
-      name: "Bazaar - Armor Vendor",
-      description:
-        "This section of the bazaar is filled with the dull gleam of metal. An armor vendor has his wares laid out for inspection.",
-      exits: {
-        north: "bizaar_weapon",
-      },
-    },
-    {
-      id: "bizaar_tent",
-      name: "Bazaar - Guru's Tent",
-      description:
-        "A large tent set up in the corner of the bazaar, where a wise guru offers guidance and training in ancient arts.",
-      exits: {
-        north: "bizaar_armor",
-      },
-    },
-    {
       id: "1",
       title: "The Guild Bazaar",
       light: true,
@@ -195,7 +168,7 @@ module.exports = {
       monsters: [],
       items: [
         {
-          name: "the pit",
+          name: "donation pit",
           short: "A pit for donations dominates the room.",
           long: "a pit is in the floor filled with discarded equipment",
           area: "guild",
@@ -545,6 +518,33 @@ module.exports = {
           value: 0,
         },
       ],
+    },
+    {
+      id: "bizaar_weapon",
+      name: "Bazaar - Weapon Vendor",
+      description:
+        "The clang of metal and the sharp smell of oil dominate here. A weapon vendor displays an array of blades and armor.",
+      exits: {
+        north: "bizaar_magic",
+      },
+    },
+    {
+      id: "bizaar_armor",
+      name: "Bazaar - Armor Vendor",
+      description:
+        "This section of the bazaar is filled with the dull gleam of metal. An armor vendor has his wares laid out for inspection.",
+      exits: {
+        north: "bizaar_weapon",
+      },
+    },
+    {
+      id: "bizaar_tent",
+      name: "Bazaar - Guru's Tent",
+      description:
+        "A large tent set up in the corner of the bazaar, where a wise guru offers guidance and training in ancient arts.",
+      exits: {
+        north: "bizaar_armor",
+      },
     },
   ],
 };
